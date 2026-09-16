@@ -73,6 +73,6 @@ category.
 
 ## Licence
 
-This is a competition entry and is not published under an open-source licence.
+Code in this repository is released under the MIT licence (see `LICENSE`).
 Third-party components keep their own: OpenCV Apache-2.0, YOLOX Apache-2.0,
 `vtest.avi` Apache-2.0, NumPy BSD-3, FastAPI MIT. Nothing here is AGPL.

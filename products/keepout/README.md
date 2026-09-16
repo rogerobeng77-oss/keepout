@@ -263,6 +263,6 @@ category.
 
 ## Licence
 
-Code in this directory is part of a competition entry and is not published under
-an open-source licence. Third-party components keep their own: OpenCV Apache-2.0,
+Code in this directory is released under the MIT licence (see `LICENSE` at the
+repository root). Third-party components keep their own: OpenCV Apache-2.0,
 YOLOX Apache-2.0, YuNet MIT, `vtest.avi` Apache-2.0, NumPy BSD-3, FastAPI MIT.
