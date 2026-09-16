@@ -1,0 +1,57 @@
+{
+  "clip": "cell-quiet.mp4",
+  "labelled": true,
+  "timing": {
+    "clip": "cell-quiet.mp4",
+    "frames": 480,
+    "clip_seconds": 40.0,
+    "wall_seconds": 14.66,
+    "ms_per_frame": 30.55,
+    "realtime_factor": 2.73,
+    "size": [
+      960,
+      540
+    ]
+  },
+  "incidents": [],
+  "frames_usable": 480,
+  "frames_seen": 480,
+  "view_problems": {},
+  "occupancy": {
+    "frames_with_someone_in_the_zone": 0,
+    "frames_we_saw_them": 0,
+    "frames_we_missed_them": 0,
+    "detection_rate": null,
+    "frames_we_saw_somebody_who_was_not_there": 0,
+    "empty_frames": 480
+  },
+  "entries": [],
+  "latency_excluded_blind_entries": 0,
+  "time_to_alert_ms": {
+    "n": 0,
+    "median": null,
+    "max": null,
+    "under_1000ms": 0,
+    "missed_entries": 0
+  },
+  "false_alerts": {
+    "clip_has_nobody_in_the_zone": true,
+    "spurious_incidents": 0,
+    "camera_hours": 0.01109,
+    "per_camera_hour": 0.0
+  },
+  "vanish_rule": {
+    "nobody_collapsed_in_this_clip": true,
+    "false_criticals": 0,
+    "per_camera_hour": 0.0
+  },
+  "stage_ms": {
+    "view_check": 3288.74,
+    "detect": 10061.19,
+    "track": 2.2,
+    "machine": 358.73,
+    "guard": 502.79,
+    "posture": 2.03,
+    "escalate": 6.49
+  }
+}

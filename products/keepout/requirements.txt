@@ -1,0 +1,30 @@
+# Keepout runtime dependencies, fully pinned.
+#
+# The rules require pinned dependencies, and there is a specific trap here:
+# OpenCV 4.14.0 was released AFTER 5.0.0, so `pip install opencv-python-headless`
+# without a version resolves to 4.x and the entry silently fails the one hard
+# requirement of the competition. The pin below is the whole reason this file is
+# not a `>=`. The Dockerfile asserts the major version after install as well.
+#
+# Licences: OpenCV Apache-2.0, NumPy BSD-3, FastAPI/Starlette/uvicorn MIT/BSD,
+# boto3 Apache-2.0. Nothing here is AGPL. The detector weights (YOLOX-tiny,
+# Megvii) are Apache-2.0 and are fetched by the Dockerfile, not by this file.
+
+opencv-python-headless==5.0.0.93
+numpy==2.5.3
+
+fastapi==0.141.1
+starlette==1.6.0
+pydantic==2.13.5
+python-multipart==0.0.32
+uvicorn[standard]==0.53.0
+anyio==4.15.1
+httptools==0.8.0
+uvloop==0.22.1
+watchfiles==1.2.0
+websockets==17.1
+python-dotenv==1.2.3
+pyyaml==6.0.3
+
+# Only used when KEEPOUT_EVIDENCE_BUCKET is set, to mirror evidence frames to S3.
+boto3==1.43.95

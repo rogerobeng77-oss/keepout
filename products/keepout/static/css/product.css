@@ -1,0 +1,537 @@
+/* Keepout - "Guardline" in docs/design/atlas.md section 3.
+ *
+ * The world this comes from: machine guarding, lockout/tagout tags, and the
+ * yellow-and-black hatching painted on the floor around a press. Neutral
+ * plant-floor graphite, one hazard yellow for everything the operator does, one
+ * stop orange reserved for a person inside a running machine's zone and used
+ * nowhere else.
+ *
+ * Contrast ratios below are the ones computed in the atlas, not estimates.
+ * Nothing in here is carried by colour alone: every state also has a word.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* palette - atlas section 3 */
+  --ground: #17191C;
+  --surface: #20242A;
+  --raised: #2A2F36;
+  --ink: #F2F4F5;        /* 15.96:1 on ground, 14.13:1 on surface */
+  --ink-dim: #A7AEB4;    /* 6.95:1 on surface */
+  --ink-faint: #8A9198;  /* 4.89:1 on surface */
+  --line: #333840;
+  --line-strong: #454C56;
+
+  --hazard: #F5C518;     /* 10.80:1 on ground - the accent */
+  --hazard-ink: #17191C;
+  --stop: #FF6B35;       /* 5.50:1 on surface - the signal, person in a live zone */
+  --clear: #6FD08C;      /* 8.22:1 on surface */
+  --note: #7FB3D5;       /* a note is information, not an alarm */
+  --refuse: #9C8CE8;     /* 5.44:1 on surface - watching paused, not an alarm */
+  --hazard-text: #F5C518;  /* on the dark phone view the accent can carry text */
+  --stage: #0d0f11;      /* the video panel stays dark in both appearances */
+
+  --font-plate: "Saira Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-text: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px;
+  --r: 4px;              /* plant equipment has small radii, not pill shapes */
+  --r-lg: 6px;
+  --rail-w: 268px;
+}
+
+/* The derived desktop wall view, keepout-spec.md section 8. A lit control room
+ * reads a light page; the phone in a noisy building reads the dark one. The only
+ * things that do not switch are the video panels, which are camera pictures in
+ * both appearances.
+ *
+ * The trap the spec calls out: hazard yellow on white is 1.63:1 and must never
+ * carry text. It keeps its role as the zone fill and the active nav marker, and
+ * text switches to #8A6D00, which is 4.92:1 on white. */
+@media (min-width: 900px) {
+  :root:not([data-appearance="dark"]) {
+    color-scheme: light;
+    --ground: #EDEEF0;
+    --surface: #FFFFFF;
+    --raised: #E3E5E9;
+    --ink: #17191C;         /* 15.96:1 on ground */
+    --ink-dim: #4E555C;     /* 7.6:1 on white */
+    --ink-faint: #616870;   /* 5.7:1 on white */
+    --line: #D3D7DC;
+    --line-strong: #B4BAC1;
+    --hazard-ink: #17191C;
+    --hazard-text: #8A6D00; /* 4.92:1 on white; the yellow itself is 1.63:1 */
+    --stop: #C4400F;        /* #FF6B35 is 2.6:1 on white; this is 5.6:1 */
+    --clear: #1F7A3D;       /* 5.2:1 on white */
+    --note: #2B5D8A;
+    --refuse: #5A46B8;      /* 7.0:1 on white */
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .plate { font-family: var(--font-plate); letter-spacing: 0.01em; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--hazard);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ===================================================== layout ========== */
+
+.room { display: grid; grid-template-columns: var(--rail-w) 1fr; min-height: 100vh; }
+
+/* ===================================================== rail ============ */
+
+.rail {
+  position: sticky; top: 0; height: 100vh;
+  display: flex; flex-direction: column; gap: var(--s4);
+  padding: var(--s5) var(--s4);
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+}
+
+.rail__brand { display: flex; gap: var(--s3); align-items: center; }
+
+/* The mark is the hatch itself, two bands of it, at 45 degrees. */
+.rail__mark {
+  width: 34px; height: 34px; flex: none; border-radius: 3px;
+  background: repeating-linear-gradient(
+    45deg, var(--hazard) 0 7px, var(--ground) 7px 14px);
+  border: 1px solid var(--line-strong);
+}
+
+.rail__name { margin: 0; font-size: 26px; font-weight: 700; line-height: 1; }
+.rail__sub { margin: 2px 0 0; font-size: 13px; color: var(--ink-dim); }
+
+.rail__nav { display: flex; flex-direction: column; gap: 2px; }
+
+.nav {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--s2);
+  padding: 9px var(--s3);
+  color: var(--ink-dim); text-decoration: none; font-size: 14px;
+  border-radius: var(--r); border-left: 3px solid transparent;
+}
+.nav:hover { background: var(--raised); color: var(--ink); }
+.nav.is-active {
+  background: var(--raised); color: var(--ink);
+  border-left-color: var(--hazard); font-weight: 600;
+}
+.nav__count {
+  font-family: var(--font-plate); font-size: 13px; font-weight: 600;
+  color: var(--ink-faint); font-variant-numeric: tabular-nums;
+}
+.nav.is-active .nav__count { color: var(--hazard-text); }
+
+.rail__clips { display: flex; flex-direction: column; gap: 6px; }
+.rail__hint { margin: 0; font-size: 12.5px; color: var(--ink-faint); line-height: 1.45; }
+
+.field__label {
+  font-size: 12.5px; color: var(--ink-dim); font-weight: 500;
+}
+
+.select {
+  width: 100%; padding: 8px var(--s3);
+  background: var(--raised); color: var(--ink);
+  border: 1px solid var(--line-strong); border-radius: var(--r);
+  font-family: var(--font-text); font-size: 14px;
+}
+
+.rail__status {
+  margin-top: auto; padding-top: var(--s4); border-top: 1px solid var(--line);
+}
+.rail__status-title {
+  margin: 0 0 var(--s2); font-size: 14px; font-weight: 600; color: var(--ink-dim);
+}
+.rail__privacy {
+  margin: var(--s3) 0 0; font-size: 12px; line-height: 1.5; color: var(--ink-faint);
+  border-left: 2px solid var(--clear); padding-left: var(--s2);
+}
+
+.statlist { margin: 0; display: flex; flex-direction: column; gap: 3px; }
+.statlist > div { display: flex; justify-content: space-between; gap: var(--s2); }
+.statlist dt { font-size: 12.5px; color: var(--ink-faint); }
+.statlist dd {
+  margin: 0; font-family: var(--font-plate); font-size: 14px; font-weight: 600;
+  font-variant-numeric: tabular-nums; text-align: right;
+}
+.statlist--wide { margin-top: var(--s3); gap: 6px; }
+
+/* ===================================================== buttons ========= */
+
+.action, .button {
+  font-family: var(--font-text); font-size: 14px; font-weight: 600;
+  padding: 10px var(--s4); border-radius: var(--r); cursor: pointer;
+  border: 1px solid transparent; width: 100%;
+}
+.action { background: var(--hazard); color: var(--hazard-ink); }
+.action:hover { filter: brightness(1.08); }
+.action:disabled, .button:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
+
+.button { background: var(--raised); color: var(--ink); border-color: var(--line-strong); }
+.button:hover { border-color: var(--hazard); }
+.button--ghost { background: transparent; }
+
+/* ===================================================== main ============ */
+
+.main {
+  padding: var(--s5) var(--s6) var(--s7);
+  max-width: 1280px; width: 100%;
+  display: flex; flex-direction: column; gap: var(--s5);
+}
+
+.head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s4); }
+.head__title { margin: 0; font-size: 30px; font-weight: 700; }
+.head__line { margin: 4px 0 0; color: var(--ink-dim); max-width: 62ch; font-size: 14.5px; }
+.head__right { display: flex; gap: var(--s2); flex: none; }
+
+.chip {
+  font-family: var(--font-plate); font-size: 13px; font-weight: 600;
+  padding: 4px 10px; border-radius: 3px;
+  background: var(--raised); color: var(--ink-dim);
+  border: 1px solid var(--line-strong); white-space: nowrap;
+}
+
+/* ===================================================== the hatch ======= */
+/* The signature element: the band painted on the floor, used as the status line.
+ * When somebody is inside a live zone the hatch itself changes colour, because
+ * that is a signal the user already reads off the floor they stand on. */
+
+.hatch {
+  position: relative;
+  border: 1px solid var(--line-strong); border-radius: var(--r-lg);
+  overflow: hidden; background: var(--surface);
+  display: flex; align-items: center; gap: var(--s4);
+  padding: var(--s3) var(--s4);
+}
+
+/* The hazard band runs the full width along the top and bottom edges, the way
+ * it is painted on a plant floor, rather than sitting in a corner as a badge. */
+.hatch__bar {
+  position: absolute; left: 0; right: 0; top: 0; height: 9px;
+  background: repeating-linear-gradient(
+    45deg, var(--hazard) 0 11px, var(--ground) 11px 22px);
+}
+.hatch__bar::after {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% + var(--hatch-gap, 0px));
+  height: 9px; background: inherit;
+}
+.hatch { --hatch-gap: 0px; }
+.hatch::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9px;
+  background: repeating-linear-gradient(
+    45deg, var(--hazard) 0 11px, var(--ground) 11px 22px);
+}
+.hatch__bar::after { display: none; }
+
+.hatch__text {
+  padding: var(--s3) 0; display: flex; flex-direction: column; gap: 2px;
+}
+.hatch__text strong {
+  font-family: var(--font-plate); font-size: 26px; font-weight: 700; line-height: 1.1;
+}
+.hatch__text span { font-size: 14px; color: var(--ink-dim); }
+.hatch__ack {
+  margin-left: auto; align-self: center; width: auto;
+  font-family: var(--font-text); font-size: 14px; font-weight: 600;
+  padding: 9px var(--s4); border-radius: var(--r); cursor: pointer;
+  background: var(--ink); color: var(--ground); border: none;
+}
+
+.hatch[data-level="clear"] .hatch__text strong { color: var(--clear); }
+.hatch[data-level="note"] .hatch__bar,
+.hatch[data-level="note"]::after {
+  background: repeating-linear-gradient(45deg, var(--note) 0 11px, var(--ground) 11px 22px);
+}
+.hatch[data-level="note"] .hatch__text strong { color: var(--note); }
+.hatch[data-level="guard"] .hatch__text strong { color: var(--hazard-text); }
+.hatch[data-level="alert"] .hatch__bar,
+.hatch[data-level="alert"]::after,
+.hatch[data-level="critical"] .hatch__bar,
+.hatch[data-level="critical"]::after {
+  background: repeating-linear-gradient(45deg, var(--stop) 0 11px, var(--ground) 11px 22px);
+}
+.hatch[data-level="alert"] .hatch__text strong,
+.hatch[data-level="critical"] .hatch__text strong { color: var(--stop); }
+.hatch[data-level="critical"] { border-color: var(--stop); }
+.hatch[data-level="unusable"] .hatch__bar,
+.hatch[data-level="unusable"]::after {
+  background: repeating-linear-gradient(45deg, var(--refuse) 0 11px, var(--ground) 11px 22px);
+}
+.hatch[data-level="unusable"] .hatch__text strong { color: var(--refuse); }
+.hatch[data-level="unusable"] { border-color: var(--refuse); }
+
+/* ===================================================== KPIs ============ */
+
+.kpis {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: var(--s3);
+}
+.kpi {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: var(--s3) var(--s4);
+}
+.kpi dt { font-size: 12.5px; color: var(--ink-dim); font-weight: 500; }
+.kpi dd {
+  margin: 2px 0 0; font-family: var(--font-plate); font-weight: 700;
+  font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums;
+  display: flex; align-items: baseline; gap: 4px;
+}
+.kpi__unit { font-size: 14px; font-weight: 500; color: var(--ink-faint); }
+.kpi__note { margin: 4px 0 0; font-size: 12px; color: var(--ink-faint); line-height: 1.4; }
+
+/* ===================================================== panels ========== */
+
+.panel {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-lg); overflow: hidden; scroll-margin-top: var(--s4);
+}
+.panel__head {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--s3);
+  padding: var(--s3) var(--s4); background: var(--raised);
+  border-bottom: 1px solid var(--line);
+}
+.panel__title { margin: 0; font-size: 18px; font-weight: 600; }
+.panel__meta { font-size: 13px; color: var(--ink-dim); }
+.panel__tools { display: flex; gap: var(--s3); }
+.panel__body { padding: var(--s4); }
+.panel__body--flush { padding: 0; }
+
+.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--ink-dim); cursor: pointer; }
+.toggle input { accent-color: var(--hazard); }
+
+.prose { margin: 0 0 var(--s4); color: var(--ink-dim); max-width: 72ch; font-size: 14.5px; }
+
+/* ===================================================== stage =========== */
+
+.stage {
+  position: relative; background: var(--stage); border-radius: var(--r);
+  border: 1px solid var(--line-strong); overflow: hidden;
+  aspect-ratio: 16 / 9; display: grid; place-items: center;
+}
+.stage__video { width: 100%; height: 100%; object-fit: contain; display: block; }
+.stage__overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.stage__unusable {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: var(--s2);
+  padding: var(--s5); text-align: center;
+  background: rgba(23, 25, 28, 0.86);
+  backdrop-filter: blur(2px);
+}
+.stage__unusable-tag {
+  font-family: var(--font-plate); font-size: 15px; font-weight: 700;
+  padding: 5px 12px; border-radius: 3px;
+  background: var(--refuse); color: #FFFFFF;
+}
+/* `display: flex` above outranks the `hidden` attribute's own `display: none`,
+ * so state it explicitly or the refusal panel is permanently on screen. */
+.stage__unusable[hidden] { display: none; }
+
+.stage__unusable p { margin: 0; max-width: 52ch; color: var(--ink); font-size: 15px; }
+.stage__unusable-next { color: var(--hazard-text) !important; font-weight: 600; font-size: 14px !important; }
+
+.transport { display: flex; align-items: center; gap: var(--s3); margin-top: var(--s3); }
+.transport .button { width: auto; padding: 7px var(--s4); }
+.transport__time {
+  font-family: var(--font-plate); font-weight: 600; font-size: 15px;
+  font-variant-numeric: tabular-nums; color: var(--ink-dim); min-width: 62px; text-align: right;
+}
+.scrub { flex: 1; accent-color: var(--hazard); }
+
+.readout {
+  display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3);
+  font-size: 13px;
+}
+.readout__item {
+  padding: 4px 10px; border-radius: 3px; background: var(--raised);
+  border: 1px solid var(--line); color: var(--ink-dim);
+}
+.readout__item b { color: var(--ink); font-family: var(--font-plate); font-weight: 600; }
+
+/* ===================================================== progress ======== */
+
+.progress { margin-top: var(--s4); }
+.progress__track { height: 6px; background: var(--raised); border-radius: 3px; overflow: hidden; }
+.progress__bar { height: 100%; width: 0; background: var(--hazard); transition: width 160ms linear; }
+.progress__msg { margin: 6px 0 0; font-size: 13px; color: var(--ink-dim); }
+.log {
+  margin: var(--s2) 0 0; max-height: 132px; overflow-y: auto;
+  font-family: ui-monospace, "Cascadia Mono", Menlo, monospace; font-size: 12px;
+  color: var(--ink-dim); background: var(--ground); padding: var(--s2) var(--s3);
+  border-radius: var(--r); border: 1px solid var(--line); white-space: pre-wrap;
+}
+
+/* ===================================================== table =========== */
+
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th {
+  text-align: left; font-size: 12.5px; font-weight: 600; color: var(--ink-dim);
+  padding: 10px var(--s4); border-bottom: 1px solid var(--line-strong);
+  background: var(--surface); position: sticky; top: 0;
+}
+.table td { padding: 11px var(--s4); border-bottom: 1px solid var(--line); vertical-align: top; }
+.table tbody tr:hover { background: var(--raised); }
+.table td.num, .table td.when {
+  font-family: var(--font-plate); font-variant-numeric: tabular-nums; font-weight: 600;
+  white-space: nowrap;
+}
+.empty { color: var(--ink-faint); padding: var(--s5) var(--s4) !important; text-align: center; }
+.empty__line { margin: 0 0 var(--s3); color: var(--ink-dim); font-size: 15px; }
+.empty__quote {
+  margin: 0 auto; max-width: 62ch; text-align: left; font-size: 15px; line-height: 1.6;
+  color: var(--ink); border-left: 3px solid var(--hazard); padding-left: var(--s4);
+}
+.empty__source {
+  margin: var(--s2) auto 0; max-width: 62ch; text-align: left;
+  font-size: 12.5px; color: var(--ink-faint); padding-left: calc(var(--s4) + 3px);
+}
+
+.level {
+  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-family: var(--font-plate); font-weight: 700; font-size: 14px;
+}
+.level::before {
+  content: ""; width: 9px; height: 9px; flex: none; background: currentColor;
+}
+.level--note { color: var(--note); }
+.level--note::before { border-radius: 50%; }
+.level--guard { color: var(--hazard-text); }
+.level--guard::before { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.level--alert { color: var(--stop); }
+.level--critical { color: var(--stop); }
+.level--critical::before { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+
+.state { font-size: 13px; color: var(--ink-dim); }
+.state--open { color: var(--stop); font-weight: 600; }
+.state--held { color: var(--hazard-text); font-weight: 600; }
+.ack-button {
+  font-size: 12.5px; font-weight: 600; padding: 5px 10px; margin-top: 5px;
+  background: var(--ink); color: var(--ground); border: none;
+  border-radius: 3px; cursor: pointer; display: block;
+}
+
+/* ===================================================== evidence ======== */
+
+.evidence { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: var(--s3); }
+.evidence figure {
+  margin: 0; background: var(--raised); border: 1px solid var(--line);
+  border-radius: var(--r); overflow: hidden;
+}
+.evidence img { width: 100%; display: block; background: var(--stage); }
+.evidence figcaption { padding: var(--s2) var(--s3); font-size: 12.5px; color: var(--ink-dim); }
+.evidence figcaption b { display: block; color: var(--ink); font-size: 13px; margin-bottom: 2px; }
+.badge-blur {
+  display: inline-block; margin-top: 5px; font-size: 11.5px; font-weight: 600;
+  color: var(--clear); border: 1px solid var(--clear); border-radius: 3px; padding: 1px 6px;
+}
+
+/* ===================================================== editor ========== */
+
+.editor { display: grid; grid-template-columns: 1fr 232px; gap: var(--s4); align-items: start; }
+@media (max-width: 860px) { .editor { grid-template-columns: 1fr; } }
+
+.editor__canvas-wrap {
+  border: 1px solid var(--line-strong); border-radius: var(--r);
+  overflow: hidden; background: var(--stage);
+}
+.editor__canvas { width: 100%; display: block; cursor: crosshair; }
+.editor__side { display: flex; flex-direction: column; gap: var(--s2); }
+.editor__status { margin: var(--s2) 0 0; font-size: 12.5px; color: var(--ink-faint); line-height: 1.45; }
+
+/* ===================================================== footer ========== */
+
+.foot { border-top: 1px solid var(--line); padding-top: var(--s4); }
+.quote {
+  margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink);
+  border-left: 3px solid var(--hazard); padding-left: var(--s4); max-width: 78ch;
+}
+.foot__source { margin: var(--s2) 0 0 var(--s4); font-size: 12.5px; color: var(--ink-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Phone, keepout-spec.md section 4. The rail becomes an app bar, the nav becomes
+ * a fixed bottom tab bar in the lower third where a thumb reaches it, and the
+ * hatch band is the first thing under the bar. */
+@media (max-width: 899px) {
+  /* `display: contents` dissolves the rail so its children become direct flex
+   * items of .room and can be ordered around .main. Without it the whole build
+   * status block renders above the hatch band, and the spec's point is that the
+   * first thing on screen is a status you can read at arm's length. */
+  .room { display: flex; flex-direction: column; }
+  .rail { display: contents; }
+
+  .rail__brand {
+    order: 1; display: flex; align-items: center; gap: var(--s3);
+    padding: var(--s3) var(--s4) 0;
+  }
+  .rail__name { font-size: 21px; }
+  .rail__sub { font-size: 12px; }
+
+  .action { order: 2; margin: var(--s3) var(--s4) 0; width: auto; }
+  .rail__clips { order: 3; padding: var(--s3) var(--s4) var(--s4); gap: 6px;
+                 border-bottom: 1px solid var(--line); }
+  .main { order: 4; padding: var(--s4) var(--s4) 86px; }
+  .rail__status {
+    order: 5; margin: 0 var(--s4) 92px; padding-top: var(--s4);
+    border-top: 1px solid var(--line);
+  }
+  .statlist { flex-direction: row; flex-wrap: wrap; gap: var(--s2) var(--s5); }
+  .statlist > div { flex-direction: column; gap: 0; align-items: flex-start; }
+  .statlist dd { text-align: left; }
+
+  .rail__nav {
+    order: 99;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    flex-direction: row; gap: 0;
+    background: var(--surface); border-top: 1px solid var(--line-strong);
+    padding: 0; box-shadow: 0 -2px 12px rgb(0 0 0 / 0.35);
+  }
+  .nav {
+    flex: 1 1 0; flex-direction: column; justify-content: center; gap: 2px;
+    min-height: 66px; border-left: none; border-top: 3px solid transparent;
+    border-radius: 0; text-align: center; font-size: 13px;
+  }
+  .nav.is-active { border-left-color: transparent; border-top-color: var(--hazard); }
+
+  .head { flex-direction: column; gap: var(--s2); }
+  .head__title { font-size: 26px; }
+  .hatch { flex-direction: column; align-items: stretch; gap: 0; }
+  .hatch__ack { margin: var(--s2) 0 0; width: 100%; }
+  .kpis { grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .kpi { border-radius: 0; border-left-width: 0; }
+  .kpi:first-child { border-left-width: 1px; }
+  .kpi dd { font-size: 22px; }
+  .panel__tools { flex-wrap: wrap; }
+  .table th:nth-child(5), .table td:nth-child(5) { display: none; }
+  .editor { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 460px) {
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .table th:nth-child(3), .table td:nth-child(3) { display: none; }
+}

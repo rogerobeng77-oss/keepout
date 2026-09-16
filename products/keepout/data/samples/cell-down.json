@@ -1,0 +1,9317 @@
+{
+  "clip": "cell-down.mp4",
+  "fps": 12.0,
+  "size": [
+    960,
+    540
+  ],
+  "zones": {
+    "danger": [
+      [
+        172.79999999999998,
+        216.0
+      ],
+      [
+        902.4,
+        216.0
+      ],
+      [
+        940.8,
+        529.2
+      ],
+      [
+        115.19999999999999,
+        529.2
+      ]
+    ],
+    "machine": [
+      [
+        211.2,
+        108.0
+      ],
+      [
+        864.0,
+        108.0
+      ],
+      [
+        864.0,
+        216.0
+      ],
+      [
+        211.2,
+        216.0
+      ]
+    ],
+    "guard": [
+      [
+        288.0,
+        216.0
+      ],
+      [
+        518.4000000000001,
+        216.0
+      ],
+      [
+        518.4000000000001,
+        324.0
+      ],
+      [
+        288.0,
+        324.0
+      ]
+    ]
+  },
+  "events": [
+    {
+      "ts_ms": 0.0,
+      "event": "machine_starts"
+    },
+    {
+      "ts_ms": 2166.7,
+      "event": "zone_entry",
+      "walk": 0,
+      "machine_running": true,
+      "expected_level": "alert"
+    },
+    {
+      "ts_ms": 9000.0,
+      "event": "person_collapses",
+      "expected_level": "critical"
+    },
+    {
+      "ts_ms": 29083.3,
+      "event": "zone_exit",
+      "walk": 0
+    }
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "timestamp_ms": 0.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 1,
+      "timestamp_ms": 83.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 2,
+      "timestamp_ms": 166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 3,
+      "timestamp_ms": 250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 4,
+      "timestamp_ms": 333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 5,
+      "timestamp_ms": 416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 6,
+      "timestamp_ms": 500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 7,
+      "timestamp_ms": 583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 8,
+      "timestamp_ms": 666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 9,
+      "timestamp_ms": 750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 10,
+      "timestamp_ms": 833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 11,
+      "timestamp_ms": 916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 12,
+      "timestamp_ms": 1000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 13,
+      "timestamp_ms": 1083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 14,
+      "timestamp_ms": 1166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 15,
+      "timestamp_ms": 1250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 16,
+      "timestamp_ms": 1333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 17,
+      "timestamp_ms": 1416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 18,
+      "timestamp_ms": 1500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            55,
+            274,
+            137,
+            464
+          ],
+          "feet": [
+            96.0,
+            464.4
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 19,
+      "timestamp_ms": 1583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            59,
+            273,
+            141,
+            463
+          ],
+          "feet": [
+            100.5,
+            463.7
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 20,
+      "timestamp_ms": 1666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            63,
+            272,
+            145,
+            462
+          ],
+          "feet": [
+            105.0,
+            463.0
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 21,
+      "timestamp_ms": 1750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            68,
+            272,
+            150,
+            462
+          ],
+          "feet": [
+            109.4,
+            462.2
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 22,
+      "timestamp_ms": 1833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            72,
+            271,
+            154,
+            461
+          ],
+          "feet": [
+            113.9,
+            461.5
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 23,
+      "timestamp_ms": 1916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            77,
+            270,
+            159,
+            460
+          ],
+          "feet": [
+            118.4,
+            460.8
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 24,
+      "timestamp_ms": 2000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            81,
+            270,
+            163,
+            460
+          ],
+          "feet": [
+            122.9,
+            460.1
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 25,
+      "timestamp_ms": 2083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            86,
+            269,
+            168,
+            459
+          ],
+          "feet": [
+            127.4,
+            459.4
+          ],
+          "in_danger_zone": false,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 26,
+      "timestamp_ms": 2166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            90,
+            268,
+            172,
+            458
+          ],
+          "feet": [
+            131.8,
+            458.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 27,
+      "timestamp_ms": 2250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            95,
+            267,
+            177,
+            457
+          ],
+          "feet": [
+            136.3,
+            457.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 28,
+      "timestamp_ms": 2333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            99,
+            267,
+            181,
+            457
+          ],
+          "feet": [
+            140.8,
+            457.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 29,
+      "timestamp_ms": 2416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            104,
+            266,
+            186,
+            456
+          ],
+          "feet": [
+            145.3,
+            456.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 30,
+      "timestamp_ms": 2500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            108,
+            265,
+            190,
+            455
+          ],
+          "feet": [
+            149.8,
+            455.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 31,
+      "timestamp_ms": 2583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            113,
+            265,
+            195,
+            455
+          ],
+          "feet": [
+            154.2,
+            455.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 32,
+      "timestamp_ms": 2666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            117,
+            264,
+            199,
+            454
+          ],
+          "feet": [
+            158.7,
+            454.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 33,
+      "timestamp_ms": 2750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            122,
+            263,
+            204,
+            453
+          ],
+          "feet": [
+            163.2,
+            453.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 34,
+      "timestamp_ms": 2833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            126,
+            262,
+            208,
+            452
+          ],
+          "feet": [
+            167.7,
+            452.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 35,
+      "timestamp_ms": 2916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            131,
+            262,
+            213,
+            452
+          ],
+          "feet": [
+            172.2,
+            452.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 36,
+      "timestamp_ms": 3000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            135,
+            261,
+            217,
+            451
+          ],
+          "feet": [
+            176.6,
+            451.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 37,
+      "timestamp_ms": 3083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            140,
+            260,
+            222,
+            450
+          ],
+          "feet": [
+            181.1,
+            450.7
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 38,
+      "timestamp_ms": 3166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            144,
+            260,
+            226,
+            450
+          ],
+          "feet": [
+            185.6,
+            450.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 39,
+      "timestamp_ms": 3250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            149,
+            259,
+            231,
+            449
+          ],
+          "feet": [
+            190.1,
+            449.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 40,
+      "timestamp_ms": 3333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            153,
+            258,
+            235,
+            448
+          ],
+          "feet": [
+            194.6,
+            448.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 41,
+      "timestamp_ms": 3416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            158,
+            257,
+            240,
+            447
+          ],
+          "feet": [
+            199.0,
+            447.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 42,
+      "timestamp_ms": 3500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            162,
+            257,
+            244,
+            447
+          ],
+          "feet": [
+            203.5,
+            447.1
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 43,
+      "timestamp_ms": 3583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            167,
+            256,
+            249,
+            446
+          ],
+          "feet": [
+            208.0,
+            446.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 44,
+      "timestamp_ms": 3666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            171,
+            255,
+            253,
+            445
+          ],
+          "feet": [
+            212.5,
+            445.7
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 45,
+      "timestamp_ms": 3750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            175,
+            254,
+            257,
+            444
+          ],
+          "feet": [
+            217.0,
+            445.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 46,
+      "timestamp_ms": 3833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            180,
+            254,
+            262,
+            444
+          ],
+          "feet": [
+            221.4,
+            444.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 47,
+      "timestamp_ms": 3916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            184,
+            253,
+            266,
+            443
+          ],
+          "feet": [
+            225.9,
+            443.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 48,
+      "timestamp_ms": 4000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            189,
+            252,
+            271,
+            442
+          ],
+          "feet": [
+            230.4,
+            442.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 49,
+      "timestamp_ms": 4083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            193,
+            252,
+            275,
+            442
+          ],
+          "feet": [
+            234.9,
+            442.1
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 50,
+      "timestamp_ms": 4166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            198,
+            251,
+            280,
+            441
+          ],
+          "feet": [
+            239.4,
+            441.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 51,
+      "timestamp_ms": 4250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            202,
+            250,
+            284,
+            440
+          ],
+          "feet": [
+            243.8,
+            440.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 52,
+      "timestamp_ms": 4333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            207,
+            249,
+            289,
+            439
+          ],
+          "feet": [
+            248.3,
+            439.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 53,
+      "timestamp_ms": 4416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            211,
+            249,
+            293,
+            439
+          ],
+          "feet": [
+            252.8,
+            439.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 54,
+      "timestamp_ms": 4500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            216,
+            248,
+            298,
+            438
+          ],
+          "feet": [
+            257.3,
+            438.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 55,
+      "timestamp_ms": 4583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            220,
+            247,
+            302,
+            437
+          ],
+          "feet": [
+            261.8,
+            437.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 56,
+      "timestamp_ms": 4666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            225,
+            247,
+            307,
+            437
+          ],
+          "feet": [
+            266.2,
+            437.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 57,
+      "timestamp_ms": 4750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            229,
+            246,
+            311,
+            436
+          ],
+          "feet": [
+            270.7,
+            436.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 58,
+      "timestamp_ms": 4833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            234,
+            245,
+            316,
+            435
+          ],
+          "feet": [
+            275.2,
+            435.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 59,
+      "timestamp_ms": 4916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            238,
+            244,
+            320,
+            434
+          ],
+          "feet": [
+            279.7,
+            434.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 60,
+      "timestamp_ms": 5000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            243,
+            244,
+            325,
+            434
+          ],
+          "feet": [
+            284.2,
+            434.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 61,
+      "timestamp_ms": 5083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            247,
+            243,
+            329,
+            433
+          ],
+          "feet": [
+            288.6,
+            433.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 62,
+      "timestamp_ms": 5166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            252,
+            242,
+            334,
+            432
+          ],
+          "feet": [
+            293.1,
+            432.7
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 63,
+      "timestamp_ms": 5250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            256,
+            242,
+            338,
+            432
+          ],
+          "feet": [
+            297.6,
+            432.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 64,
+      "timestamp_ms": 5333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            261,
+            241,
+            343,
+            431
+          ],
+          "feet": [
+            302.1,
+            431.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 65,
+      "timestamp_ms": 5416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            265,
+            240,
+            347,
+            430
+          ],
+          "feet": [
+            306.6,
+            430.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 66,
+      "timestamp_ms": 5500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            270,
+            239,
+            352,
+            429
+          ],
+          "feet": [
+            311.0,
+            429.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 67,
+      "timestamp_ms": 5583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            274,
+            239,
+            356,
+            429
+          ],
+          "feet": [
+            315.5,
+            429.1
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 68,
+      "timestamp_ms": 5666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            279,
+            238,
+            361,
+            428
+          ],
+          "feet": [
+            320.0,
+            428.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 69,
+      "timestamp_ms": 5750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            283,
+            237,
+            365,
+            427
+          ],
+          "feet": [
+            324.5,
+            427.7
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 70,
+      "timestamp_ms": 5833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            287,
+            236,
+            369,
+            426
+          ],
+          "feet": [
+            329.0,
+            427.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 71,
+      "timestamp_ms": 5916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            292,
+            236,
+            374,
+            426
+          ],
+          "feet": [
+            333.4,
+            426.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 72,
+      "timestamp_ms": 6000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            296,
+            235,
+            378,
+            425
+          ],
+          "feet": [
+            337.9,
+            425.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 73,
+      "timestamp_ms": 6083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            301,
+            234,
+            383,
+            424
+          ],
+          "feet": [
+            342.4,
+            424.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 74,
+      "timestamp_ms": 6166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            305,
+            234,
+            387,
+            424
+          ],
+          "feet": [
+            346.9,
+            424.1
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 75,
+      "timestamp_ms": 6250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            310,
+            233,
+            392,
+            423
+          ],
+          "feet": [
+            351.4,
+            423.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 76,
+      "timestamp_ms": 6333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            314,
+            232,
+            396,
+            422
+          ],
+          "feet": [
+            355.8,
+            422.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 77,
+      "timestamp_ms": 6416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            319,
+            231,
+            401,
+            421
+          ],
+          "feet": [
+            360.3,
+            421.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 78,
+      "timestamp_ms": 6500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            323,
+            231,
+            405,
+            421
+          ],
+          "feet": [
+            364.8,
+            421.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 79,
+      "timestamp_ms": 6583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            328,
+            230,
+            410,
+            420
+          ],
+          "feet": [
+            369.3,
+            420.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 80,
+      "timestamp_ms": 6666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            332,
+            229,
+            414,
+            419
+          ],
+          "feet": [
+            373.8,
+            419.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 81,
+      "timestamp_ms": 6750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            337,
+            229,
+            419,
+            419
+          ],
+          "feet": [
+            378.2,
+            419.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 82,
+      "timestamp_ms": 6833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            341,
+            228,
+            423,
+            418
+          ],
+          "feet": [
+            382.7,
+            418.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 83,
+      "timestamp_ms": 6916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            346,
+            227,
+            428,
+            417
+          ],
+          "feet": [
+            387.2,
+            417.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 84,
+      "timestamp_ms": 7000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            350,
+            226,
+            432,
+            416
+          ],
+          "feet": [
+            391.7,
+            416.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 85,
+      "timestamp_ms": 7083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            355,
+            226,
+            437,
+            416
+          ],
+          "feet": [
+            396.2,
+            416.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 86,
+      "timestamp_ms": 7166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            359,
+            225,
+            441,
+            415
+          ],
+          "feet": [
+            400.6,
+            415.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 87,
+      "timestamp_ms": 7250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            364,
+            224,
+            446,
+            414
+          ],
+          "feet": [
+            405.1,
+            414.7
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 88,
+      "timestamp_ms": 7333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            368,
+            224,
+            450,
+            414
+          ],
+          "feet": [
+            409.6,
+            414.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 89,
+      "timestamp_ms": 7416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            373,
+            223,
+            455,
+            413
+          ],
+          "feet": [
+            414.1,
+            413.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 90,
+      "timestamp_ms": 7500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            377,
+            222,
+            459,
+            412
+          ],
+          "feet": [
+            418.6,
+            412.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 91,
+      "timestamp_ms": 7583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            382,
+            221,
+            464,
+            411
+          ],
+          "feet": [
+            423.0,
+            411.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 92,
+      "timestamp_ms": 7666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            386,
+            221,
+            468,
+            411
+          ],
+          "feet": [
+            427.5,
+            411.1
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 93,
+      "timestamp_ms": 7750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            391,
+            220,
+            473,
+            410
+          ],
+          "feet": [
+            432.0,
+            410.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 94,
+      "timestamp_ms": 7833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            395,
+            219,
+            477,
+            409
+          ],
+          "feet": [
+            436.5,
+            409.7
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 95,
+      "timestamp_ms": 7916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            399,
+            218,
+            481,
+            408
+          ],
+          "feet": [
+            441.0,
+            409.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 96,
+      "timestamp_ms": 8000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            404,
+            218,
+            486,
+            408
+          ],
+          "feet": [
+            445.4,
+            408.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 97,
+      "timestamp_ms": 8083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            408,
+            217,
+            490,
+            407
+          ],
+          "feet": [
+            449.9,
+            407.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 98,
+      "timestamp_ms": 8166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            413,
+            216,
+            495,
+            406
+          ],
+          "feet": [
+            454.4,
+            406.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 99,
+      "timestamp_ms": 8250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            417,
+            216,
+            499,
+            406
+          ],
+          "feet": [
+            458.9,
+            406.1
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 100,
+      "timestamp_ms": 8333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            422,
+            215,
+            504,
+            405
+          ],
+          "feet": [
+            463.4,
+            405.4
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 101,
+      "timestamp_ms": 8416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            426,
+            214,
+            508,
+            404
+          ],
+          "feet": [
+            467.8,
+            404.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 102,
+      "timestamp_ms": 8500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            431,
+            213,
+            513,
+            403
+          ],
+          "feet": [
+            472.3,
+            403.9
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 103,
+      "timestamp_ms": 8583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            435,
+            213,
+            517,
+            403
+          ],
+          "feet": [
+            476.8,
+            403.2
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 104,
+      "timestamp_ms": 8666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            440,
+            212,
+            522,
+            402
+          ],
+          "feet": [
+            481.3,
+            402.5
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 105,
+      "timestamp_ms": 8750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            444,
+            211,
+            526,
+            401
+          ],
+          "feet": [
+            485.8,
+            401.8
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 106,
+      "timestamp_ms": 8833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            449,
+            211,
+            531,
+            401
+          ],
+          "feet": [
+            490.2,
+            401.0
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 107,
+      "timestamp_ms": 8916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            453,
+            210,
+            535,
+            400
+          ],
+          "feet": [
+            494.7,
+            400.3
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 108,
+      "timestamp_ms": 9000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            458,
+            209,
+            540,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 0.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 109,
+      "timestamp_ms": 9083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            456,
+            210,
+            541,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 7.4,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 110,
+      "timestamp_ms": 9166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            447,
+            212,
+            551,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 14.8,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 111,
+      "timestamp_ms": 9250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            436,
+            216,
+            561,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 22.2,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 112,
+      "timestamp_ms": 9333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            427,
+            222,
+            571,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 29.6,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 113,
+      "timestamp_ms": 9416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            419,
+            230,
+            579,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 37.0,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 114,
+      "timestamp_ms": 9500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            412,
+            241,
+            586,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 44.4,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 115,
+      "timestamp_ms": 9583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            406,
+            253,
+            591,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 51.9,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 116,
+      "timestamp_ms": 9666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            402,
+            268,
+            595,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 59.3,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 117,
+      "timestamp_ms": 9750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            283,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 66.7,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 118,
+      "timestamp_ms": 9833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            399,
+            298,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 74.1,
+          "collapsed": false
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 119,
+      "timestamp_ms": 9916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 120,
+      "timestamp_ms": 10000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 121,
+      "timestamp_ms": 10083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 122,
+      "timestamp_ms": 10166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 123,
+      "timestamp_ms": 10250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 124,
+      "timestamp_ms": 10333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 125,
+      "timestamp_ms": 10416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 126,
+      "timestamp_ms": 10500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 127,
+      "timestamp_ms": 10583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 128,
+      "timestamp_ms": 10666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 129,
+      "timestamp_ms": 10750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 130,
+      "timestamp_ms": 10833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 131,
+      "timestamp_ms": 10916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 132,
+      "timestamp_ms": 11000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 133,
+      "timestamp_ms": 11083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 134,
+      "timestamp_ms": 11166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 135,
+      "timestamp_ms": 11250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 136,
+      "timestamp_ms": 11333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 137,
+      "timestamp_ms": 11416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 138,
+      "timestamp_ms": 11500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 139,
+      "timestamp_ms": 11583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 140,
+      "timestamp_ms": 11666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 141,
+      "timestamp_ms": 11750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 142,
+      "timestamp_ms": 11833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 143,
+      "timestamp_ms": 11916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 144,
+      "timestamp_ms": 12000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 145,
+      "timestamp_ms": 12083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 146,
+      "timestamp_ms": 12166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 147,
+      "timestamp_ms": 12250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 148,
+      "timestamp_ms": 12333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 149,
+      "timestamp_ms": 12416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 150,
+      "timestamp_ms": 12500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 151,
+      "timestamp_ms": 12583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 152,
+      "timestamp_ms": 12666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 153,
+      "timestamp_ms": 12750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 154,
+      "timestamp_ms": 12833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 155,
+      "timestamp_ms": 12916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 156,
+      "timestamp_ms": 13000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 157,
+      "timestamp_ms": 13083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 158,
+      "timestamp_ms": 13166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 159,
+      "timestamp_ms": 13250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 160,
+      "timestamp_ms": 13333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 161,
+      "timestamp_ms": 13416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 162,
+      "timestamp_ms": 13500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 163,
+      "timestamp_ms": 13583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 164,
+      "timestamp_ms": 13666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 165,
+      "timestamp_ms": 13750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 166,
+      "timestamp_ms": 13833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 167,
+      "timestamp_ms": 13916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 168,
+      "timestamp_ms": 14000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 169,
+      "timestamp_ms": 14083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 170,
+      "timestamp_ms": 14166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 171,
+      "timestamp_ms": 14250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 172,
+      "timestamp_ms": 14333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 173,
+      "timestamp_ms": 14416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 174,
+      "timestamp_ms": 14500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 175,
+      "timestamp_ms": 14583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 176,
+      "timestamp_ms": 14666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 177,
+      "timestamp_ms": 14750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 178,
+      "timestamp_ms": 14833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 179,
+      "timestamp_ms": 14916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 180,
+      "timestamp_ms": 15000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 181,
+      "timestamp_ms": 15083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 182,
+      "timestamp_ms": 15166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 183,
+      "timestamp_ms": 15250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 184,
+      "timestamp_ms": 15333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 185,
+      "timestamp_ms": 15416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 186,
+      "timestamp_ms": 15500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 187,
+      "timestamp_ms": 15583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 188,
+      "timestamp_ms": 15666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 189,
+      "timestamp_ms": 15750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 190,
+      "timestamp_ms": 15833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 191,
+      "timestamp_ms": 15916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 192,
+      "timestamp_ms": 16000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 193,
+      "timestamp_ms": 16083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 194,
+      "timestamp_ms": 16166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 195,
+      "timestamp_ms": 16250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 196,
+      "timestamp_ms": 16333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 197,
+      "timestamp_ms": 16416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 198,
+      "timestamp_ms": 16500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 199,
+      "timestamp_ms": 16583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 200,
+      "timestamp_ms": 16666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 201,
+      "timestamp_ms": 16750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 202,
+      "timestamp_ms": 16833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 203,
+      "timestamp_ms": 16916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 204,
+      "timestamp_ms": 17000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 205,
+      "timestamp_ms": 17083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 206,
+      "timestamp_ms": 17166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 207,
+      "timestamp_ms": 17250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 208,
+      "timestamp_ms": 17333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 209,
+      "timestamp_ms": 17416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 210,
+      "timestamp_ms": 17500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 211,
+      "timestamp_ms": 17583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 212,
+      "timestamp_ms": 17666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 213,
+      "timestamp_ms": 17750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 214,
+      "timestamp_ms": 17833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 215,
+      "timestamp_ms": 17916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 216,
+      "timestamp_ms": 18000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 217,
+      "timestamp_ms": 18083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 218,
+      "timestamp_ms": 18166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 219,
+      "timestamp_ms": 18250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 220,
+      "timestamp_ms": 18333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 221,
+      "timestamp_ms": 18416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 222,
+      "timestamp_ms": 18500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 223,
+      "timestamp_ms": 18583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 224,
+      "timestamp_ms": 18666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 225,
+      "timestamp_ms": 18750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 226,
+      "timestamp_ms": 18833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 227,
+      "timestamp_ms": 18916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 228,
+      "timestamp_ms": 19000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 229,
+      "timestamp_ms": 19083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 230,
+      "timestamp_ms": 19166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 231,
+      "timestamp_ms": 19250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 232,
+      "timestamp_ms": 19333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 233,
+      "timestamp_ms": 19416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 234,
+      "timestamp_ms": 19500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 235,
+      "timestamp_ms": 19583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 236,
+      "timestamp_ms": 19666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 237,
+      "timestamp_ms": 19750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 238,
+      "timestamp_ms": 19833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 239,
+      "timestamp_ms": 19916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 240,
+      "timestamp_ms": 20000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 241,
+      "timestamp_ms": 20083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 242,
+      "timestamp_ms": 20166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 243,
+      "timestamp_ms": 20250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 244,
+      "timestamp_ms": 20333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 245,
+      "timestamp_ms": 20416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 246,
+      "timestamp_ms": 20500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 247,
+      "timestamp_ms": 20583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 248,
+      "timestamp_ms": 20666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 249,
+      "timestamp_ms": 20750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 250,
+      "timestamp_ms": 20833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 251,
+      "timestamp_ms": 20916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 252,
+      "timestamp_ms": 21000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 253,
+      "timestamp_ms": 21083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 254,
+      "timestamp_ms": 21166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 255,
+      "timestamp_ms": 21250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 256,
+      "timestamp_ms": 21333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 257,
+      "timestamp_ms": 21416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 258,
+      "timestamp_ms": 21500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 259,
+      "timestamp_ms": 21583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 260,
+      "timestamp_ms": 21666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 261,
+      "timestamp_ms": 21750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 262,
+      "timestamp_ms": 21833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 263,
+      "timestamp_ms": 21916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 264,
+      "timestamp_ms": 22000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 265,
+      "timestamp_ms": 22083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 266,
+      "timestamp_ms": 22166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 267,
+      "timestamp_ms": 22250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 268,
+      "timestamp_ms": 22333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 269,
+      "timestamp_ms": 22416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 270,
+      "timestamp_ms": 22500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 271,
+      "timestamp_ms": 22583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 272,
+      "timestamp_ms": 22666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 273,
+      "timestamp_ms": 22750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 274,
+      "timestamp_ms": 22833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 275,
+      "timestamp_ms": 22916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 276,
+      "timestamp_ms": 23000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 277,
+      "timestamp_ms": 23083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 278,
+      "timestamp_ms": 23166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 279,
+      "timestamp_ms": 23250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 280,
+      "timestamp_ms": 23333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 281,
+      "timestamp_ms": 23416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 282,
+      "timestamp_ms": 23500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 283,
+      "timestamp_ms": 23583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 284,
+      "timestamp_ms": 23666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 285,
+      "timestamp_ms": 23750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 286,
+      "timestamp_ms": 23833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 287,
+      "timestamp_ms": 23916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 288,
+      "timestamp_ms": 24000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 289,
+      "timestamp_ms": 24083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 290,
+      "timestamp_ms": 24166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 291,
+      "timestamp_ms": 24250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 292,
+      "timestamp_ms": 24333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 293,
+      "timestamp_ms": 24416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 294,
+      "timestamp_ms": 24500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 295,
+      "timestamp_ms": 24583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 296,
+      "timestamp_ms": 24666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 297,
+      "timestamp_ms": 24750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 298,
+      "timestamp_ms": 24833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 299,
+      "timestamp_ms": 24916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 300,
+      "timestamp_ms": 25000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 301,
+      "timestamp_ms": 25083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 302,
+      "timestamp_ms": 25166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 303,
+      "timestamp_ms": 25250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 304,
+      "timestamp_ms": 25333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 305,
+      "timestamp_ms": 25416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 306,
+      "timestamp_ms": 25500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 307,
+      "timestamp_ms": 25583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 308,
+      "timestamp_ms": 25666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 309,
+      "timestamp_ms": 25750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 310,
+      "timestamp_ms": 25833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 311,
+      "timestamp_ms": 25916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 312,
+      "timestamp_ms": 26000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 313,
+      "timestamp_ms": 26083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 314,
+      "timestamp_ms": 26166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 315,
+      "timestamp_ms": 26250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 316,
+      "timestamp_ms": 26333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 317,
+      "timestamp_ms": 26416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 318,
+      "timestamp_ms": 26500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 319,
+      "timestamp_ms": 26583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 320,
+      "timestamp_ms": 26666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 321,
+      "timestamp_ms": 26750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 322,
+      "timestamp_ms": 26833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 323,
+      "timestamp_ms": 26916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 324,
+      "timestamp_ms": 27000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 325,
+      "timestamp_ms": 27083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 326,
+      "timestamp_ms": 27166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 327,
+      "timestamp_ms": 27250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 328,
+      "timestamp_ms": 27333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 329,
+      "timestamp_ms": 27416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 330,
+      "timestamp_ms": 27500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 331,
+      "timestamp_ms": 27583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 332,
+      "timestamp_ms": 27666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 333,
+      "timestamp_ms": 27750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 334,
+      "timestamp_ms": 27833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 335,
+      "timestamp_ms": 27916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 336,
+      "timestamp_ms": 28000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 337,
+      "timestamp_ms": 28083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 338,
+      "timestamp_ms": 28166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 339,
+      "timestamp_ms": 28250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 340,
+      "timestamp_ms": 28333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 341,
+      "timestamp_ms": 28416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 342,
+      "timestamp_ms": 28500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 343,
+      "timestamp_ms": 28583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 344,
+      "timestamp_ms": 28666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 345,
+      "timestamp_ms": 28750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 346,
+      "timestamp_ms": 28833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 347,
+      "timestamp_ms": 28916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 348,
+      "timestamp_ms": 29000.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [
+        {
+          "walk": 0,
+          "bbox": [
+            400,
+            310,
+            598,
+            399
+          ],
+          "feet": [
+            499.2,
+            399.6
+          ],
+          "in_danger_zone": true,
+          "body_angle_deg": 80.0,
+          "collapsed": true
+        }
+      ],
+      "people_in_danger_zone": 1,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 349,
+      "timestamp_ms": 29083.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 350,
+      "timestamp_ms": 29166.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 351,
+      "timestamp_ms": 29250.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 352,
+      "timestamp_ms": 29333.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 353,
+      "timestamp_ms": 29416.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 354,
+      "timestamp_ms": 29500.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 355,
+      "timestamp_ms": 29583.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 356,
+      "timestamp_ms": 29666.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 357,
+      "timestamp_ms": 29750.0,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 358,
+      "timestamp_ms": 29833.3,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    },
+    {
+      "index": 359,
+      "timestamp_ms": 29916.7,
+      "machine_running": true,
+      "guard_present": true,
+      "people": [],
+      "people_in_danger_zone": 0,
+      "view_problems": [],
+      "usable": true
+    }
+  ],
+  "note": "One person who collapses inside the zone at nine seconds and does not move again. This is the clip the HSE conveyor case describes. Person imagery matted from samples/data/vtest.avi in the OpenCV repository (Apache-2.0). The machine cell, conveyor, guard panel and all degradations are rendered by keepout.synth, so every label is exact by construction."
+}

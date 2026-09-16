@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+.env
+.DS_Store
+
+# Fetched at build time, never committed.
+products/keepout/data/source/
+products/keepout/data/demo/
+models/
+*.onnx
+
+# ...but the sample clips and their frame-level labels ARE the evaluation set.
+!products/keepout/data/samples/*.mp4

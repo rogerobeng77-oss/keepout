@@ -1,0 +1,1 @@
+Unmodified pedestrian footage: samples/data/vtest.avi from the OpenCV repository, Apache-2.0, transcoded to mp4 and trimmed to 40 seconds. Real people, real camera, nothing composited. There is no machine in it, so it is used to measure detection and tracking on real video and to count false alerts against a zone drawn on the walkway.

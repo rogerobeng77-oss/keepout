@@ -1,0 +1,171 @@
+{
+  "clip": "courtyard.mp4",
+  "labelled": false,
+  "timing": {
+    "clip": "courtyard.mp4",
+    "frames": 400,
+    "clip_seconds": 40.0,
+    "wall_seconds": 12.52,
+    "ms_per_frame": 31.31,
+    "realtime_factor": 3.19,
+    "size": [
+      768,
+      576
+    ]
+  },
+  "incidents": [
+    {
+      "level": "critical",
+      "kind": "person_unaccounted",
+      "started_ms": 19000.0,
+      "reason": "Somebody was standing inside the danger zone and then stopped being visible without walkin"
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 200.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 200.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 1000.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 2500.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 3100.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 3300.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 5300.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 5600.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 8000.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 12400.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 14300.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 15000.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 16700.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 23300.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 24100.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 30800.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 30800.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 31000.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 32400.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 34600.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    },
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 35900.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    }
+  ],
+  "frames_usable": 400,
+  "frames_seen": 400,
+  "view_problems": {},
+  "note": "Real footage with no frame-level labels. Zone entries are not scored because no one has marked them; person-unaccounted incidents are counted as false positives because nobody collapses in this clip.",
+  "unlabelled": {
+    "clip_seconds": 40.0,
+    "camera_hours": 0.01111,
+    "incidents_total": 22,
+    "zone_entries": 21,
+    "person_unaccounted_false_criticals": 1,
+    "vanish_false_criticals_per_camera_hour": 90.0
+  },
+  "stage_ms": {
+    "view_check": 2453.0,
+    "detect": 8707.07,
+    "track": 76.67,
+    "machine": 689.41,
+    "guard": 3.45,
+    "posture": 210.5,
+    "escalate": 50.94
+  }
+}

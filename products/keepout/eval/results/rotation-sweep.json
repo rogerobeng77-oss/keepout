@@ -1,0 +1,76 @@
+{
+  "rows": [
+    {
+      "body_angle_deg": 0,
+      "trials": 4,
+      "detected": 4,
+      "detection_rate": 1.0,
+      "mean_score": 0.907
+    },
+    {
+      "body_angle_deg": 10,
+      "trials": 4,
+      "detected": 4,
+      "detection_rate": 1.0,
+      "mean_score": 0.906
+    },
+    {
+      "body_angle_deg": 20,
+      "trials": 4,
+      "detected": 4,
+      "detection_rate": 1.0,
+      "mean_score": 0.899
+    },
+    {
+      "body_angle_deg": 30,
+      "trials": 4,
+      "detected": 4,
+      "detection_rate": 1.0,
+      "mean_score": 0.887
+    },
+    {
+      "body_angle_deg": 40,
+      "trials": 4,
+      "detected": 4,
+      "detection_rate": 1.0,
+      "mean_score": 0.682
+    },
+    {
+      "body_angle_deg": 50,
+      "trials": 4,
+      "detected": 0,
+      "detection_rate": 0.0,
+      "mean_score": null
+    },
+    {
+      "body_angle_deg": 60,
+      "trials": 4,
+      "detected": 0,
+      "detection_rate": 0.0,
+      "mean_score": null
+    },
+    {
+      "body_angle_deg": 70,
+      "trials": 4,
+      "detected": 1,
+      "detection_rate": 0.25,
+      "mean_score": 0.301
+    },
+    {
+      "body_angle_deg": 80,
+      "trials": 4,
+      "detected": 2,
+      "detection_rate": 0.5,
+      "mean_score": 0.392
+    },
+    {
+      "body_angle_deg": 90,
+      "trials": 4,
+      "detected": 1,
+      "detection_rate": 0.25,
+      "mean_score": 0.312
+    }
+  ],
+  "first_angle_below_half": 50,
+  "conclusion": "YOLOX-tiny drops below a 50% detection rate at about 50 degrees of body rotation. A person lying on the floor is near 90 degrees, so posture-based person-down detection cannot be relied on by itself. This is why a track that disappears deep inside the zone is escalated on its own."
+}

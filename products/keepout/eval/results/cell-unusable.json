@@ -1,0 +1,108 @@
+{
+  "clip": "cell-unusable.mp4",
+  "labelled": true,
+  "timing": {
+    "clip": "cell-unusable.mp4",
+    "frames": 384,
+    "clip_seconds": 32.0,
+    "wall_seconds": 6.49,
+    "ms_per_frame": 16.91,
+    "realtime_factor": 4.93,
+    "size": [
+      960,
+      540
+    ]
+  },
+  "incidents": [
+    {
+      "level": "alert",
+      "kind": "zone_entry",
+      "started_ms": 12000.0,
+      "reason": "A person entered the danger zone while the machine was running."
+    }
+  ],
+  "frames_usable": 156,
+  "frames_seen": 384,
+  "view_problems": {
+    "camera_moved": 72,
+    "lens_blocked": 108,
+    "too_dark": 48,
+    "frozen_feed": 48
+  },
+  "occupancy": {
+    "frames_with_someone_in_the_zone": 78,
+    "frames_we_saw_them": 78,
+    "frames_we_missed_them": 0,
+    "detection_rate": 1.0,
+    "frames_we_saw_somebody_who_was_not_there": 6,
+    "empty_frames": 306
+  },
+  "entries": [
+    {
+      "entry_ms": 6083.3,
+      "expected_level": "alert",
+      "raised_ms": 12000.0,
+      "raised_level": "alert",
+      "latency_ms": 5916.7,
+      "level_correct": true,
+      "view_usable_at_entry": false
+    }
+  ],
+  "latency_excluded_blind_entries": 1,
+  "time_to_alert_ms": {
+    "n": 0,
+    "median": null,
+    "max": null,
+    "under_1000ms": 0,
+    "missed_entries": 0
+  },
+  "false_alerts": {
+    "clip_has_nobody_in_the_zone": false,
+    "spurious_incidents": 0,
+    "camera_hours": 0.00887,
+    "per_camera_hour": null
+  },
+  "vanish_rule": {
+    "nobody_collapsed_in_this_clip": true,
+    "false_criticals": 0,
+    "per_camera_hour": 0.0
+  },
+  "view": {
+    "scripted_problem_frames": {
+      "camera_moved": 72,
+      "lens_blocked": 60,
+      "too_dark": 48,
+      "frozen_feed": 60
+    },
+    "raised_problem_frames": {
+      "camera_moved": 72,
+      "lens_blocked": 108,
+      "too_dark": 48,
+      "frozen_feed": 48
+    },
+    "problems_found": [
+      "camera_moved",
+      "frozen_feed",
+      "lens_blocked",
+      "too_dark"
+    ],
+    "problems_missed": [],
+    "recall_by_problem": {
+      "camera_moved": 1.0,
+      "lens_blocked": 1.0,
+      "too_dark": 1.0,
+      "frozen_feed": 0.8
+    },
+    "blind_frames": 228,
+    "incidents_raised_while_blind": 0
+  },
+  "stage_ms": {
+    "view_check": 2451.49,
+    "detect": 3355.31,
+    "track": 8.58,
+    "machine": 127.92,
+    "guard": 181.74,
+    "posture": 20.72,
+    "escalate": 9.89
+  }
+}

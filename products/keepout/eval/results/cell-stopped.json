@@ -1,0 +1,74 @@
+{
+  "clip": "cell-stopped.mp4",
+  "labelled": true,
+  "timing": {
+    "clip": "cell-stopped.mp4",
+    "frames": 240,
+    "clip_seconds": 20.0,
+    "wall_seconds": 6.84,
+    "ms_per_frame": 28.5,
+    "realtime_factor": 2.92,
+    "size": [
+      960,
+      540
+    ]
+  },
+  "incidents": [
+    {
+      "level": "note",
+      "kind": "zone_entry",
+      "started_ms": 3916.7,
+      "reason": "A person entered the danger zone while the machine was stopped. Logged as a note."
+    }
+  ],
+  "frames_usable": 240,
+  "frames_seen": 240,
+  "view_problems": {},
+  "occupancy": {
+    "frames_with_someone_in_the_zone": 159,
+    "frames_we_saw_them": 159,
+    "frames_we_missed_them": 0,
+    "detection_rate": 1.0,
+    "frames_we_saw_somebody_who_was_not_there": 11,
+    "empty_frames": 81
+  },
+  "entries": [
+    {
+      "entry_ms": 3916.7,
+      "expected_level": "note",
+      "raised_ms": 3916.7,
+      "raised_level": "note",
+      "latency_ms": 0.0,
+      "level_correct": true,
+      "view_usable_at_entry": true
+    }
+  ],
+  "latency_excluded_blind_entries": 0,
+  "time_to_alert_ms": {
+    "n": 1,
+    "median": 0.0,
+    "max": 0.0,
+    "under_1000ms": 1,
+    "missed_entries": 0
+  },
+  "false_alerts": {
+    "clip_has_nobody_in_the_zone": false,
+    "spurious_incidents": 0,
+    "camera_hours": 0.00553,
+    "per_camera_hour": null
+  },
+  "vanish_rule": {
+    "nobody_collapsed_in_this_clip": true,
+    "false_criticals": 0,
+    "per_camera_hour": 0.0
+  },
+  "stage_ms": {
+    "view_check": 1060.48,
+    "detect": 5084.91,
+    "track": 11.13,
+    "machine": 176.9,
+    "guard": 240.36,
+    "posture": 31.0,
+    "escalate": 14.63
+  }
+}
