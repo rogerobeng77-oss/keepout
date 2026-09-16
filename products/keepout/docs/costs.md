@@ -28,6 +28,7 @@ and the `opencv26-apprunner-ecr-access` role.
 
 ### App Runner, the only thing that costs real money
 
+
 `opencv26-keepout` runs at **4 vCPU / 8 GB**, always on, created 04:29 UTC on
 16 September 2026.
 
@@ -193,3 +194,7 @@ measuring the 3% of the frame budget that is not the bottleneck.
 | 2026-09-16 04:50 | Image rebuilt with a fail-fast, circuit-broken S3 sink |
 | 2026-09-16 04:55 | Service updated to 4 vCPU / 8 GB with the instance role |
 | 2026-09-16 04:56 | Live run: 3 evidence frames mirrored to S3, 0 failures |
+| 2026-09-16 06:05 | Build failed: the Dockerfile still baked one clip, and the evidence path had moved to `data/demo/<clip>/evidence` |
+| 2026-09-16 06:11 | Image rebuilt with all seven clips baked, tag `f9f79f5-dirty` |
+| 2026-09-16 06:20 | Service updated to that image, `KEEPOUT_INSTANCE_LABEL` set so the UI stops claiming 2 vCPU |
+| 2026-09-16 06:24 | Verified live: all four view-refusal states reachable, `cell-down` opens on the latched critical |

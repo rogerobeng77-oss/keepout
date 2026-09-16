@@ -12,9 +12,11 @@
 # second a judge looks at it:
 #   1. the YOLOX-tiny ONNX weights are fetched and their digest printed, so the
 #      container never downloads a model at request time;
-#   2. `keepout demo --bake` runs the real pipeline over the bundled clip and
-#      writes the result plus its evidence frames into the image, so `/api/demo`
-#      is a file read rather than a ten-second wait.
+#   2. `keepout demo --bake` runs the real pipeline over EVERY bundled clip and
+#      writes the results plus their evidence frames into the image, so `/api/demo`
+#      is a file read rather than a wait. This matters more than it sounds: App
+#      Runner runs YOLOX-tiny at about 390 ms a frame, so analysing a 24 second
+#      clip live on the instance takes over a minute.
 
 FROM --platform=linux/amd64 python:3.13-slim-bookworm AS base
 
@@ -63,9 +65,11 @@ RUN mkdir -p /opt/models \
  && python -c "from visioncore import fetch_model, YOLOX_TINY; \
     p = fetch_model(YOLOX_TINY); print('model', p, p.stat().st_size, 'bytes')"
 
-# Bake the demo run: real analysis, executed here, served instantly at runtime.
-RUN keepout demo --bake --clip cell-alert \
- && ls -la /app/products/keepout/data/demo/evidence
+# Bake the demo runs: real analysis, executed here, served instantly at runtime.
+# `--clip all` writes data/demo/<clip>/run.json plus data/demo/index.json.
+RUN keepout demo --bake --clip all \
+ && cat /app/products/keepout/data/demo/index.json \
+ && ls -1 /app/products/keepout/data/demo/*/evidence/*.jpg | wc -l
 
 RUN keepout version
 
