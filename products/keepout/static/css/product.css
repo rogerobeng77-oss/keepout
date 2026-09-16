@@ -459,6 +459,19 @@ h1, h2, h3, .plate { font-family: var(--font-plate); letter-spacing: 0.01em; }
 }
 .editor__canvas { width: 100%; display: block; cursor: crosshair; }
 .editor__side { display: flex; flex-direction: column; gap: var(--s2); }
+/* Uploading a clip and choosing which region to draw. Existing tokens only. */
+.rail__upload { margin-top: var(--s2); }
+.upload-button { display: block; text-align: center; }
+#upload-input:focus-visible + .upload-button { outline: 2px solid var(--hazard); }
+.layer-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid var(--line-strong); border-radius: var(--r); overflow: hidden; }
+.layer { display: flex; cursor: pointer; }
+.layer input { position: absolute; opacity: 0; pointer-events: none; }
+.layer span { flex: 1; text-align: center; padding: 8px 4px; font-size: 13px; font-weight: 600;
+  color: var(--ink-dim); background: transparent; }
+.layer input:checked + span { background: var(--hazard); color: var(--hazard-ink); }
+.layer input:focus-visible + span { outline: 2px solid var(--hazard); outline-offset: -2px; }
+.log--warn { color: var(--stop); }
 .editor__status { margin: var(--s2) 0 0; font-size: 12.5px; color: var(--ink-faint); line-height: 1.45; }
 
 /* ===================================================== footer ========== */

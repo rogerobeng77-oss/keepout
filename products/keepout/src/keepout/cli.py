@@ -315,8 +315,6 @@ def run_clip(clip: Path, *, evidence_dir: Path | None = None, max_frames: int = 
     started = time.perf_counter()
     results = []
     for frame in iter_video(clip, max_frames=max_frames, max_side=max_side):
-        if keeper.reference_frame is None:
-            keeper.set_reference(frame.image, frame.timestamp_ms)
         results.append(keeper.process_frame(frame.image, frame.timestamp_ms, frame.index))
     elapsed = time.perf_counter() - started
 

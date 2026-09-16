@@ -5,9 +5,9 @@
     "clip": "cell-down.mp4",
     "frames": 360,
     "clip_seconds": 30.0,
-    "wall_seconds": 9.44,
-    "ms_per_frame": 26.21,
-    "realtime_factor": 3.18,
+    "wall_seconds": 19.83,
+    "ms_per_frame": 55.09,
+    "realtime_factor": 1.51,
     "size": [
       960,
       540
@@ -72,12 +72,12 @@
     "latched": true
   },
   "stage_ms": {
-    "view_check": 2011.49,
-    "detect": 6553.47,
-    "track": 15.92,
-    "machine": 230.73,
-    "guard": 317.28,
-    "posture": 43.01,
-    "escalate": 21.08
+    "view_check": 3853.6,
+    "detect": 14234.84,
+    "track": 26.24,
+    "machine": 342.27,
+    "guard": 546.62,
+    "posture": 79.53,
+    "escalate": 35.94
   }
 }

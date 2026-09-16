@@ -20,6 +20,11 @@
 
 FROM --platform=linux/amd64 python:3.13-slim-bookworm AS base
 
+# infra/ecr.sh passes the commit it built from; /version reports it. Before this
+# line existed the live service said "unknown".
+ARG GIT_SHA=unknown
+ENV OPENCV26_GIT_SHA=${GIT_SHA}
+
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
@@ -64,6 +69,19 @@ RUN python -c "import cv2, sys; \
 RUN mkdir -p /opt/models \
  && python -c "from visioncore import fetch_model, YOLOX_TINY; \
     p = fetch_model(YOLOX_TINY); print('model', p, p.stat().st_size, 'bytes')"
+
+# Fetch and verify YuNet (opencv_zoo, MIT), the face detector the evidence blur uses
+# on top of blurring the head of every detected person. Then require it: with
+# KEEPOUT_REQUIRE_FACE_DETECTOR=1 the service refuses to start, and the bake below
+# refuses to run, if these weights are missing. Real footage showed what happens
+# when they silently are not there (docs/report.md, "Real footage").
+ENV KEEPOUT_YUNET_PATH=/opt/models/face_detection_yunet_2023mar.onnx \
+    KEEPOUT_REQUIRE_FACE_DETECTOR=1
+RUN curl -fsSL -o /opt/models/face_detection_yunet_2023mar.onnx \
+      https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx \
+ && echo "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4  /opt/models/face_detection_yunet_2023mar.onnx" \
+      | sha256sum -c - \
+ && python -c "from keepout.privacy import FaceBlurrer; print(FaceBlurrer().describe())"
 
 # Bake the demo runs: real analysis, executed here, served instantly at runtime.
 # `--clip all` writes data/demo/<clip>/run.json plus data/demo/index.json.

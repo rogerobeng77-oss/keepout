@@ -5,9 +5,9 @@
     "clip": "cell-guard.mp4",
     "frames": 288,
     "clip_seconds": 24.0,
-    "wall_seconds": 9.59,
-    "ms_per_frame": 33.28,
-    "realtime_factor": 2.5,
+    "wall_seconds": 18.78,
+    "ms_per_frame": 65.21,
+    "realtime_factor": 1.28,
     "size": [
       960,
       540
@@ -77,12 +77,12 @@
     "detected": true
   },
   "stage_ms": {
-    "view_check": 3665.64,
-    "detect": 5253.65,
-    "track": 5.32,
-    "machine": 192.68,
-    "guard": 260.01,
-    "posture": 11.41,
-    "escalate": 10.83
+    "view_check": 6238.22,
+    "detect": 11216.88,
+    "track": 8.1,
+    "machine": 268.07,
+    "guard": 423.73,
+    "posture": 19.59,
+    "escalate": 15.94
   }
 }

@@ -38,10 +38,21 @@ failure this product can have.
 ## What it will not do
 
 No face recognition. No identity, ever. Track numbers are per-run counters that
-reset with the process and are never joined to a roster or a badge. Faces are
-blurred in every stored evidence frame before it is written, and the run record
-says which method did the blurring. There is no code path that could add
-recognition without a new dependency.
+reset with the process and are never joined to a roster or a badge. There is no
+code path that could add recognition without a new dependency.
+
+Before an evidence frame is written, Keepout blurs the head region of **every
+person it detects in that frame**. That includes people it is not tracking, found
+by a low-threshold, tiled sweep of the raw frame, and every face the YuNet face
+detector finds on top. The container refuses to start without the YuNet weights.
+Each evidence record says which detectors ran. What this cannot promise: a person
+that no detector finds at all is not blurred.
+
+This claim used to be wrong. Until 16 September the README said "faces are blurred
+in every stored evidence frame". Real construction footage showed that only the
+incident's own subject was blurred, and the workers standing beside him stayed
+sharp. [`docs/evaluation.md`](docs/evaluation.md) §10 has what happened and what
+changed.
 
 ---
 
@@ -70,7 +81,13 @@ transitively: YOLOv5/v8/YOLO11 and FastSAM are AGPL-3.0, whose section 13 makes 
 hosted demo API a source-disclosure event.
 
 **Footage:** person imagery is matted from `samples/data/vtest.avi` in the OpenCV
-repository, Apache-2.0, the same licence as the library.
+repository, Apache-2.0, the same licence as the library. The real-footage check
+used Wikimedia Commons clips under CC BY-SA 3.0 and CC BY 4.0, listed in
+[`eval/real_footage/README.md`](eval/real_footage/README.md). None of them are bundled.
+
+**Face detector:** YuNet, `face_detection_yunet_2023mar.onnx` from opencv_zoo, MIT,
+fetched and checked against its sha256 at image build time. Run through
+`cv2.FaceDetectorYN` only to decide what to blur.
 
 ---
 
@@ -83,11 +100,16 @@ uv pip install --python .venv/bin/python \
   -e packages/visioncore -e packages/servicekit -e products/keepout
 
 keepout build-samples                 # ~2 min: fetch, matte, render, label
+# optional locally, required in the container: the YuNet face detector (MIT)
+curl -fsSL -o ~/.cache/opencv26/models/face_detection_yunet_2023mar.onnx \
+  https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx
 keepout demo --bake                   # ~4 min: analyse every clip once
 uvicorn keepout.service:app --port 8000
 ```
 
-Then open <http://127.0.0.1:8000>.
+Then open <http://127.0.0.1:8000>. To run your own footage, press **Upload a
+video** in the sidebar. Draw the danger zone and the machine region on a frame of
+it, check them over the picture in the live view, then run it.
 
 `build-samples` needs `ffmpeg` on the path to re-encode the rendered clips to
 H.264. Without it the clips are still analysable but browsers will not play them,
@@ -108,7 +130,7 @@ keepout version                   # what is actually installed
 ## Test it
 
 ```bash
-python -m pytest products/keepout/tests     # 121 tests, ~14 s
+python -m pytest products/keepout/tests     # 143 tests, ~30 s
 python -m ruff check products/keepout/src products/keepout/tests
 ```
 
@@ -116,7 +138,9 @@ The tests are mostly sequences whose answer is known by construction: a person
 jittering on a zone boundary must produce one incident and not forty; a crouching
 worker who keeps moving must not be reported as down; a moved camera must produce
 no zone incidents at all. Three of them exist because they caught real bugs, and
-the bug is named in the test.
+the bug is named in the test. `tests/test_real_footage_regressions.py` holds one
+test for each defect that real Wikimedia Commons footage exposed. Each is built by
+construction and names the clip that showed it.
 
 The Hungarian assignment is checked against brute-force enumeration on random
 matrices, because that is the only way to know an assignment implementation is
@@ -151,7 +175,9 @@ the service ended up in `eu-west-2` rather than `us-east-1`.
 | `KEEPOUT_SAMPLES_DIR` | bundled | where the sample clips live |
 | `KEEPOUT_DEMO_DIR` | bundled | where the baked runs live |
 | `KEEPOUT_INSTANCE_LABEL` | `local workstation` | what the UI shows as the host |
-| `KEEPOUT_MAX_FRAMES` | `900` | cap on frames analysed per upload |
+| `KEEPOUT_MAX_FRAMES` | `900` | frames analysed per upload; a longer clip is covered by raising the stride, and the record says so |
+| `KEEPOUT_YUNET_PATH` | unset | the YuNet face detector weights; also looked for in `OPENCV26_MODEL_DIR` and the model cache |
+| `KEEPOUT_REQUIRE_FACE_DETECTOR` | unset (`1` in the container) | refuse to start without YuNet rather than fall back to head regions only |
 | `OPENCV26_MODEL_DIR` | `~/.cache/opencv26/models` | ONNX weight cache |
 
 ---
@@ -196,11 +222,28 @@ Measured on 2,440 frames across seven clips, six with frame-level ground truth.
 | Person down | detected in **8.5 s** |
 | Throughput | **26 ms/frame** on 22 threads, **440 ms/frame** on App Runner |
 
-And the number that argues against us: on 40 seconds of real, crowded pedestrian
-footage the person-unaccounted rule produced **one false critical**, about 90 per
-camera-hour in that setting. It produced none on the five staged machine-cell
-clips. [`docs/evaluation.md`](docs/evaluation.md) §5 explains why the difference is
-real and what it means for where this belongs.
+### On real footage
+
+The numbers above come from staged clips. On 16 September Keepout was run over
+real fixed-camera footage from Wikimedia Commons: a concrete-pump crew in Malta, a
+time-lapse of a house going up under a crane, and an Amazon loading dock. It
+exposed five defects. All five are fixed, and each has a regression test.
+
+| | Before | After |
+|---|---|---|
+| Bystander faces in evidence frames | **sharp** | head region of every detected person blurred |
+| House clip that opens on a black frame | **0** of 2,689 frames watched | 1,764 judged usable |
+| False person-down on a bag at the frame edge | 1 | **0** |
+| Alerts for about 9 people in the Malta pump zone | 27 | **16** |
+| False criticals, courtyard walkway | 1 | **0** |
+| False criticals, house time-lapse (crane zone) | 14 | **5** |
+
+What is still wrong is in [`docs/evaluation.md`](docs/evaluation.md) §10. The
+time-lapse still raises five false criticals, and we have not bent the rule to fit
+time-lapse video. A hard cut to a similar-looking second camera left 165 of 1,085
+frames judged usable. One YOLOX-tiny pass reliably finds people from about 15% of
+frame height, tiled detection from about 8%. Every critical in the real-footage
+runs was false, because nobody fell.
 
 **No deployed-system outcome trial exists for this class of product.** If you ask
 whether Keepout has been shown to prevent an injury in a real factory, the honest
@@ -225,4 +268,4 @@ category.
 
 Code in this directory is part of a competition entry and is not published under
 an open-source licence. Third-party components keep their own: OpenCV Apache-2.0,
-YOLOX Apache-2.0, `vtest.avi` Apache-2.0, NumPy BSD-3, FastAPI MIT.
+YOLOX Apache-2.0, YuNet MIT, `vtest.avi` Apache-2.0, NumPy BSD-3, FastAPI MIT.

@@ -291,6 +291,18 @@ line we were watching.
 
 That rule then had to be tamed against real footage, which is in section 7.
 
+**Upright first.** Real construction footage (Malta, Wikimedia Commons) showed the
+posture path failing the other way. A bag or a stack of roof tiles on the bottom
+edge of the frame was detected as a person. Its box was wider than tall and never
+moved, and four seconds later it raised a latched critical. A fall needs somebody
+who was standing, so a track now becomes eligible for "down" only after three
+upright boxes. A fall usually breaks the track, so a new track inherits that
+history from an upright track that went out of view within 3 s and one box height.
+A box touching the frame edge is never judged for posture, because a person cut
+off by the edge of the picture is a wide box too. The price is stated in the code
+and here: somebody already lying down when the camera starts, and never seen
+standing, does not raise `person_down`.
+
 ### 4.7 The honesty rails
 
 Four checks before anything else, in `viewcheck.py`:
@@ -311,6 +323,20 @@ Four checks before anything else, in `viewcheck.py`:
   separate them at all. The test is now a sustained low mean.
 
 Across 228 blind frames in the degraded clip, **zero** zone incidents were raised.
+
+**The reference itself has to be checked.** A Commons time-lapse opens with a fade
+from black. The black frame became the reference, and all 2,689 frames of the clip
+were refused as `camera_moved`. A reference is now only taken from a frame that
+passes the frame-level checks. It stays provisional until five frames agree with
+it. If instead 25 consecutive frames disagree with it and agree with each other,
+the reference was the odd one out. It is replaced, and a `reference_replaced` view
+event goes into the record. A confirmed reference is never replaced
+automatically, because a camera knocked out of position that then holds still
+looks exactly like that run of frames, and it must keep refusing until a human
+re-draws the zone. That full file now has 1,764 usable frames. It also exposed a
+gap we have not closed: after a hard cut to a similar-looking second camera, ECC
+sometimes converges on a small false shift, and 165 of the 1,085 frames after the
+cut were judged usable (evaluation.md §10.4).
 
 ### 4.8 Other OpenCV 5 specifics
 
@@ -362,12 +388,24 @@ inference from a laptop benchmark will be wrong by most of an order of magnitude
   embedding is ever computed. Adding recognition would require a new dependency.
 - Track numbers are per-run integers that reset when the process restarts and are
   never joined to a roster, a badge or an image of a face.
-- Faces are blurred in **every** stored evidence frame, before it is written, and
-  the run record says which method did it. The face detector used for this is
-  `cv2.FaceDetectorYN`, a detector, used only to decide what to destroy. When its
-  weights are absent, a generous head region derived from the person box is blurred
-  anyway, because the failure mode of a face blur must be "blurred too much",
-  never "missed one".
+- Before an evidence frame is written, the head region of **every person detected
+  in that frame** is blurred. That covers every track, every detection down to
+  score 0.15, and a tiled low-threshold sweep of the raw frame. Every face
+  `cv2.FaceDetectorYN` (YuNet, MIT) finds is blurred as well. The detector is used
+  only to decide what to destroy. The image fetches and checks YuNet at build time
+  and refuses to start without it. Elsewhere the head regions still get blurred,
+  and the record says `face_detector: unavailable`. The limit, stated rather than
+  implied: a person no detector finds is not blurred.
+- **This used to be overstated.** Until 16 September this section said faces were
+  blurred in every stored frame. On a crowded real construction clip, only the
+  incident's own subject was blurred, and the workers beside him stayed sharp in
+  the evidence. The pipeline had handed the blur only the subject's box, and the
+  YuNet weights were not in the image. The new behaviour is covered by a test that
+  puts several people in frame (tracked, untracked, below the tracking threshold,
+  and found only by the sweep) and checks that every head region lost its detail.
+  It was also checked by eye on the same Malta clip, locally and on the live
+  service.
+- Blurring is not a request parameter. A client that asks for it off is ignored.
 - The UI shows the blur state on every evidence frame and in the sidebar, so
   nobody has to take it on trust.
 
@@ -404,14 +442,26 @@ The only quantisation is the frame interval. It does not include the latency of
 getting a frame off a real camera, which on RTSP is another 100 to 400 ms.
 
 **The measurement that argues against us.** On 40 seconds of unmodified, crowded
-pedestrian footage, the person-unaccounted rule produced **one false critical**,
-about 90 per camera-hour in that setting. The first version produced three, about
-270 per camera-hour; requiring a minimum track lifetime and no overlapping
-neighbour removed two of them. One in forty seconds is still far too high for a
-busy thoroughfare. On the five staged machine-cell clips, where the zone is
-normally empty and entered by one person at a time, it produced **zero**. The
-courtyard number is the one to quote when asking whether this belongs on a camera
-pointed at a crowd. It does not.
+pedestrian footage, the first person-unaccounted rule produced three false
+criticals, about 270 per camera-hour. A minimum track lifetime and an overlap test
+brought that to one. Judging the overlap at the moment the track was lost, rather
+than 2.5 s later, brought it to zero. Zero on one 40 s clip is not a rate, and the
+rule still does not belong on a camera pointed at a crowd.
+
+**Real footage.** Run over fixed-camera construction clips from Wikimedia Commons,
+Keepout showed five defects: sharp bystander faces in evidence, a black first frame
+that blinded a whole clip, a false person-down on a bag, 27 alerts for about nine
+people as tracks fragmented, and false vanish criticals. All five are fixed, and
+the before-and-after table is evaluation.md §10.3. On the Malta pump crew, alerts
+went from 27 to 16 (3.0 to 1.8 per person) and false criticals from 1 to 0. On the
+house time-lapse with the crane zone, false criticals went from 14 to 5. Every
+critical in those runs was false, since nobody fell.
+
+**People must be big enough.** One YOLOX-tiny pass at its 416 px input finds 96%
+of people at 15-20% of frame height, 72% at 10-12% and 36% at 6-8%. Full frame plus
+2x2 tiles finds 95% down to 8-10%, at five times the cost. Tiling is an option, and
+without it a probe warns when the single pass is missing people. On the steady
+Amazon dock clip the single pass tracked nobody and said so. Tiled, it tracked 15.
 
 ---
 
@@ -432,11 +482,16 @@ pointed at a crowd. It does not.
    edge or on a GPU and uses a service like this for review.
 4. **The evaluation set is composited.** Real people, rendered machine cell. It
    does not test factory lighting, steam, coolant, dust, high-visibility clothing,
-   real machine occlusion, or more than two people in frame.
+   real machine occlusion, or more than two people in frame. Unlabelled real
+   construction footage (section 7) has since covered high-visibility clothing and
+   crews of eight to twelve. With no labels, it can count false alarms but not
+   misses.
 5. **The false-alert rate is not established.** 0.0111 camera-hours of empty-room
    footage bounds nothing useful.
 6. **Prone-person detection depends on floor contrast** and cannot be promised.
    The vanish rule covers it, at the cost of the false-positive rate in section 7.
+   Person-down also needs the person to have been seen upright first, so someone
+   already on the floor when the camera starts is only caught if they vanish.
 7. **Person-down takes 8.5 seconds**, deliberately, so that a worker crouching to
    clear a jam does not trigger it. An alarm that fires whenever somebody kneels
    gets switched off.
@@ -453,6 +508,21 @@ pointed at a crowd. It does not.
     looks correct on camera and does not protect. A camera flags absence, not
     effectiveness, and selling one as the other would be dishonest.
 
+12. **Small people are missed.** Below about 15% of frame height one detector pass
+    is unreliable. Tiled detection reaches about 8% and is five times slower. The
+    run warns when a probe finds people the single pass missed.
+13. **A cut to a similar-looking camera can be partly missed.** ECC can converge on
+    a small false shift against an unrelated view. On the one real example, 165 of
+    1,085 frames after the cut were judged usable. A fix based on the ECC
+    correlation is measured but not built (evaluation.md §10.4).
+14. **Incident de-duplication inherits tracker mistakes.** A track id that the
+    tracker hands from one person to the person beside them continues one
+    incident. On the courtyard clip, one entry was folded into a neighbour's
+    incident this way.
+15. **Blur is generous, and in a crowd it is heavy.** Low-threshold boxes around
+    groups blur large patches of a crowded evidence frame. That is the direction we
+    chose to fail in, and it costs some of the evidence's detail.
+
 ---
 
 ## 9. Responsible use
@@ -463,8 +533,8 @@ identify, does not rank individuals, does not measure productivity, and does not
 retain anything that could be joined to a person. That is enforced by what the
 code does not contain, not by a policy document.
 
-**The evidence is of a hazard, not of a person.** Every stored frame has faces
-blurred before it is written. An incident record names a zone, a machine state, a
+**The evidence is of a hazard, not of a person.** Every stored frame has the head
+region of every detected person blurred before it is written. An incident record names a zone, a machine state, a
 duration and a track number that means nothing tomorrow.
 
 **It must not be used for discipline.** An incident log that becomes a

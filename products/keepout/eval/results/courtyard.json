@@ -5,21 +5,15 @@
     "clip": "courtyard.mp4",
     "frames": 400,
     "clip_seconds": 40.0,
-    "wall_seconds": 12.52,
-    "ms_per_frame": 31.31,
-    "realtime_factor": 3.19,
+    "wall_seconds": 17.48,
+    "ms_per_frame": 43.7,
+    "realtime_factor": 2.29,
     "size": [
       768,
       576
     ]
   },
   "incidents": [
-    {
-      "level": "critical",
-      "kind": "person_unaccounted",
-      "started_ms": 19000.0,
-      "reason": "Somebody was standing inside the danger zone and then stopped being visible without walkin"
-    },
     {
       "level": "alert",
       "kind": "zone_entry",
@@ -53,25 +47,7 @@
     {
       "level": "alert",
       "kind": "zone_entry",
-      "started_ms": 3300.0,
-      "reason": "A person entered the danger zone while the machine was running."
-    },
-    {
-      "level": "alert",
-      "kind": "zone_entry",
       "started_ms": 5300.0,
-      "reason": "A person entered the danger zone while the machine was running."
-    },
-    {
-      "level": "alert",
-      "kind": "zone_entry",
-      "started_ms": 5600.0,
-      "reason": "A person entered the danger zone while the machine was running."
-    },
-    {
-      "level": "alert",
-      "kind": "zone_entry",
-      "started_ms": 8000.0,
       "reason": "A person entered the danger zone while the machine was running."
     },
     {
@@ -139,12 +115,6 @@
       "kind": "zone_entry",
       "started_ms": 34600.0,
       "reason": "A person entered the danger zone while the machine was running."
-    },
-    {
-      "level": "alert",
-      "kind": "zone_entry",
-      "started_ms": 35900.0,
-      "reason": "A person entered the danger zone while the machine was running."
     }
   ],
   "frames_usable": 400,
@@ -154,18 +124,18 @@
   "unlabelled": {
     "clip_seconds": 40.0,
     "camera_hours": 0.01111,
-    "incidents_total": 22,
-    "zone_entries": 21,
-    "person_unaccounted_false_criticals": 1,
-    "vanish_false_criticals_per_camera_hour": 90.0
+    "incidents_total": 17,
+    "zone_entries": 17,
+    "person_unaccounted_false_criticals": 0,
+    "vanish_false_criticals_per_camera_hour": 0.0
   },
   "stage_ms": {
-    "view_check": 2453.0,
-    "detect": 8707.07,
-    "track": 76.67,
-    "machine": 689.41,
-    "guard": 3.45,
-    "posture": 210.5,
-    "escalate": 50.94
+    "view_check": 3237.96,
+    "detect": 12359.63,
+    "track": 112.5,
+    "machine": 874.14,
+    "guard": 3.92,
+    "posture": 329.24,
+    "escalate": 75.21
   }
 }

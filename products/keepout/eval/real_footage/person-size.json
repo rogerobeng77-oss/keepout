@@ -1,0 +1,71 @@
+{
+ "rows": [
+  {
+   "height_fraction": "0.00-0.04",
+   "single": 0.0,
+   "single_n": 283,
+   "tiled": 0.095,
+   "tiled_n": 283
+  },
+  {
+   "height_fraction": "0.04-0.06",
+   "single": 0.138,
+   "single_n": 290,
+   "tiled": 0.576,
+   "tiled_n": 290
+  },
+  {
+   "height_fraction": "0.06-0.08",
+   "single": 0.359,
+   "single_n": 281,
+   "tiled": 0.769,
+   "tiled_n": 281
+  },
+  {
+   "height_fraction": "0.08-0.10",
+   "single": 0.602,
+   "single_n": 221,
+   "tiled": 0.946,
+   "tiled_n": 221
+  },
+  {
+   "height_fraction": "0.10-0.12",
+   "single": 0.722,
+   "single_n": 162,
+   "tiled": 0.963,
+   "tiled_n": 162
+  },
+  {
+   "height_fraction": "0.12-0.15",
+   "single": 0.834,
+   "single_n": 187,
+   "tiled": 0.957,
+   "tiled_n": 187
+  },
+  {
+   "height_fraction": "0.15-0.20",
+   "single": 0.957,
+   "single_n": 188,
+   "tiled": 0.995,
+   "tiled_n": 188
+  },
+  {
+   "height_fraction": "0.20-0.30",
+   "single": 0.979,
+   "single_n": 192,
+   "tiled": 1.0,
+   "tiled_n": 192
+  },
+  {
+   "height_fraction": "0.30-1.00",
+   "single": 1.0,
+   "single_n": 44,
+   "tiled": 1.0,
+   "tiled_n": 44
+  }
+ ],
+ "ms_per_frame": {
+  "single": 21.7,
+  "tiled": 108.8
+ }
+}

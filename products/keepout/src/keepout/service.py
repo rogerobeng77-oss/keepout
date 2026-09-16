@@ -20,6 +20,7 @@ and the same clip can be re-run live from the UI to prove the result is real.
 from __future__ import annotations
 
 import json
+import math
 import os
 import time
 from pathlib import Path
@@ -38,7 +39,7 @@ from .escalate import Level
 from .machine import MachineConfig
 from .paths import demo_dir, describe, samples_dir, static_dir
 from .pipeline import Keepout, KeepoutConfig, default_zones
-from .privacy import PRIVACY_STATEMENT, PrivacyConfig
+from .privacy import PRIVACY_STATEMENT, FaceBlurrer, PrivacyConfig
 from .storage import EvidenceSink
 from .zones import ContactPoint, DwellConfig, Zone, propose_zone_from_motion
 
@@ -107,8 +108,11 @@ def config_from_params(params: dict[str, Any], size: tuple[int, int]) -> Keepout
         guard_zone=guard,
         dwell=DwellConfig(min_dwell_ms=float(params.get("min_dwell_ms", 0.0))),
         machine=machine_cfg,
-        privacy=PrivacyConfig(enabled=bool(params.get("blur_faces", True))),
+        # Blurring is not a request parameter. Evidence frames are always redacted;
+        # an old client that sends blur_faces=false is ignored, not obeyed.
+        privacy=PrivacyConfig(enabled=True),
         detection_score=float(params.get("detection_score", 0.35)),
+        tiled_detection=bool(params.get("tiled_detection", False)),
         stride=max(1, int(params.get("stride", 1))),
         max_side=int(params.get("max_side", 960)) or None,
         assume_machine_running=params.get("assume_machine_running"),
@@ -156,6 +160,10 @@ def analyze(ctx: JobContext) -> RunRecord:
             label=name, kind="frame", uri=uri, caption=report.get("note", ""),
             metrics={"redacted": report.get("enabled", False),
                      "blur_method": report.get("method"),
+                     "face_detector": report.get("face_detector"),
+                     "person_boxes_blurred": report.get("head_regions", 0),
+                     "faces_detected": report.get("faces_detected", 0),
+                     "person_sweep": report.get("person_sweep"),
                      "regions_blurred": report.get("regions", 0),
                      "s3": s3_uri},
         ))
@@ -164,21 +172,41 @@ def analyze(ctx: JobContext) -> RunRecord:
     keeper = Keepout(config, on_evidence=on_evidence)
     ctx.progress(6, "loading YOLOX-tiny through cv2.dnn")
 
-    stride = config.stride
+    # The frame budget exists because App Runner runs YOLOX-tiny at about 440 ms a
+    # frame, so 900 frames is already six or seven minutes. A clip longer than the
+    # budget used to stop silently at frame 900: a 47 s clip was analysed for 36 s
+    # and its real alert at 44.8 s never happened. Now, unless the caller chose a
+    # stride, the stride is raised so the whole clip fits, and the record says so;
+    # with `cover_whole_clip: false` the run is cut short, and the record says that.
     budget = MAX_ANALYSIS_FRAMES
+    stride = config.stride
+    coverage_note = None
+    if (info.frame_count > budget * stride and "stride" not in params
+            and bool(params.get("cover_whole_clip", True))):
+        stride = math.ceil(info.frame_count / budget)
+        coverage_note = (
+            f"the clip has {info.frame_count} frames and this instance analyses at most "
+            f"{budget}, so every {_ordinal(stride)} frame is analysed "
+            f"({info.fps / stride:.1f} per second) to cover all "
+            f"{info.duration_ms / 1000:.1f} s"
+        )
+        config.stride = stride
+        record.params["config"] = config.to_dict()
+        ctx.note(coverage_note)
     total_expected = min(budget, max(1, info.frame_count // stride) if info.frame_count else budget)
 
     started = time.perf_counter()
     last_report = 0.0
     frames_read = 0
+    last_ms = 0.0
     live: list[dict[str, Any]] = []
 
     for frame in iter_video(ctx.input_path, stride=stride, max_frames=budget, max_side=max_side):
-        if keeper.reference_frame is None:
-            keeper.set_reference(frame.image, frame.timestamp_ms)
-            ctx.note("reference frame captured; the zone is only valid against this view")
         result = keeper.process_frame(frame.image, frame.timestamp_ms, index=frame.index)
+        for event in result.view_events:
+            ctx.note(f"{event['timestamp_ms'] / 1000:.1f} s: {event['message']}")
         frames_read += 1
+        last_ms = frame.timestamp_ms
         live.append(result.to_dict())
 
         now = time.perf_counter()
@@ -205,7 +233,33 @@ def analyze(ctx: JobContext) -> RunRecord:
     incidents = keeper.log.to_list()
     record.results = incidents
     record.metrics.update(_metrics(keeper, summary, info, frames_read, elapsed_ms, sink))
-    record.params["live"] = live[-600:]  # the live view replays this
+    frame_gap_ms = 1000.0 * stride / info.fps if info.fps else 0.0
+    analysed_ms = last_ms + frame_gap_ms
+    whole = not info.duration_ms or analysed_ms >= info.duration_ms - 1.5 * frame_gap_ms
+    record.metrics.update({
+        "stride": stride,
+        "frame_budget": budget,
+        "analysed_seconds": round(min(analysed_ms, info.duration_ms or analysed_ms) / 1000, 2),
+        "covered_whole_clip": whole,
+        "coverage": coverage_note or (
+            "the whole clip" if whole else
+            f"the first {analysed_ms / 1000:.1f} s of {info.duration_ms / 1000:.1f} s "
+            f"(the {budget}-frame budget)"),
+        "person_size": summary["person_size"],
+        "reference": summary["reference"],
+        "incidents_rejoined": summary["incidents_rejoined"],
+    })
+    if not whole:
+        record.warn(f"Analysed the first {analysed_ms / 1000:.1f} s of "
+                    f"{info.duration_ms / 1000:.1f} s: this instance stops at {budget} frames. "
+                    "Anything after that was not watched.")
+    if summary["person_size"]["warning"]:
+        record.warn(summary["person_size"]["warning"])
+    for event in summary["reference"]["events"]:
+        if event["event"] == "reference_replaced":
+            record.warn(f"At {event['timestamp_ms'] / 1000:.1f} s: {event['message']}")
+    record.params["live"] = live  # the live view replays this, all of it
+    record.params["work_size"] = list(work_size)
 
     if summary["frames_usable"] == 0:
         record.refuse(
@@ -224,6 +278,10 @@ def analyze(ctx: JobContext) -> RunRecord:
 
     ctx.progress(100, "done")
     return record
+
+
+def _ordinal(n: int) -> str:
+    return {1: "", 2: "2nd", 3: "3rd"}.get(n, f"{n}th")
 
 
 def _metrics(keeper: Keepout, summary: dict[str, Any], info, frames: int,
@@ -470,9 +528,10 @@ def install_routes(app: FastAPI) -> None:
 # ---------------------------------------------------------------------------
 
 PARAMS_SCHEMA: list[dict[str, Any]] = [
-    {"name": "blur_faces", "label": "Blur faces in stored evidence", "type": "boolean",
-     "default": True,
-     "help": "On by default. Keepout never computes an identity either way."},
+    {"name": "tiled_detection", "label": "Tiled detection for small people", "type": "boolean",
+     "default": False,
+     "help": "Full frame plus four tiles: finds people down to about 8% of frame height "
+             "instead of 15%, at about five times the time per frame."},
     {"name": "detection_score", "label": "Detection threshold", "type": "number",
      "default": 0.35, "min": 0.05, "max": 0.9, "step": 0.05,
      "help": "Lower finds more people and more furniture."},
@@ -507,10 +566,14 @@ def build_app() -> FastAPI:
         params_schema=PARAMS_SCHEMA,
         max_concurrent_jobs=int(os.environ.get("KEEPOUT_MAX_CONCURRENT", "2")),
     )
+    # Fails here, at startup, if KEEPOUT_REQUIRE_FACE_DETECTOR is set and the YuNet
+    # weights are missing. The container sets it, so a broken image never serves.
+    privacy = FaceBlurrer(PrivacyConfig()).describe()
     app = create_app(config, analyze)
     install_routes(app)
     log.info("keepout ready", extra={"samples": len(_samples()),
-                                     "demo_baked": (DEMO_DIR / "run.json").is_file()})
+                                     "demo_baked": (DEMO_DIR / "run.json").is_file(),
+                                     "privacy": privacy})
     return app
 
 

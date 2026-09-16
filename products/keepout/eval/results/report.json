@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-16T03:35:43Z",
+  "generated_at": "2026-09-16T11:01:42Z",
   "opencv_version": "5.0.0",
   "clips": 7,
-  "wall_seconds": 71.5,
+  "wall_seconds": 126.1,
   "per_clip": [
     {
       "clip": "cell-alert.mp4",
@@ -11,9 +11,9 @@
         "clip": "cell-alert.mp4",
         "frames": 288,
         "clip_seconds": 24.0,
-        "wall_seconds": 8.13,
-        "ms_per_frame": 28.25,
-        "realtime_factor": 2.95,
+        "wall_seconds": 17.23,
+        "ms_per_frame": 59.83,
+        "realtime_factor": 1.39,
         "size": [
           960,
           540
@@ -71,13 +71,13 @@
         "per_camera_hour": 0.0
       },
       "stage_ms": {
-        "view_check": 1760.28,
-        "detect": 5570.4,
-        "track": 13.9,
-        "machine": 188.22,
-        "guard": 264.79,
-        "posture": 35.59,
-        "escalate": 16.46
+        "view_check": 3149.17,
+        "detect": 12559.62,
+        "track": 24.82,
+        "machine": 284.24,
+        "guard": 437.0,
+        "posture": 62.33,
+        "escalate": 25.94
       }
     },
     {
@@ -87,9 +87,9 @@
         "clip": "cell-down.mp4",
         "frames": 360,
         "clip_seconds": 30.0,
-        "wall_seconds": 9.44,
-        "ms_per_frame": 26.21,
-        "realtime_factor": 3.18,
+        "wall_seconds": 19.83,
+        "ms_per_frame": 55.09,
+        "realtime_factor": 1.51,
         "size": [
           960,
           540
@@ -154,13 +154,13 @@
         "latched": true
       },
       "stage_ms": {
-        "view_check": 2011.49,
-        "detect": 6553.47,
-        "track": 15.92,
-        "machine": 230.73,
-        "guard": 317.28,
-        "posture": 43.01,
-        "escalate": 21.08
+        "view_check": 3853.6,
+        "detect": 14234.84,
+        "track": 26.24,
+        "machine": 342.27,
+        "guard": 546.62,
+        "posture": 79.53,
+        "escalate": 35.94
       }
     },
     {
@@ -170,9 +170,9 @@
         "clip": "cell-guard.mp4",
         "frames": 288,
         "clip_seconds": 24.0,
-        "wall_seconds": 9.59,
-        "ms_per_frame": 33.28,
-        "realtime_factor": 2.5,
+        "wall_seconds": 18.78,
+        "ms_per_frame": 65.21,
+        "realtime_factor": 1.28,
         "size": [
           960,
           540
@@ -242,13 +242,13 @@
         "detected": true
       },
       "stage_ms": {
-        "view_check": 3665.64,
-        "detect": 5253.65,
-        "track": 5.32,
-        "machine": 192.68,
-        "guard": 260.01,
-        "posture": 11.41,
-        "escalate": 10.83
+        "view_check": 6238.22,
+        "detect": 11216.88,
+        "track": 8.1,
+        "machine": 268.07,
+        "guard": 423.73,
+        "posture": 19.59,
+        "escalate": 15.94
       }
     },
     {
@@ -258,9 +258,9 @@
         "clip": "cell-quiet.mp4",
         "frames": 480,
         "clip_seconds": 40.0,
-        "wall_seconds": 14.66,
-        "ms_per_frame": 30.55,
-        "realtime_factor": 2.73,
+        "wall_seconds": 28.17,
+        "ms_per_frame": 58.69,
+        "realtime_factor": 1.42,
         "size": [
           960,
           540
@@ -299,13 +299,13 @@
         "per_camera_hour": 0.0
       },
       "stage_ms": {
-        "view_check": 3288.74,
-        "detect": 10061.19,
-        "track": 2.2,
-        "machine": 358.73,
-        "guard": 502.79,
-        "posture": 2.03,
-        "escalate": 6.49
+        "view_check": 5980.37,
+        "detect": 19824.74,
+        "track": 5.06,
+        "machine": 514.81,
+        "guard": 825.58,
+        "posture": 5.56,
+        "escalate": 10.02
       }
     },
     {
@@ -315,9 +315,9 @@
         "clip": "cell-stopped.mp4",
         "frames": 240,
         "clip_seconds": 20.0,
-        "wall_seconds": 6.84,
-        "ms_per_frame": 28.5,
-        "realtime_factor": 2.92,
+        "wall_seconds": 11.73,
+        "ms_per_frame": 48.88,
+        "realtime_factor": 1.7,
         "size": [
           960,
           540
@@ -373,13 +373,13 @@
         "per_camera_hour": 0.0
       },
       "stage_ms": {
-        "view_check": 1060.48,
-        "detect": 5084.91,
-        "track": 11.13,
-        "machine": 176.9,
-        "guard": 240.36,
-        "posture": 31.0,
-        "escalate": 14.63
+        "view_check": 1543.59,
+        "detect": 9104.16,
+        "track": 16.53,
+        "machine": 233.76,
+        "guard": 355.31,
+        "posture": 47.86,
+        "escalate": 20.51
       }
     },
     {
@@ -389,9 +389,9 @@
         "clip": "cell-unusable.mp4",
         "frames": 384,
         "clip_seconds": 32.0,
-        "wall_seconds": 6.49,
-        "ms_per_frame": 16.91,
-        "realtime_factor": 4.93,
+        "wall_seconds": 8.62,
+        "ms_per_frame": 22.44,
+        "realtime_factor": 3.71,
         "size": [
           960,
           540
@@ -481,13 +481,13 @@
         "incidents_raised_while_blind": 0
       },
       "stage_ms": {
-        "view_check": 2451.49,
-        "detect": 3355.31,
-        "track": 8.58,
-        "machine": 127.92,
-        "guard": 181.74,
-        "posture": 20.72,
-        "escalate": 9.89
+        "view_check": 2929.27,
+        "detect": 4872.15,
+        "track": 10.4,
+        "machine": 131.29,
+        "guard": 202.88,
+        "posture": 26.42,
+        "escalate": 11.79
       }
     },
     {
@@ -497,21 +497,15 @@
         "clip": "courtyard.mp4",
         "frames": 400,
         "clip_seconds": 40.0,
-        "wall_seconds": 12.52,
-        "ms_per_frame": 31.31,
-        "realtime_factor": 3.19,
+        "wall_seconds": 17.48,
+        "ms_per_frame": 43.7,
+        "realtime_factor": 2.29,
         "size": [
           768,
           576
         ]
       },
       "incidents": [
-        {
-          "level": "critical",
-          "kind": "person_unaccounted",
-          "started_ms": 19000.0,
-          "reason": "Somebody was standing inside the danger zone and then stopped being visible without walkin"
-        },
         {
           "level": "alert",
           "kind": "zone_entry",
@@ -545,25 +539,7 @@
         {
           "level": "alert",
           "kind": "zone_entry",
-          "started_ms": 3300.0,
-          "reason": "A person entered the danger zone while the machine was running."
-        },
-        {
-          "level": "alert",
-          "kind": "zone_entry",
           "started_ms": 5300.0,
-          "reason": "A person entered the danger zone while the machine was running."
-        },
-        {
-          "level": "alert",
-          "kind": "zone_entry",
-          "started_ms": 5600.0,
-          "reason": "A person entered the danger zone while the machine was running."
-        },
-        {
-          "level": "alert",
-          "kind": "zone_entry",
-          "started_ms": 8000.0,
           "reason": "A person entered the danger zone while the machine was running."
         },
         {
@@ -631,12 +607,6 @@
           "kind": "zone_entry",
           "started_ms": 34600.0,
           "reason": "A person entered the danger zone while the machine was running."
-        },
-        {
-          "level": "alert",
-          "kind": "zone_entry",
-          "started_ms": 35900.0,
-          "reason": "A person entered the danger zone while the machine was running."
         }
       ],
       "frames_usable": 400,
@@ -646,19 +616,19 @@
       "unlabelled": {
         "clip_seconds": 40.0,
         "camera_hours": 0.01111,
-        "incidents_total": 22,
-        "zone_entries": 21,
-        "person_unaccounted_false_criticals": 1,
-        "vanish_false_criticals_per_camera_hour": 90.0
+        "incidents_total": 17,
+        "zone_entries": 17,
+        "person_unaccounted_false_criticals": 0,
+        "vanish_false_criticals_per_camera_hour": 0.0
       },
       "stage_ms": {
-        "view_check": 2453.0,
-        "detect": 8707.07,
-        "track": 76.67,
-        "machine": 689.41,
-        "guard": 3.45,
-        "posture": 210.5,
-        "escalate": 50.94
+        "view_check": 3237.96,
+        "detect": 12359.63,
+        "track": 112.5,
+        "machine": 874.14,
+        "guard": 3.92,
+        "posture": 329.24,
+        "escalate": 75.21
       }
     }
   ],
@@ -694,25 +664,25 @@
       "courtyard.mp4": {
         "clip_seconds": 40.0,
         "camera_hours": 0.01111,
-        "incidents_total": 22,
-        "zone_entries": 21,
-        "person_unaccounted_false_criticals": 1,
-        "vanish_false_criticals_per_camera_hour": 90.0
+        "incidents_total": 17,
+        "zone_entries": 17,
+        "person_unaccounted_false_criticals": 0,
+        "vanish_false_criticals_per_camera_hour": 0.0
       }
     }
   },
   "throughput": {
     "frames": 2440,
     "ms_per_frame_by_stage": {
-      "detect": 18.273,
-      "view_check": 6.841,
-      "machine": 0.805,
-      "guard": 0.726,
-      "posture": 0.145,
-      "track": 0.055,
-      "escalate": 0.053
+      "detect": 34.497,
+      "view_check": 11.038,
+      "guard": 1.146,
+      "machine": 1.085,
+      "posture": 0.234,
+      "track": 0.083,
+      "escalate": 0.08
     },
-    "total_ms_per_frame": 26.898
+    "total_ms_per_frame": 48.163
   },
   "rotation_sweep": {
     "rows": [

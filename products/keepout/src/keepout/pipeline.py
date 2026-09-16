@@ -48,6 +48,10 @@ PersonDetector = Callable[[np.ndarray], list[tuple[Box, float]]]
 
 PERSON_CLASS_ID = 0
 EVIDENCE_COOLDOWN_MS = 1500.0
+# Everything the detector returns at or above this score is blurred in evidence,
+# even though only detections above `detection_score` are tracked. A missed blur
+# costs far more than an extra one.
+PRIVACY_DETECTION_SCORE = 0.15
 
 
 @dataclass
@@ -81,6 +85,26 @@ class KeepoutConfig:
     # Two people crossing occlude each other, one track dies, and that is not an
     # emergency.
     vanish_max_neighbour_iou: float = 0.05
+    # Track fragmentation. In a crowd the tracker loses a person for a few frames
+    # and hands them a new id when they are detected again. Measured on real
+    # construction footage (Malta, Wikimedia Commons): 27 alerts for about 8 people.
+    # A new track that appears where a lost track's incident was, soon after, is
+    # the same person, so it continues that incident rather than opening another.
+    rejoin_window_ms: float = 3000.0
+    rejoin_max_distance: float = 1.0  # centre distance, in the taller box's heights
+    # Privacy: a low-threshold person sweep of the raw frame, full frame plus four
+    # overlapping tiles, run only when an evidence frame is about to be stored.
+    privacy_detection_score: float = PRIVACY_DETECTION_SCORE
+    privacy_tiles: bool = True
+    # Small people. YOLOX-tiny sees the frame at 416 px. Measured on real frames
+    # shrunk onto a fixed canvas (eval/real_footage/person_size.py): one pass
+    # finds 96% of people at 15-20% of frame height, 72% at 10-12%, 36% at 6-8%.
+    # Full frame plus 2x2 tiles finds 96% down to 8-10%, at five times the cost.
+    tiled_detection: bool = False
+    # Without tiling, a tiled check every `size_probe_ms` counts the people the
+    # single pass is missing, so the run can say so instead of reporting an empty
+    # zone. Costs four extra detector passes every five seconds of video.
+    size_probe_ms: float = 5000.0
     stride: int = 1
     max_frames: int | None = None
     max_side: int | None = 960
@@ -115,6 +139,11 @@ class KeepoutConfig:
             "detection_score": self.detection_score,
             "vanish_grace_ms": self.vanish_grace_ms,
             "vanish_min_depth_px": self.vanish_min_depth_px,
+            "rejoin_window_ms": self.rejoin_window_ms,
+            "rejoin_max_distance": self.rejoin_max_distance,
+            "privacy_detection_score": self.privacy_detection_score,
+            "privacy_tiles": self.privacy_tiles,
+            "tiled_detection": self.tiled_detection,
             "stride": self.stride,
             "max_side": self.max_side,
             "privacy": self.privacy.to_dict(),
@@ -137,6 +166,7 @@ class FrameResult:
     new_incidents: list[str] = field(default_factory=list)
     highest_level: str | None = None
     detect_ms: float = 0.0
+    view_events: list[dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -151,6 +181,7 @@ class FrameResult:
             "new_incidents": self.new_incidents,
             "highest_level": self.highest_level,
             "detect_ms": round(self.detect_ms, 2),
+            "view_events": self.view_events,
         }
 
 
@@ -163,17 +194,23 @@ class Keepout:
         detector: PersonDetector | None = None,
         *,
         on_evidence: Callable[[str, np.ndarray, dict[str, Any]], str] | None = None,
+        privacy_detector: PersonDetector | None = None,
     ) -> None:
         self.config = config or KeepoutConfig()
         self.detector = detector
         self.on_evidence = on_evidence
+        # The detector used for the privacy sweep of evidence frames. With the
+        # default YOLOX detector it is the same network; an injected detector (the
+        # tests) has none unless one is given, and the report says so.
+        self.privacy_detector = privacy_detector
 
         self.tracker = BoxTracker(self.config.tracker)
         self.view_guard = ViewGuard(self.config.view)
         self.machine = MotionEnergy(self.config.machine_zone, self.config.machine)
         self.guard = GuardChecker(self.config.guard)
         self.down = DownDetector(self.config.posture)
-        self.blurrer = FaceBlurrer(self.config.privacy)
+        self.blurrer = FaceBlurrer(self.config.privacy,
+                                   use_detector=self.config.privacy.use_face_detector)
         self.log = IncidentLog()
 
         self.monitor: ZoneMonitor | None = None
@@ -193,38 +230,159 @@ class Keepout:
         # Boxes of tracks that vanished inside the zone. We still believe somebody
         # is there, so the guard check must keep treating that area as occluded.
         self._shadow_boxes: dict[int, tuple[float, Box]] = {}
+        # Every person box the detector returned for the current frame, at the low
+        # privacy threshold, so evidence can blur people who are not tracked.
+        self._frame_boxes: list[Box] = []
+        self._sweep_cache: tuple[float, list[Box], str] | None = None
+        # Where each zone incident's subject was last seen, for rejoining a
+        # fragmented track to the incident it belongs to.
+        self._incident_seen: dict[str, tuple[float, Box]] = {}
+        self._ended_by_exit: set[str] = set()
+        self.view_events: list[dict[str, Any]] = []
+        self.reference_ms: float | None = None
+        self._last_probe_ms: float | None = None
+        self._probe_clock = 0.0
+        self.size_probe = {"probes": 0, "probes_with_misses": 0, "missed_by_single_pass": 0,
+                           "found_by_single_pass": 0, "heights": []}
 
     # ---- setup ------------------------------------------------------------
-    def set_reference(self, frame: np.ndarray, timestamp_ms: float = 0.0) -> None:
-        """Adopt the frame the zones were drawn against, and learn the guard from it."""
+    def set_reference(self, frame: np.ndarray, timestamp_ms: float = 0.0, *,
+                      confirmed: bool = False) -> None:
+        """Adopt the frame the zones were drawn against, and learn the guard from it.
+
+        Callers normally do not need this: `process_frame` adopts the first frame
+        that passes the frame-level view checks. A reference given here is still
+        provisional until the frames after it agree with it (see
+        `viewcheck.ViewGuard`), unless `confirmed` says a human chose it.
+        """
+        self.view_guard.set_reference(frame, confirmed=confirmed)
+        self._learn_reference(frame, timestamp_ms)
+
+    def _learn_reference(self, frame: np.ndarray, timestamp_ms: float) -> None:
         self.reference_frame = frame.copy()
-        self.view_guard.set_reference(frame)
+        self.reference_ms = timestamp_ms
         if self.config.guard_zone is not None:
             self.guard.learn(frame, self.config.guard_zone, timestamp_ms)
         if self.monitor is not None:
             self.monitor.frame_size = (frame.shape[1], frame.shape[0])
 
+    def _view_event(self, result: FrameResult, event: str, message: str, **detail: Any
+                    ) -> None:
+        record = {"event": event, "timestamp_ms": round(result.timestamp_ms, 1),
+                  "index": result.index, "message": message, **detail}
+        self.view_events.append(record)
+        result.view_events.append(record)
+
     # ---- detection --------------------------------------------------------
     def _detect(self, frame: np.ndarray) -> list[tuple[Box, float]]:
         if self.detector is None:
-            self.detector = _default_detector(self.config.detection_score)
+            self.detector = _default_detector(
+                min(self.config.detection_score, self.config.privacy_detection_score))
         people = self.detector(frame)
+        tiling = getattr(self.detector, "yolox", None) is not None
+        if tiling and self.config.tiled_detection:
+            for x0, y0, tile in _tiles(frame):
+                people += [((b[0] + x0, b[1] + y0, b[2] + x0, b[3] + y0), s)
+                           for b, s in self.detector(tile)]
+            people = merge_detections(people)
+        self._frame_boxes = [b for b, s in people if s >= self.config.privacy_detection_score]
         floor = self.config.min_person_height_px
-        return [(b, s) for b, s in people if (b[3] - b[1]) >= floor]
+        score = self.config.detection_score
+        kept = [(b, s) for b, s in people if s >= score and (b[3] - b[1]) >= floor]
+        if tiling and not self.config.tiled_detection:
+            self._probe_size(frame, kept)
+        return kept
+
+    def _probe_size(self, frame: np.ndarray, found: list[tuple[Box, float]]) -> None:
+        """Every few seconds, count the people a tiled pass finds that one pass missed."""
+        now = self._probe_clock
+        last = self._last_probe_ms
+        if last is not None and now - last < self.config.size_probe_ms:
+            return
+        self._last_probe_ms = now
+        height = frame.shape[0]
+        score, floor = self.config.detection_score, self.config.min_person_height_px
+        tiled = []
+        for x0, y0, tile in _tiles(frame):
+            tiled += [((b[0] + x0, b[1] + y0, b[2] + x0, b[3] + y0), s)
+                      for b, s in self.detector(tile) if s >= score]
+        tiled = [b for b, _ in merge_detections(tiled) if (b[3] - b[1]) >= floor]
+        from .track import iou as _iou
+
+        single = [b for b, _ in found]
+        missed = [b for b in tiled if not any(_iou(b, o) >= 0.3 for o in single)]
+        probe = self.size_probe
+        probe["probes"] += 1
+        probe["found_by_single_pass"] += len(single)
+        probe["missed_by_single_pass"] += len(missed)
+        probe["probes_with_misses"] += int(bool(missed))
+        probe["heights"].extend(round((b[3] - b[1]) / height, 3) for b in single + missed)
+        del probe["heights"][:-2000]
+
+    def person_size_report(self) -> dict[str, Any]:
+        probe = self.size_probe
+        heights = probe["heights"]
+        report = {
+            "tiled_detection": self.config.tiled_detection,
+            "probes": probe["probes"],
+            "probes_with_misses": probe["probes_with_misses"],
+            "found_by_single_pass": probe["found_by_single_pass"],
+            "missed_by_single_pass": probe["missed_by_single_pass"],
+            "median_person_height_fraction": (
+                round(float(np.median(heights)), 3) if heights else None),
+            "reliable_min_height_fraction": 0.08 if self.config.tiled_detection else 0.15,
+            "warning": None,
+        }
+        missed = probe["missed_by_single_pass"]
+        total = missed + probe["found_by_single_pass"]
+        if probe["probes"] and missed >= 2 and missed >= 0.2 * total:
+            report["warning"] = (
+                f"People in this view are too small for one detector pass: a tiled check "
+                f"found {missed} people the per-frame detector missed, out of {total} seen "
+                f"in {probe['probes']} checks. One pass is reliable from about 15% of frame "
+                "height. Turn on tiled detection (about five times slower), or move the "
+                "camera closer, before trusting an empty zone."
+            )
+        return report
 
     # ---- the frame loop ---------------------------------------------------
     def process_frame(self, frame: np.ndarray, timestamp_ms: float, index: int | None = None
                       ) -> FrameResult:
         idx = self.frames_seen if index is None else index
         self.frames_seen += 1
+        self._frame_boxes = []
+        self._probe_clock = timestamp_ms
 
         t0 = time.perf_counter()
+        adopting = self.reference_frame is None
         view = self.view_guard.check(frame)
         self._add_time("view_check", t0)
         for problem in view.problems:
             self.view_problems[problem.value] = self.view_problems.get(problem.value, 0) + 1
 
         result = FrameResult(index=idx, timestamp_ms=timestamp_ms, view=view)
+
+        # The reference. Never taken from a frame that fails the frame-level checks
+        # (a fade from black, a covered lens), and replaced, loudly, if it turns out
+        # to disagree with a long run of frames that agree with each other before
+        # anything confirmed it. See viewcheck.ViewGuard for the rule.
+        if adopting and view.usable:
+            self.view_guard.set_reference(frame)
+            self._learn_reference(frame, timestamp_ms)
+            self._view_event(result, "reference_adopted",
+                             "reference frame captured; the zone is only valid against "
+                             "this view", skipped_before=self.frames_skipped)
+        elif view.reference_replaced:
+            self._learn_reference(frame, timestamp_ms)
+            self._view_event(
+                result, "reference_replaced",
+                "the reference frame disagreed with every frame since it was taken, and "
+                f"the last {view.replaced_after_frames} frames agree with each other, so "
+                "the reference was re-taken from this frame. Check the zone still marks "
+                "the right floor.",
+                shift_px=round(view.replaced_shift_px, 1),
+                frames_lost=view.replaced_after_frames,
+            )
 
         if not view.usable:
             self.frames_skipped += 1
@@ -269,7 +427,8 @@ class Keepout:
 
         confirmed = [t for t in tracks if t.confirmed and t.misses == 0]
         t0 = time.perf_counter()
-        postures = self.down.update(confirmed, timestamp_ms)
+        postures = self.down.update(confirmed, timestamp_ms,
+                                    frame_size=(frame.shape[1], frame.shape[0]))
         self._add_time("posture", t0)
 
         t0 = time.perf_counter()
@@ -279,6 +438,16 @@ class Keepout:
         self._add_time("escalate", t0)
 
         if self.tracker.removed_ids and self.monitor is not None:
+            # A track the tracker has given up on ends its zone incident at the
+            # moment it was last seen. Without this an incident whose track was
+            # dropped stayed open for the rest of the run.
+            zone_name = self.config.danger_zone.name if self.config.danger_zone else "zone"
+            for track_id in self.tracker.removed_ids:
+                last = self._last_known.get(track_id)
+                active = self.log.active("zone_entry", zone_name, track_id)
+                if active is not None:
+                    ended = max(active.started_ms, last[0] if last else timestamp_ms)
+                    self.log.clear("zone_entry", zone_name, track_id, ended)
             self.monitor.forget(set(self.tracker.removed_ids))
 
         result.tracks = [t.to_dict() for t in tracks if t.misses == 0]
@@ -312,15 +481,20 @@ class Keepout:
         # --- zone occupancy ------------------------------------------------
         for occ in occupants:
             level, reason = level_for_zone_entry(running)
+            track = by_id.get(occ.track_id)
+            if track is not None and self.log.active("zone_entry", zone_name,
+                                                     occ.track_id) is None:
+                self._rejoin(zone_name, track, set(by_id), ts)
             incident, changed = self.log.observe(
                 kind="zone_entry", zone=zone_name, track_id=occ.track_id,
                 level=level, reason=reason, timestamp_ms=ts, machine_running=running,
                 dwell_ms=round(occ.dwell_ms(ts), 1),
                 depth_px=round(occ.peak_depth_px, 1),
             )
+            if track is not None:
+                self._incident_seen[incident.incident_id] = (ts, track.box)
             if changed:
                 new_ids.append(incident.incident_id)
-                track = by_id.get(occ.track_id)
                 self._capture(frame, incident, ts,
                               boxes=[track.box] if track else [],
                               label=f"{incident.level.slug}-entry",
@@ -329,7 +503,11 @@ class Keepout:
         if self.monitor is not None:
             for state in self.monitor.states.values():
                 if not state.inside and state.track_id not in occupied_ids:
-                    self.log.clear("zone_entry", zone_name, state.track_id, ts)
+                    ended = self.log.clear("zone_entry", zone_name, state.track_id, ts)
+                    # Seen outside the zone: they walked out. Not seen at all: the
+                    # track was lost, and a new track may yet rejoin the incident.
+                    if ended is not None and state.track_id in by_id:
+                        self._ended_by_exit.add(ended.incident_id)
 
         # --- person down ---------------------------------------------------
         for track in tracks:
@@ -386,6 +564,54 @@ class Keepout:
 
         return new_ids
 
+    def _rejoin(self, zone_name: str, track: Any, live: set[int], ts: float) -> None:
+        """Continue a lost track's zone incident on the new track that replaced it.
+
+        Eligible: a zone incident whose track is not live now, that did not end
+        because its subject walked out, whose subject was last seen within
+        `rejoin_window_ms`, no further than `rejoin_max_distance` box heights from
+        where this track is now. The nearest one wins. This is the incident-level
+        answer to track fragmentation; the tracker itself is unchanged.
+
+        And the new track must have been born after that subject was last seen. A
+        track that already existed is somebody else, even if they are standing next
+        to a person the detector missed for one frame. The first version of this
+        rule lacked that condition, and on the Malta clip it moved incidents between
+        neighbouring workers every time one of them was missed for a single frame.
+        """
+        cfg = self.config
+        born = track.first_box or track.box  # a fragment is born where the person was
+        cx, cy = _centre(born)
+        best, best_distance = None, float("inf")
+        # The same track, missed for longer than the zone's exit grace but not long
+        # enough for the tracker to drop it, carries on with its own incident.
+        own = next((i for i in reversed(self.log.incidents)
+                    if i.kind == "zone_entry" and i.zone == zone_name
+                    and i.track_id == track.track_id), None)
+        if own is not None and own.incident_id not in self._ended_by_exit:
+            seen = self._incident_seen.get(own.incident_id)
+            if seen is not None and ts - seen[0] <= cfg.rejoin_window_ms:
+                self.log.reassign(own, track.track_id, ts, gap_ms=round(ts - seen[0], 1))
+                return
+        for incident in self.log.incidents:
+            if (incident.kind != "zone_entry" or incident.zone != zone_name
+                    or incident.track_id in live
+                    or incident.incident_id in self._ended_by_exit):
+                continue
+            seen = self._incident_seen.get(incident.incident_id)
+            if (seen is None or track.first_ms <= seen[0]
+                    or track.first_ms - seen[0] > cfg.rejoin_window_ms):
+                continue
+            ox, oy = _centre(seen[1])
+            height = max(seen[1][3] - seen[1][1], born[3] - born[1])
+            distance = float(np.hypot(cx - ox, cy - oy))
+            if distance <= cfg.rejoin_max_distance * height and distance < best_distance:
+                best, best_distance = incident, distance
+        if best is not None:
+            self.log.reassign(best, track.track_id, ts,
+                              gap_ms=round(ts - self._incident_seen[best.incident_id][0], 1),
+                              distance_px=round(best_distance, 1))
+
     def _shadow_list(self, ts: float, hold_ms: float = 30_000.0) -> list[Box]:
         """Boxes where somebody vanished and has not been accounted for."""
         return [b for _, (seen, b) in self._shadow_boxes.items() if ts - seen <= hold_ms]
@@ -433,8 +659,21 @@ class Keepout:
             # mutual occlusion between two people, which happens constantly.
             from .track import iou as _iou
 
+            # Judge the overlap at the moment they were last seen, not now. Two
+            # people cross, one id is lost, and 2.5 s later the survivor has walked
+            # on, so comparing against where people are *now* found nobody on top of
+            # them. That is what raised the one false critical on the courtyard clip.
+            then = [b for b in (t.box_at(last_ms, 250.0) for t in self.tracker.tracks
+                                if t.track_id != track_id) if b is not None]
             if any(_iou(box, other) > self.config.vanish_max_neighbour_iou
-                   for other in live_boxes):
+                   for other in live_boxes + then):
+                self._vanished.add(track_id)
+                continue
+
+            # Re-detected under a new track id: somebody whose track started after
+            # this one was last seen, standing about where this one went. That is
+            # the tracker fragmenting one person, not a person who disappeared.
+            if self._reacquired(box, last_ms, live):
                 self._vanished.add(track_id)
                 continue
 
@@ -469,7 +708,61 @@ class Keepout:
                 )
         return raised
 
+    def _reacquired(self, box: Box, last_ms: float, live: set[int]) -> bool:
+        """A track born after `last_ms`, within the rejoin window, where `box` was."""
+        cx, cy = _centre(box)
+        for track in self.tracker.tracks:
+            if (track.track_id not in live or track.first_ms < last_ms
+                    or track.first_ms - last_ms > self.config.rejoin_window_ms):
+                continue
+            born = track.first_box or track.box
+            ox, oy = _centre(born)
+            height = max(box[3] - box[1], born[3] - born[1])
+            if float(np.hypot(cx - ox, cy - oy)) <= self.config.rejoin_max_distance * height:
+                return True
+        return False
+
     # ---- evidence ---------------------------------------------------------
+    def _privacy_sweep(self, frame: np.ndarray, ts: float) -> tuple[list[Box], str]:
+        """Every person the detector can find in the raw frame, for blurring only.
+
+        Full frame plus a 2x2 grid of overlapping tiles, at a low score threshold.
+        Tiling matters on a wide shot: a worker 60 px tall in a 960 px frame is
+        often missed at the detector's 416 px input and found in a half-frame tile.
+        It runs only when an evidence frame is about to be stored, and once per frame.
+        """
+        if self._sweep_cache is not None and self._sweep_cache[0] == ts:
+            return self._sweep_cache[1], self._sweep_cache[2]
+        detect = self.privacy_detector
+        if detect is None and self.detector is None:
+            self.detector = _default_detector(
+                min(self.config.detection_score, self.config.privacy_detection_score))
+        if detect is None and getattr(self.detector, "yolox", None) is not None:
+            detect = self.detector
+        if detect is None:
+            boxes, how = [], "none (injected detector, no privacy detector given)"
+        else:
+            floor = self.config.privacy_detection_score
+            boxes = [b for b, s in detect(frame) if s >= floor]
+            how = f"full frame, score >= {floor}"
+            if self.config.privacy_tiles:
+                for x0, y0, tile in _tiles(frame):
+                    boxes += [(b[0] + x0, b[1] + y0, b[2] + x0, b[3] + y0)
+                              for b, s in detect(tile) if s >= floor]
+                how += ", plus 2x2 overlapping tiles"
+        self._sweep_cache = (ts, boxes, how)
+        return boxes, how
+
+    def _redaction_boxes(self, frame: np.ndarray, ts: float, subject: list[Box]
+                         ) -> tuple[list[Box], str]:
+        sweep, how = self._privacy_sweep(frame, ts)
+        boxes = list(subject)
+        boxes += [t.box for t in self.tracker.tracks]
+        boxes += self._frame_boxes
+        boxes += self._shadow_list(ts)
+        boxes += sweep
+        return boxes, how
+
     def _capture(self, frame: np.ndarray, incident, ts: float, *, boxes: list[Box],
                  label: str, caption: str) -> None:
         if self.on_evidence is None:
@@ -481,7 +774,10 @@ class Keepout:
         self._last_evidence_ms[key] = ts
 
         annotated = self.annotate(frame, boxes=boxes, banner=f"{incident.level.label}: {caption}")
-        redacted, report = self.blurrer.redact(annotated, boxes)
+        # Every person in the frame, not just this incident's subject. Real footage
+        # showed bystanders' faces left sharp when only the subject was passed.
+        people, how = self._redaction_boxes(frame, ts, boxes)
+        redacted, report = self.blurrer.redact(annotated, people, source=frame, sweep=how)
         name = f"{incident.incident_id}-{len(incident.evidence):02d}-{label}"
         uri = self.on_evidence(name, redacted, report)
         incident.add_evidence(EvidenceRef(
@@ -500,7 +796,9 @@ class Keepout:
             self._last_evidence_ms[key] = ts
             annotated = self.annotate(frame, boxes=[], banner=f"View unusable: {problem.value}",
                                       colour=(40, 140, 250))
-            redacted, report = self.blurrer.redact(annotated, [])
+            # The frame is unusable for watching, but people in it are still people.
+            people, how = self._redaction_boxes(frame, ts, [])
+            redacted, report = self.blurrer.redact(annotated, people, source=frame, sweep=how)
             self.on_evidence(f"view-{problem.value}", redacted, report)
 
     def annotate(self, frame: np.ndarray, *, boxes: list[Box], banner: str = "",
@@ -525,8 +823,6 @@ class Keepout:
             progress: Callable[[int, float], None] | None = None) -> list[FrameResult]:
         results: list[FrameResult] = []
         for i, (frame, ts) in enumerate(frames):
-            if self.reference_frame is None:
-                self.set_reference(frame, ts)
             results.append(self.process_frame(frame, ts, index=i))
             if progress is not None:
                 progress(i, ts)
@@ -551,10 +847,17 @@ class Keepout:
             "tracks_created": self.tracker._next_id - 1,
             "detect_calls": self.detect_calls,
             "timings_ms": {k: round(v, 2) for k, v in self.timings.items()},
-            "privacy": {
-                "face_blur": self.config.privacy.enabled,
-                "method": self.blurrer.method,
+            "privacy": self.blurrer.describe(),
+            "reference": {
+                "adopted_ms": self.reference_ms,
+                "events": list(self.view_events),
+                "replaced": sum(1 for e in self.view_events
+                                if e["event"] == "reference_replaced"),
             },
+            "person_size": self.person_size_report(),
+            "incidents_rejoined": sum(
+                1 for i in self.log.incidents
+                if any(h.get("event") == "track_rejoined" for h in i.history)),
         }
 
 
@@ -578,18 +881,62 @@ def _banner(image: np.ndarray, text: str, colour: tuple[int, int, int]) -> None:
                     0.6, (245, 245, 245), 2)
 
 
-def _default_detector(score: float) -> PersonDetector:
-    """YOLOX-tiny in `cv2.dnn`, person class only. Loaded lazily so tests stay fast."""
-    from visioncore import YoloxDetector
+def merge_detections(people: list[tuple[Box, float]], iou_threshold: float = 0.45,
+                     contained: float = 0.7) -> list[tuple[Box, float]]:
+    """Merge detections from overlapping tiles: highest score first, and drop a box
+    that overlaps a kept one or lies mostly inside it (a person cut by a tile edge)."""
+    from .track import iou as _iou
 
-    detector = YoloxDetector(score_threshold=score)
+    kept: list[tuple[Box, float]] = []
+    for box, score in sorted(people, key=lambda p: -p[1]):
+        area = max(1e-6, (box[2] - box[0]) * (box[3] - box[1]))
+        duplicate = False
+        for other, _ in kept:
+            ix = max(0.0, min(box[2], other[2]) - max(box[0], other[0]))
+            iy = max(0.0, min(box[3], other[3]) - max(box[1], other[1]))
+            if _iou(box, other) >= iou_threshold or (ix * iy) / area >= contained:
+                duplicate = True
+                break
+        if not duplicate:
+            kept.append((box, score))
+    return kept
 
-    def detect(frame: np.ndarray) -> list[tuple[Box, float]]:
+
+def _centre(box: Box) -> tuple[float, float]:
+    return ((box[0] + box[2]) / 2.0, (box[1] + box[3]) / 2.0)
+
+
+def _tiles(frame: np.ndarray, overlap: float = 0.15):
+    """A 2x2 grid of half-frame tiles, each grown by `overlap` so nobody is cut in two."""
+    h, w = frame.shape[:2]
+    tw, th = round(w * (0.5 + overlap)), round(h * (0.5 + overlap))
+    for y0 in (0, h - th):
+        for x0 in (0, w - tw):
+            yield x0, y0, frame[y0:y0 + th, x0:x0 + tw]
+
+
+class _YoloxPeople:
+    """YOLOX-tiny in `cv2.dnn`, person class only. Loaded lazily so tests stay fast.
+
+    Built at the privacy threshold; the pipeline filters to `detection_score` for
+    tracking. NMS keeps the highest-scoring box first, so the tracked set is the same
+    as a detector built at the higher threshold.
+    """
+
+    def __init__(self, score: float) -> None:
+        from visioncore import YoloxDetector
+
+        self.yolox = YoloxDetector(score_threshold=score)
+
+    def __call__(self, frame: np.ndarray) -> list[tuple[Box, float]]:
         return [
-            (d.bbox, d.score) for d in detector.detect(frame) if d.class_id == PERSON_CLASS_ID
+            (d.bbox, d.score) for d in self.yolox.detect(frame)
+            if d.class_id == PERSON_CLASS_ID
         ]
 
-    return detect
+
+def _default_detector(score: float) -> PersonDetector:
+    return _YoloxPeople(score)
 
 
 def default_zones(size: tuple[int, int]) -> dict[str, Zone]:

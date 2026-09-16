@@ -5,9 +5,9 @@
     "clip": "cell-quiet.mp4",
     "frames": 480,
     "clip_seconds": 40.0,
-    "wall_seconds": 14.66,
-    "ms_per_frame": 30.55,
-    "realtime_factor": 2.73,
+    "wall_seconds": 28.17,
+    "ms_per_frame": 58.69,
+    "realtime_factor": 1.42,
     "size": [
       960,
       540
@@ -46,12 +46,12 @@
     "per_camera_hour": 0.0
   },
   "stage_ms": {
-    "view_check": 3288.74,
-    "detect": 10061.19,
-    "track": 2.2,
-    "machine": 358.73,
-    "guard": 502.79,
-    "posture": 2.03,
-    "escalate": 6.49
+    "view_check": 5980.37,
+    "detect": 19824.74,
+    "track": 5.06,
+    "machine": 514.81,
+    "guard": 825.58,
+    "posture": 5.56,
+    "escalate": 10.02
   }
 }

@@ -28,6 +28,23 @@ pixels carrying Canny edges plus the standard deviation of a Laplacian response.
 the usable dynamic range has collapsed: night footage with working lights is fine,
 a black frame is not.
 
+**Is the reference itself any good?** Found on real footage, not synthetic. A
+Wikimedia Commons time-lapse opens with a fade from black. The first frame was
+adopted as the reference, and every one of the 2,689 frames after it was refused
+as `camera_moved` with a constant 410 px "shift": nothing was watched. Two rules
+now stand between a bad frame and the reference:
+
+1. A reference is only adopted from a frame that passes the frame-level checks
+   (not too dark, lens not blocked, feed not frozen). The pipeline does this.
+2. A reference is **provisional** until `reference_confirm_frames` frames have
+   aligned with it. If instead `reference_recover_frames` consecutive frames all
+   disagree with it *and agree with each other*, the reference was the odd one out,
+   so it is replaced by the current frame and a `reference_replaced` view event is
+   logged. Once confirmed, a reference is never replaced automatically: a camera
+   that is bumped and then holds still is exactly "a long run of consistent frames
+   that disagree with the reference", and it must keep raising `camera_moved` until
+   a human re-draws the zone.
+
 **Is the feed frozen?** This one had to be rebuilt after measuring it.
 
 The obvious test is byte-identical consecutive frames, keyed on the *maximum*
@@ -109,6 +126,9 @@ class ViewConfig:
     frozen_mean_absdiff: float = 0.05
     frozen_max_absdiff: int = 12
     frozen_frames: int = 12
+    # reference trust - see "Is the reference itself any good?" above
+    reference_confirm_frames: int = 5
+    reference_recover_frames: int = 25
 
 
 @dataclass
@@ -126,6 +146,10 @@ class ViewStatus:
     identical_frames: int = 0
     ecc_converged: bool = True
     messages: list[str] = field(default_factory=list)
+    reference_confirmed: bool = False
+    reference_replaced: bool = False
+    replaced_after_frames: int = 0
+    replaced_shift_px: float = 0.0
 
     def has(self, problem: ViewProblem) -> bool:
         return problem in self.problems
@@ -143,6 +167,8 @@ class ViewStatus:
             "luma_range": round(self.luma_range, 1),
             "identical_frames": self.identical_frames,
             "ecc_converged": self.ecc_converged,
+            "reference_confirmed": self.reference_confirmed,
+            "reference_replaced": self.reference_replaced,
         }
 
 
@@ -188,18 +214,65 @@ class ViewGuard:
         self._reference_size: tuple[int, int] | None = None  # full-res (w, h)
         self._prev: np.ndarray | None = None
         self._identical = 0
+        self.reference_confirmed = False
+        self._agreeing = 0
+        # The run of frames that disagree with the reference: the first of them,
+        # and how many since have agreed with that first one.
+        self._candidate: np.ndarray | None = None
+        self._candidate_run = 0
 
     @property
     def has_reference(self) -> bool:
         return self._reference is not None
 
-    def set_reference(self, frame: np.ndarray) -> None:
-        """Adopt this frame as the one the zone was drawn against."""
+    def set_reference(self, frame: np.ndarray, *, confirmed: bool = False) -> None:
+        """Adopt this frame as the one the zone was drawn against.
+
+        Provisional unless `confirmed`: see the module docstring.
+        """
         h, w = frame.shape[:2]
-        self._reference = _work(frame, self.config.work_width)
-        self._reference_size = (w, h)
+        self._adopt(_work(frame, self.config.work_width), (w, h), confirmed=confirmed)
         self._prev = None
         self._identical = 0
+
+    def _adopt(self, work: np.ndarray, size: tuple[int, int], *, confirmed: bool) -> None:
+        self._reference = work
+        self._reference_size = size
+        self.reference_confirmed = confirmed
+        self._agreeing = 0
+        self._candidate = None
+        self._candidate_run = 0
+
+    def _track_reference_trust(self, work: np.ndarray, size: tuple[int, int], moved: bool,
+                               status: ViewStatus, to_full: float) -> None:
+        """Confirm a provisional reference, or replace one every frame disagrees with."""
+        cfg = self.config
+        if not moved:
+            # One agreeing frame does not reset a disagreeing run: ECC can land on a
+            # false optimum for a single frame. Enough agreement in a row does.
+            self._agreeing += 1
+            if self._agreeing >= cfg.reference_confirm_frames:
+                self.reference_confirmed = True
+                self._candidate, self._candidate_run = None, 0
+            return
+        if self.reference_confirmed:
+            return
+        self._agreeing = 0
+        if self._candidate is None:
+            self._candidate, self._candidate_run = work, 1
+            return
+        shift, rotation, converged = estimate_shift(self._candidate, work, cfg)
+        consistent = (converged and shift * to_full <= cfg.max_shift_px
+                      and abs(rotation) <= cfg.max_rotation_deg)
+        if not consistent:
+            self._candidate, self._candidate_run = work, 1
+            return
+        self._candidate_run += 1
+        if self._candidate_run >= cfg.reference_recover_frames:
+            status.reference_replaced = True
+            status.replaced_after_frames = self._candidate_run
+            status.replaced_shift_px = status.shift_px
+            self._adopt(work, size, confirmed=True)
 
     def check(self, frame: np.ndarray) -> ViewStatus:
         cfg = self.config
@@ -253,9 +326,12 @@ class ViewGuard:
                              or abs(rotation) > cfg.max_rotation_deg)
                     # A non-converging ECC on an otherwise well-lit, detailed frame
                     # means the scene stopped resembling the reference at all.
-                    if moved or not converged:
+                    self._track_reference_trust(work, (w, h), moved or not converged,
+                                                status, to_full)
+                    if (moved or not converged) and not status.reference_replaced:
                         status.problems.append(ViewProblem.CAMERA_MOVED)
 
+        status.reference_confirmed = self.reference_confirmed
         status.usable = not status.problems
         status.messages = [HUMAN_TEXT[p] for p in status.problems]
         return status

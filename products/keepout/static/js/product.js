@@ -48,6 +48,10 @@ const ui = {
   zonePoints: $('zone-points'), zoneArea: $('zone-area'),
   zonePropose: $('zone-propose'), zoneClear: $('zone-clear'),
   zoneDefault: $('zone-default'), zoneApply: $('zone-apply'),
+  machinePoints: $('machine-points'), zoneMeta: $('zone-meta'),
+  uploadInput: $('upload-input'), uploadNote: $('upload-note'),
+  refTime: $('ref-time'), refTimeLabel: $('ref-time-label'), refTimeOut: $('ref-time-out'),
+  assumeRunning: $('assume-running'), tiledDetection: $('tiled-detection'),
 };
 
 const state = {
@@ -57,10 +61,16 @@ const state = {
   frames: [],            // per-frame results, ascending by timestamp
   jobId: null,           // set when the run came from a live job
   bakedClips: [],
-  zonePoints: [],        // editor points, in reference-frame pixels
+  zonePoints: [],        // danger zone points, in reference-frame pixels
+  machinePoints: [],     // machine region points, same frame
+  layer: 'danger',       // which of the two the editor is drawing
   referenceSize: [960, 540],
   referenceImage: null,
+  upload: null,          // { file, url, name } when the operator brought their own clip
+  workSize: null,        // the analysis resolution of the current run, for box scaling
 };
+
+const WORK_MAX_SIDE = 960;  // the service's default max_side; zones are drawn at this size
 
 const LEVEL_LABEL = {
   note: 'Note', guard: 'Guard open', alert: 'Alert', critical: 'Person down',
@@ -138,10 +148,15 @@ function drawOverlay(frame) {
   }
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, width, height);
-  if (!frame) return;
+  // Lines and labels are sized for a 960 px picture; a 1920 px upload scales them up
+  // so they read the same on screen. Bundled clips are 960 or smaller: k is 1.
+  const k = Math.max(1, width / 960);
+  // Before a run there are no frame results, but the zones are still worth seeing
+  // over the picture: that is how the operator checks them before spending a run.
+  if (!frame && !zonesFromRun().length) return;
 
-  const occupied = (frame.occupants ?? []).length > 0;
-  const level = frame.highest_level;
+  const occupied = (frame?.occupants ?? []).length > 0;
+  const level = frame?.highest_level;
 
   // --- zones ---------------------------------------------------------------
   const labelled = [];  // label rectangles already placed, so they cannot collide
@@ -160,8 +175,8 @@ function drawOverlay(frame) {
       ctx.fillStyle = hot ? 'rgba(255,107,53,0.15)' : 'rgba(245,197,24,0.09)';
       if (kind !== 'danger') ctx.fillStyle = 'rgba(255,255,255,0.045)';
       ctx.fill();
-      ctx.lineWidth = kind === 'danger' ? 3 : 2;
-      ctx.setLineDash(kind === 'danger' ? [] : [7, 5]);
+      ctx.lineWidth = (kind === 'danger' ? 3 : 2) * k;
+      ctx.setLineDash(kind === 'danger' ? [] : [7 * k, 5 * k]);
       ctx.strokeStyle = hot ? '#FF6B35' : colour;
       ctx.stroke();
       ctx.setLineDash([]);
@@ -169,30 +184,35 @@ function drawOverlay(frame) {
       // Three zones can share a top edge, so labels are pushed down until they
       // stop overlapping and are set on a chip so they read over any frame.
       const top = pts.reduce((a, b) => (b[1] < a[1] ? b : a));
-      ctx.font = '600 15px "Saira Condensed", sans-serif';
+      ctx.font = `600 ${15 * k}px "Saira Condensed", sans-serif`;
       const textW = ctx.measureText(zone.name).width;
-      let lx = Math.min(Math.max(2, top[0]), width - textW - 12);
-      let ly = Math.max(17, top[1] - 7);
+      let lx = Math.min(Math.max(2 * k, top[0]), width - textW - 12 * k);
+      let ly = Math.max(17 * k, top[1] - 7 * k);
       const overlaps = (y) => labelled.some(
-        (r) => Math.abs(r.y - y) < 17 && lx < r.x + r.w + 8 && lx + textW + 10 > r.x - 8);
+        (r) => Math.abs(r.y - y) < 17 * k && lx < r.x + r.w + 8 * k
+          && lx + textW + 10 * k > r.x - 8 * k);
       let guard = 0;
-      while (overlaps(ly) && guard < 8) { ly += 19; guard += 1; }
-      labelled.push({ x: lx, y: ly, w: textW + 10 });
+      while (overlaps(ly) && guard < 8) { ly += 19 * k; guard += 1; }
+      labelled.push({ x: lx, y: ly, w: textW + 10 * k });
 
       ctx.fillStyle = 'rgba(23,25,28,0.78)';
-      ctx.fillRect(lx - 4, ly - 14, textW + 10, 18);
+      ctx.fillRect(lx - 4 * k, ly - 14 * k, textW + 10 * k, 18 * k);
       ctx.fillStyle = hot ? '#FF6B35' : colour;
       ctx.fillText(zone.name, lx + 1, ly);
     }
   }
 
+  if (!frame) return;
+
   // --- people ---------------------------------------------------------------
+  // Boxes are in analysis pixels; an uploaded 1920 px clip is analysed at 960.
+  const boxScale = state.workSize ? width / state.workSize[0] : 1;
   if (ui.toggleBoxes.checked) {
     const inZone = new Set((frame.occupants ?? []).map((o) => o.track_id));
     for (const track of frame.tracks ?? []) {
-      const [x1, y1, x2, y2] = track.bbox;
+      const [x1, y1, x2, y2] = track.bbox.map((v) => v * boxScale);
       const hot = inZone.has(track.track_id);
-      ctx.lineWidth = hot ? 3 : 2;
+      ctx.lineWidth = (hot ? 3 : 2) * k;
       ctx.strokeStyle = hot ? '#FF6B35' : '#F2F4F5';
       ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
 
@@ -202,18 +222,18 @@ function drawOverlay(frame) {
         const bh = y2 - y1;
         const headH = Math.max(bh * 0.28, bw > bh ? bw * 0.5 : bh * 0.28);
         ctx.save();
-        ctx.filter = 'blur(6px)';
+        ctx.filter = `blur(${6 * k}px)`;
         ctx.drawImage(ui.video, x1, y1, bw, headH, x1, y1, bw, headH);
         ctx.restore();
       }
 
       const label = hot ? `#${track.track_id} in zone` : `#${track.track_id}`;
-      ctx.font = '600 14px "Saira Condensed", sans-serif';
-      const tw = ctx.measureText(label).width + 10;
+      ctx.font = `600 ${14 * k}px "Saira Condensed", sans-serif`;
+      const tw = ctx.measureText(label).width + 10 * k;
       ctx.fillStyle = hot ? '#FF6B35' : 'rgba(23,25,28,0.85)';
-      ctx.fillRect(x1, Math.max(0, y1 - 20), tw, 19);
+      ctx.fillRect(x1, Math.max(0, y1 - 20 * k), tw, 19 * k);
       ctx.fillStyle = hot ? '#17191C' : '#F2F4F5';
-      ctx.fillText(label, x1 + 5, Math.max(13, y1 - 6));
+      ctx.fillText(label, x1 + 5 * k, Math.max(13 * k, y1 - 6 * k));
     }
   }
 
@@ -285,8 +305,13 @@ function setHatch(level, label, detail) {
 
 // ---------------------------------------------------------------- render
 
+function clipUrl() {
+  return state.upload ? state.upload.url : `/api/samples/${encodeURIComponent(state.clip)}/clip`;
+}
+
 function renderRun(run, { source }) {
   state.run = run;
+  state.workSize = run.work_size ?? null;
   state.frames = (run.live ?? []).slice().sort((a, b) => a.timestamp_ms - b.timestamp_ms);
   ui.chipSource.textContent = source;
 
@@ -295,7 +320,7 @@ function renderRun(run, { source }) {
   renderEvidence(incidents);
   renderKpis(run, incidents);
 
-  ui.video.src = `/api/samples/${encodeURIComponent(state.clip)}/clip`;
+  ui.video.src = clipUrl();
   ui.video.load();
   ui.scrub.value = '0';
   // Open on the worst thing this clip contains, at the moment it was raised. A
@@ -312,6 +337,19 @@ function renderRun(run, { source }) {
     ui.video.currentTime = at / 1000;
     renderFrame(at);
   }, { once: true });
+}
+
+function resetKpis() {
+  for (const node of [ui.kpi.tta, ui.kpi.detect, ui.kpi.usable, ui.kpi.speed, ui.kpi.machine]) {
+    node.textContent = '—';
+  }
+  ui.kpi.ttaNote.textContent = 'not run yet';
+  ui.kpi.detectNote.textContent = 'not run yet';
+  ui.kpi.machineNote.textContent = 'not run yet';
+  ui.stat.frames.textContent = '0';
+  ui.stat.msframe.textContent = '—';
+  ui.counts.incidents.textContent = '0';
+  ui.readout.replaceChildren();
 }
 
 function renderKpis(run, incidents) {
@@ -450,7 +488,7 @@ function renderEvidence(incidents) {
     ui.evidenceNote.textContent = '';
     return;
   }
-  ui.evidenceNote.textContent = 'faces blurred before the frame was written to disk';
+  ui.evidenceNote.textContent = 'every detected person\'s head blurred before the frame was written to disk';
   for (const frame of frames) {
     const figure = el('figure');
     const img = document.createElement('img');
@@ -459,6 +497,7 @@ function renderEvidence(incidents) {
     img.src = state.jobId
       ? frame.uri
       : `/api/demo/${encodeURIComponent(state.clip)}/evidence/${frame.uri.split('/').pop()}`;
+    img.addEventListener('click', () => window.open(img.src, '_blank', 'noopener'));
     figure.append(img);
     const caption = el('figcaption');
     caption.append(el('b', null,
@@ -494,28 +533,55 @@ async function acknowledge(incidentId) {
 
 // ---------------------------------------------------------------- live run
 
+function drawnZones() {
+  const zones = {};
+  if (state.zonePoints.length >= 3) {
+    zones.danger_zone = {
+      name: 'danger zone',
+      points: state.zonePoints,
+      reference_size: state.referenceSize,
+      kind: 'danger',
+      contact: 'feet',
+    };
+  }
+  if (state.machinePoints.length >= 3) {
+    zones.machine_zone = {
+      name: 'machine',
+      points: state.machinePoints,
+      reference_size: state.referenceSize,
+      kind: 'machine',
+      contact: 'centroid',
+    };
+  }
+  return zones;
+}
+
 async function runLive() {
+  if (state.upload && state.zonePoints.length < 3) {
+    ui.zoneStatus.textContent =
+      'Draw the danger zone on your clip first. Keepout will not guess where the floor is.';
+    document.getElementById('panel-zones').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
   ui.runLive.disabled = true;
+  ui.zoneApply.disabled = true;
   ui.progress.hidden = false;
   ui.log.textContent = '';
   ui.progressBar.style.width = '0%';
   ui.progressMessage.textContent = 'uploading the clip';
 
   try {
-    const clipResponse = await fetch(`/api/samples/${encodeURIComponent(state.clip)}/clip`);
-    const blob = await clipResponse.blob();
     const body = new FormData();
-    body.append('file', new File([blob], `${state.clip}.mp4`, { type: 'video/mp4' }));
-    const params = { blur_faces: ui.toggleBlur.checked };
-    if (state.zonePoints.length >= 3) {
-      params.danger_zone = {
-        name: 'danger zone drawn by the operator',
-        points: state.zonePoints,
-        reference_size: state.referenceSize,
-        kind: 'danger',
-        contact: 'feet',
-      };
+    if (state.upload) {
+      body.append('file', state.upload.file, state.upload.name);
+    } else {
+      const clipResponse = await fetch(clipUrl());
+      const blob = await clipResponse.blob();
+      body.append('file', new File([blob], `${state.clip}.mp4`, { type: 'video/mp4' }));
     }
+    const params = { ...drawnZones() };
+    if (ui.assumeRunning.checked) params.assume_machine_running = true;
+    if (ui.tiledDetection.checked) params.tiled_detection = true;
     body.append('params', JSON.stringify(params));
 
     const { job_id: jobId } = await getJson('/api/jobs', { method: 'POST', body });
@@ -526,6 +592,7 @@ async function runLive() {
     appendLog(`error: ${error.message}`);
   } finally {
     ui.runLive.disabled = false;
+    ui.zoneApply.disabled = false;
   }
 }
 
@@ -554,13 +621,19 @@ function follow(jobId) {
       const record = job.result;
       state.jobId = jobId;
       ui.progressBar.style.width = '100%';
+      const m = record.metrics;
       ui.progressMessage.textContent =
-        `analysed ${record.metrics.frames_analysed} frames in `
-        + `${record.metrics.wall_seconds} s on this instance`;
+        `analysed ${m.frames_analysed} frames in ${m.wall_seconds} s on this instance: `
+        + `${m.coverage ?? 'the whole clip'}`;
+      for (const warning of record.warnings ?? []) {
+        const line = el('span', 'log--warn', `warning: ${warning}\n`);
+        ui.log.append(line);
+      }
       renderRun({
         incidents: record.results,
         live: record.params.live,
         config: record.params.config,
+        work_size: record.params.work_size,
         summary: {
           usable_fraction: record.metrics.usable_fraction,
           machine: { running: record.metrics.machine_running_at_end,
@@ -580,39 +653,64 @@ function follow(jobId) {
 
 // ---------------------------------------------------------------- zones
 
+function drawPolygon(ctx, pts, { stroke, fill, dashed, active }) {
+  if (!pts.length) return;
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (const [x, y] of pts.slice(1)) ctx.lineTo(x, y);
+  if (pts.length >= 3) {
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+  }
+  ctx.setLineDash(dashed ? [8, 6] : []);
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.setLineDash([]);
+  if (!active) return;
+  for (const [x, y] of pts) {
+    ctx.beginPath();
+    ctx.arc(x, y, 6, 0, Math.PI * 2);
+    ctx.fillStyle = stroke;
+    ctx.fill();
+    ctx.strokeStyle = '#17191C';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+}
+
 function drawEditor() {
   const canvas = ui.zoneCanvas;
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (state.referenceImage) ctx.drawImage(state.referenceImage, 0, 0, canvas.width, canvas.height);
 
-  const pts = state.zonePoints;
-  if (pts.length) {
-    ctx.beginPath();
-    ctx.moveTo(pts[0][0], pts[0][1]);
-    for (const [x, y] of pts.slice(1)) ctx.lineTo(x, y);
-    if (pts.length >= 3) {
-      ctx.closePath();
-      ctx.fillStyle = 'rgba(245,197,24,0.18)';
-      ctx.fill();
-    }
-    ctx.strokeStyle = '#F5C518';
-    ctx.lineWidth = 3;
-    ctx.stroke();
-    for (const [x, y] of pts) {
-      ctx.beginPath();
-      ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = '#F5C518';
-      ctx.fill();
-      ctx.strokeStyle = '#17191C';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
-  }
+  drawPolygon(ctx, state.machinePoints, {
+    stroke: 'rgba(200,160,60,0.95)', fill: 'rgba(255,255,255,0.08)', dashed: true,
+    active: state.layer === 'machine',
+  });
+  drawPolygon(ctx, state.zonePoints, {
+    stroke: '#F5C518', fill: 'rgba(245,197,24,0.18)', dashed: false,
+    active: state.layer === 'danger',
+  });
 
+  const pts = state.zonePoints;
   ui.zonePoints.textContent = String(pts.length);
+  ui.machinePoints.textContent = String(state.machinePoints.length);
   ui.zoneArea.textContent = pts.length >= 3 ? `${Math.round(polygonArea(pts)).toLocaleString()} px` : '—';
-  ui.counts.zone.textContent = pts.length >= 3 ? 'drawn' : 'set';
+  ui.counts.zone.textContent = pts.length >= 3 ? 'drawn' : (state.upload ? 'needed' : 'set');
+  previewZones();
+}
+
+// Show what is drawn over the clip itself, in the live view, before any run: the
+// operator should see the zones on the picture they are about to spend a run on.
+function previewZones() {
+  if (state.frames.length) return;  // a finished run owns the overlay
+  const zones = drawnZones();
+  const config = state.upload ? zones : { ...(state.run?.config ?? {}), ...zones };
+  state.run = { ...(state.run ?? {}), config };
+  drawOverlay(null);
 }
 
 function polygonArea(points) {
@@ -641,6 +739,104 @@ async function loadReference() {
   } catch (error) {
     ui.zoneStatus.textContent = `Could not load a reference frame: ${error.message}`;
   }
+}
+
+function currentLayerPoints() {
+  return state.layer === 'machine' ? state.machinePoints : state.zonePoints;
+}
+
+// Grab a frame of the uploaded clip in the browser, at the analysis size, to draw on.
+function captureUploadFrame(atSeconds) {
+  return new Promise((resolve, reject) => {
+    const video = ui.video;
+    const done = () => {
+      const w = video.videoWidth;
+      const h = video.videoHeight;
+      if (!w || !h) { reject(new Error('the browser decoded no picture')); return; }
+      const scale = Math.min(1, WORK_MAX_SIDE / Math.max(w, h));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(w * scale);
+      canvas.height = Math.round(h * scale);
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      resolve(canvas);
+    };
+    video.addEventListener('seeked', done, { once: true });
+    video.currentTime = Math.max(0, Math.min(atSeconds, (video.duration || 0) - 0.05));
+  });
+}
+
+async function setUploadReference(atSeconds) {
+  try {
+    const frame = await captureUploadFrame(atSeconds);
+    const [oldW, oldH] = state.referenceSize;
+    ui.zoneCanvas.width = frame.width;
+    ui.zoneCanvas.height = frame.height;
+    if (oldW !== frame.width || oldH !== frame.height) {
+      state.zonePoints = [];
+      state.machinePoints = [];
+    }
+    state.referenceSize = [frame.width, frame.height];
+    state.referenceImage = frame;
+    ui.refTimeOut.textContent = seconds(atSeconds * 1000);
+    ui.zoneStatus.textContent =
+      `Frame at ${seconds(atSeconds * 1000)}, analysed at ${frame.width} by ${frame.height}. `
+      + 'Click to place the corners of the danger zone, then switch to the machine region. '
+      + 'If this frame is black or blurred, pick a later one: Keepout skips frames like that '
+      + 'too.';
+    drawEditor();
+    renderFrame(atSeconds * 1000);
+  } catch (error) {
+    ui.zoneStatus.textContent = `Could not read a frame from this file: ${error.message}. `
+      + 'The browser has to be able to play it; MP4 (H.264) or WebM work.';
+  }
+}
+
+async function loadUpload(file) {
+  if (state.upload) URL.revokeObjectURL(state.upload.url);
+  state.upload = { file, url: URL.createObjectURL(file), name: file.name };
+  state.jobId = null;
+  state.frames = [];
+  state.workSize = null;
+  state.zonePoints = [];
+  state.machinePoints = [];
+  state.run = { config: {}, incidents: [], live: [] };
+  ui.clipSelect.value = '';
+  ui.headTitle.textContent = file.name;
+  ui.headLine.textContent =
+    'Your clip. Draw the danger zone and the machine region below, check them over the '
+    + 'picture, then run it on this instance.';
+  ui.clipNote.textContent = '';
+  ui.uploadNote.textContent = `${file.name}, ${(file.size / 1048576).toFixed(1)} MB. `
+    + 'Nothing is sent until you run it.';
+  ui.chipSource.textContent = 'your clip, not analysed yet';
+  ui.runLive.textContent = 'Run your clip';
+  ui.zoneMeta.textContent = 'Drawn on a frame of your clip, at the size it is analysed.';
+  renderIncidents([]);
+  renderEvidence([]);
+  resetKpis();
+  let option = ui.clipSelect.querySelector('option[data-upload]');
+  if (!option) {
+    option = document.createElement('option');
+    option.dataset.upload = '1';
+    option.value = '';
+    ui.clipSelect.append(option);
+  }
+  option.textContent = `Your clip: ${file.name}`;
+  ui.clipSelect.value = '';
+  setHatch('clear', 'Not watched yet', 'Draw the zones, then run the clip.');
+  ui.progress.hidden = true;
+  ui.refTime.hidden = false;
+  ui.refTimeLabel.hidden = false;
+  ui.refTime.value = '0';
+
+  ui.video.src = state.upload.url;
+  ui.video.load();
+  ui.video.addEventListener('loadeddata', () => setUploadReference(0), { once: true });
+  ui.video.addEventListener('error', () => {
+    ui.zoneStatus.textContent = 'This browser cannot play that file, so there is no frame '
+      + 'to draw on. Convert it to MP4 (H.264) and try again.';
+  }, { once: true });
+  document.getElementById('panel-zones').scrollIntoView({ behavior: 'smooth' });
 }
 
 function useDefaultZone() {
@@ -712,25 +908,56 @@ function wire() {
   ui.runLive.addEventListener('click', runLive);
 
   ui.clipSelect.addEventListener('change', async () => {
+    if (!ui.clipSelect.value) return;
     state.clip = ui.clipSelect.value;
     state.jobId = null;
+    if (state.upload) URL.revokeObjectURL(state.upload.url);
+    state.upload = null;
+    ui.clipSelect.querySelector('option[data-upload]')?.remove();
+    ui.runLive.textContent = 'Run this clip live';
+    ui.refTime.hidden = true;
+    ui.refTimeLabel.hidden = true;
     await loadClip();
   });
+
+  ui.uploadInput.addEventListener('change', () => {
+    const file = ui.uploadInput.files?.[0];
+    if (file) loadUpload(file);
+    ui.uploadInput.value = '';
+  });
+
+  ui.refTime.addEventListener('change', () => {
+    const duration = ui.video.duration || 0;
+    setUploadReference((Number(ui.refTime.value) / 1000) * duration);
+  });
+
+  for (const radio of document.querySelectorAll('input[name="zone-layer"]')) {
+    radio.addEventListener('change', () => {
+      state.layer = radio.value;
+      ui.zoneStatus.textContent = state.layer === 'machine'
+        ? 'Drawing the machine region: where the moving parts are. Motion here decides '
+          + 'whether the machine is running.'
+        : 'Drawing the danger zone: the floor a person must not stand on while it runs.';
+      drawEditor();
+    });
+  }
 
   ui.zoneCanvas.addEventListener('click', (event) => {
     const rect = ui.zoneCanvas.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * ui.zoneCanvas.width;
     const y = ((event.clientY - rect.top) / rect.height) * ui.zoneCanvas.height;
-    state.zonePoints.push([Math.round(x), Math.round(y)]);
+    const pts = currentLayerPoints();
+    pts.push([Math.round(x), Math.round(y)]);
     state.referenceSize = [ui.zoneCanvas.width, ui.zoneCanvas.height];
-    ui.zoneStatus.textContent = state.zonePoints.length < 3
-      ? `${3 - state.zonePoints.length} more point(s) needed.`
-      : 'Zone ready. Save and re-run to use it.';
+    const what = state.layer === 'machine' ? 'Machine region' : 'Danger zone';
+    ui.zoneStatus.textContent = pts.length < 3
+      ? `${3 - pts.length} more point(s) needed for the ${what.toLowerCase()}.`
+      : `${what} ready. It is shown over the clip in the live view. Save and run to use it.`;
     drawEditor();
   });
 
   ui.zoneClear.addEventListener('click', () => {
-    state.zonePoints = [];
+    if (state.layer === 'machine') state.machinePoints = []; else state.zonePoints = [];
     ui.zoneStatus.textContent = 'Cleared. Click the frame to place corners.';
     drawEditor();
   });
@@ -754,6 +981,8 @@ function wire() {
 }
 
 async function loadClip() {
+  state.workSize = null;
+  state.machinePoints = [];
   const sample = state.samples.find((s) => s.name === state.clip);
   ui.clipNote.textContent = sample?.description ?? '';
   ui.headTitle.textContent = titleFor(state.clip);

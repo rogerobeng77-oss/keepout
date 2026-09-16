@@ -282,6 +282,34 @@ class IncidentLog:
             self._by_key.pop(self._key(kind, zone, track_id), None)
         return incident
 
+    def reassign(self, incident: Incident, track_id: int, timestamp_ms: float,
+                 **detail: Any) -> Incident:
+        """Hand an incident to a new track id: the same person, a fragmented track.
+
+        The incident keeps its id, its evidence and its level. If it had ended
+        because its old track was lost, it resumes. The old ids are kept in
+        `detail["track_ids"]` and the handover is in the history.
+        """
+        old_key = self._key(incident.kind, incident.zone, incident.track_id)
+        if self._by_key.get(old_key) is incident:
+            self._by_key.pop(old_key)
+        if track_id == incident.track_id:
+            incident.history.append({"ts_ms": round(timestamp_ms, 1),
+                                     "event": "resumed", "track": track_id, **detail})
+        else:
+            ids = list(incident.detail.get("track_ids") or [incident.track_id])
+            ids.append(track_id)
+            incident.detail["track_ids"] = ids
+            incident.history.append({
+                "ts_ms": round(timestamp_ms, 1), "event": "track_rejoined",
+                "from_track": incident.track_id, "to_track": track_id, **detail,
+            })
+        incident.track_id = track_id
+        if incident.ended_ms is not None and not incident.latched:
+            incident.ended_ms = None
+        self._by_key[self._key(incident.kind, incident.zone, track_id)] = incident
+        return incident
+
     def acknowledge(self, incident_id: str, timestamp_ms: float, by: str = "operator") -> bool:
         incident = self.get(incident_id)
         if incident is None:

@@ -152,8 +152,17 @@ class Track:
     velocity: tuple[float, float] = (0.0, 0.0)
     history: list[tuple[float, Box]] = field(default_factory=list)
     confirmed: bool = False
+    first_box: Box | None = None  # where the track was born; history gets trimmed
 
     HISTORY_LIMIT = 240
+
+    def box_at(self, timestamp_ms: float, tolerance_ms: float) -> Box | None:
+        """The detected box nearest to a moment, if there is one close enough."""
+        best, gap = None, tolerance_ms
+        for t, b in self.history:
+            if abs(t - timestamp_ms) <= gap:
+                best, gap = b, abs(t - timestamp_ms)
+        return best
 
     def predict(self, timestamp_ms: float) -> Box:
         dt = max(0.0, timestamp_ms - self.last_ms)
@@ -281,6 +290,7 @@ class BoxTracker:
                 score=scores[j],
                 first_ms=timestamp_ms,
                 last_ms=timestamp_ms,
+                first_box=box,
             )
             track.history.append((timestamp_ms, box))
             track.confirmed = cfg.min_hits <= 1

@@ -47,6 +47,15 @@
       <p class="rail__hint" id="clip-note"></p>
     </div>
 
+    <div class="rail__clips rail__upload">
+      <span class="field__label">Or a clip of your own</span>
+      <input type="file" id="upload-input" class="sr-only"
+             accept="video/mp4,video/webm,video/quicktime,.mp4,.m4v,.mov,.webm,.mkv,.avi">
+      <label class="button button--ghost upload-button" for="upload-input">Upload a video</label>
+      <p class="rail__hint" id="upload-note">From a fixed camera. You draw the danger zone
+        and the machine region on its first frame, check them over the picture, then run it.</p>
+    </div>
+
     <div class="rail__status" id="status-block">
       <h2 class="rail__status-title">This build</h2>
       <dl class="statlist">
@@ -184,8 +193,8 @@
     <!-- ---------------------------------------------- zone editor ------ -->
     <section class="panel" id="panel-zones">
       <div class="panel__head">
-        <h3 class="panel__title">Danger zone</h3>
-        <span class="panel__meta">Drawn once, against one reference frame.</span>
+        <h3 class="panel__title">Zones</h3>
+        <span class="panel__meta" id="zone-meta">Drawn once, against one reference frame.</span>
       </div>
       <div class="panel__body">
         <p class="prose">
@@ -198,13 +207,28 @@
             <canvas id="zone-canvas" class="editor__canvas" width="960" height="540"></canvas>
           </div>
           <div class="editor__side">
+            <div class="layer-switch" role="radiogroup" aria-label="Which region to draw">
+              <label class="layer"><input type="radio" name="zone-layer" value="danger" checked>
+                <span>Danger zone</span></label>
+              <label class="layer"><input type="radio" name="zone-layer" value="machine">
+                <span>Machine region</span></label>
+            </div>
+            <label class="field__label" for="ref-time" id="ref-time-label" hidden>Frame to draw on
+              <output id="ref-time-out">0.0 s</output></label>
+            <input type="range" id="ref-time" class="scrub" min="0" max="1000" value="0" hidden
+                   aria-label="Frame to draw the zones on">
+            <label class="toggle"><input type="checkbox" id="assume-running">
+              <span>No machine in view: treat it as running</span></label>
+            <label class="toggle"><input type="checkbox" id="tiled-detection">
+              <span>Small people: tiled detection, about 5x slower</span></label>
             <button class="button" id="zone-propose" type="button">Propose from motion</button>
             <button class="button button--ghost" id="zone-clear" type="button">Start again</button>
             <button class="button button--ghost" id="zone-default" type="button">Use the default</button>
-            <button class="action" id="zone-apply" type="button">Save and re-run</button>
+            <button class="action" id="zone-apply" type="button">Save and run</button>
             <p class="editor__status" id="zone-status">No points placed yet.</p>
             <dl class="statlist statlist--wide">
-              <div><dt>Points</dt><dd id="zone-points">0</dd></div>
+              <div><dt>Danger points</dt><dd id="zone-points">0</dd></div>
+              <div><dt>Machine points</dt><dd id="machine-points">0</dd></div>
               <div><dt>Area</dt><dd id="zone-area">—</dd></div>
               <div><dt>Contact</dt><dd>feet, on the floor plane</dd></div>
             </dl>

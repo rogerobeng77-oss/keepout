@@ -5,9 +5,9 @@
     "clip": "cell-stopped.mp4",
     "frames": 240,
     "clip_seconds": 20.0,
-    "wall_seconds": 6.84,
-    "ms_per_frame": 28.5,
-    "realtime_factor": 2.92,
+    "wall_seconds": 11.73,
+    "ms_per_frame": 48.88,
+    "realtime_factor": 1.7,
     "size": [
       960,
       540
@@ -63,12 +63,12 @@
     "per_camera_hour": 0.0
   },
   "stage_ms": {
-    "view_check": 1060.48,
-    "detect": 5084.91,
-    "track": 11.13,
-    "machine": 176.9,
-    "guard": 240.36,
-    "posture": 31.0,
-    "escalate": 14.63
+    "view_check": 1543.59,
+    "detect": 9104.16,
+    "track": 16.53,
+    "machine": 233.76,
+    "guard": 355.31,
+    "posture": 47.86,
+    "escalate": 20.51
   }
 }
