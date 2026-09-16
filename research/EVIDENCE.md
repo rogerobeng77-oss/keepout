@@ -4,7 +4,7 @@ Hard, quotable evidence behind candidate problems. Every figure below was fetche
 from a primary source during this session and is quoted verbatim. Fetched pages
 are saved under `/tmp/ocv-evidence/`.
 
-Compiled 2026-09-16. Companion document: `FINDINGS.md` (technical ground and
+Compiled 2026-09-16. Companion document: `(technical ground and
 problem briefs) — written separately, not by this pass.
 
 **Rule applied throughout:** if a number is not in a quote below, it is not

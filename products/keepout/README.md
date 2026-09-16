@@ -260,9 +260,6 @@ category.
 | [`docs/architecture.md`](docs/architecture.md) | pipeline and AWS diagrams |
 | [`docs/evaluation.md`](docs/evaluation.md) | every measured number and how to reproduce it |
 | [`docs/costs.md`](docs/costs.md) | what was created on AWS and what it costs |
-| [`docs/devpost.md`](docs/devpost.md) | submission text |
-| [`docs/narration.md`](docs/narration.md) | the video script |
-| [`docs/deck/`](docs/deck/) | four slides and an end card |
 
 ## Licence
 

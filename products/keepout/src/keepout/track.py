@@ -1,7 +1,7 @@
 """Multi-object tracking without OpenCV's trackers, because OpenCV 5 removed them.
 
 `cv2.TrackerCSRT`, `cv2.TrackerKCF` and the whole `cv2.legacy` namespace are gone
-from the main `opencv-python` wheel in 5.0 (research/FINDINGS.md §1.3). Rather
+from the main `opencv-python` wheel in 5.0. Rather
 than pull in `opencv-contrib-python`, which conflicts with the main wheel and
 doubles the image, we associate detections ourselves.
 

@@ -29,7 +29,7 @@ A camera was already pointed at him. The footage existed. Nobody was watching it
 | `packages/visioncore` | Shared OpenCV 5 primitives: IO, models, records, timing, calibration. |
 | `packages/servicekit` | Shared FastAPI service shell: jobs, SSE progress, evidence routes. |
 | `infra/` | ECR, App Runner and S3 scripts. |
-| `research/` | The verified source material. `EVIDENCE.md` carries the OSHA and HSE citations with dates and quotes; `FINDINGS.md` carries the OpenCV 5 and AWS facts. |
+| `research/` | The verified source material. `EVIDENCE.md` carries the OSHA and HSE citations with dates and quotes|
 
 ## Quick start
 

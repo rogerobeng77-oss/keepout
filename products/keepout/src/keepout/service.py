@@ -49,7 +49,7 @@ SAMPLES_DIR = samples_dir()
 DEMO_DIR = demo_dir()
 STATIC_DIR = static_dir()
 
-ACCENT = "#F5C518"  # hazard yellow, from docs/design/atlas.md section 3
+ACCENT = "#F5C518"  # hazard yellow
 
 MAX_ANALYSIS_FRAMES = int(os.environ.get("KEEPOUT_MAX_FRAMES", "900"))
 

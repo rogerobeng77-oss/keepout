@@ -7,7 +7,7 @@ recognition anywhere in this codebase, and there is no code path that could add
 one without a new dependency.
 
 What is here is the opposite: a face *detector* used only to destroy information.
-OpenCV 5 ships `cv2.FaceDetectorYN` in the main wheel (research/FINDINGS.md §1.3),
+OpenCV 5 ships `cv2.FaceDetectorYN` in the main wheel,
 which is a detector, not a recogniser: it returns boxes, and the model that would
 turn a face into an embedding (`FaceRecognizerSF`) is never loaded.
 

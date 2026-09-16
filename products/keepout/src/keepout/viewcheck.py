@@ -18,7 +18,7 @@ reference, and we fall back to phase correlation for a translation estimate.
 
 We deliberately do **not** try to warp the zone into the new view. A homography
 fitted to a scene that has partly changed is exactly the silent-confident-nonsense
-failure that FINDINGS.md §5.0 warns about. The zone must be re-drawn by a human.
+failure that warns about. The zone must be re-drawn by a human.
 
 **Is the lens blocked?** A covered or heavily fouled lens has almost no edge
 content and low local contrast, everywhere, at once. Measured as the fraction of

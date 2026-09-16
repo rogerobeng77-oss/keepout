@@ -7,7 +7,7 @@ Order of operations per frame, and why it is this order:
    problem, emit a `view` incident-equivalent in the record, and skip detection
    for that frame rather than produce confident output from an unusable view.
 2. **Detect people.** YOLOX-tiny through `cv2.dnn`, filtered to the COCO `person`
-   class. Apache-2.0, ONNX, CPU (research/FINDINGS.md §4.4).
+   class. Apache-2.0, ONNX, CPU.
 3. **Associate into tracks.** Our own Hungarian assignment; OpenCV 5's main wheel
    has no trackers (§1.3).
 4. **Machine state**, measured with the person boxes excluded so a passer-by does
