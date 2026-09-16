@@ -540,6 +540,13 @@ frames themselves are kept out of the repository, because they show real workers
 
 Every critical in the table is false. Nobody fell in any of these clips.
 
+The live service gives a different count on the time-lapse. It caps an upload at
+900 analysed frames, so it reads every second frame of this 1,173-frame clip. With
+the crane zones drawn in the upload page, the live run at `ce056a7` raised 57
+incidents, 11 of them criticals held for a human, where the full-rate local run
+above gave 5 (`eval/real_footage/live-job-7a8a1f4bcff9.json`: 587 frames analysed,
+whole clip covered). The film shows the live figure.
+
 The remaining Malta critical, with placeholder zones, is a `person_unaccounted` on
 a detection beside the pump truck's cab. It sat 20 px inside a zone that does not
 match the scene (the threshold is 18), was steady for over 3 s, then went. That is

@@ -9,6 +9,7 @@ The before-and-after measurement in `docs/evaluation.md` §10, as code and as da
 | `person_size.py` | detection recall against person height, one pass versus tiled (§10.5) |
 | `person-size.json` | its output |
 | `results.json` | every run, before and after: frames usable, incidents with their subject boxes, and how each evidence frame was redacted |
+| `live-job-7a8a1f4bcff9.json` | the job record from the live service at `ce056a7`: the time-lapse with the crane zones drawn in the upload page, analysed at stride 2 (587 of 1,173 frames) because of the 900-frame cap. No images, only evidence URIs |
 
 ## Sources
 
