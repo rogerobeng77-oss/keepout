@@ -484,8 +484,10 @@ had been making.
    who vanished inside the zone. It adds one more person sweep of the raw frame at
    the same low threshold, full frame plus 2x2 overlapping tiles, because a small
    worker the per-frame pass misses is still a face. YuNet faces are blurred on top.
-   It runs on the frame upscaled to 1,600 px, since faces in a wide shot are 10 to
-   15 px across. The container fetches YuNet and checks its sha256 at build time.
+   YuNet looks at the frame as it is and again at three times the size, at score
+   0.3, since faces in a wide shot are 10 to 15 px across. The first deployed
+   version upscaled only to 1,600 px at score 0.5, and on the live service it missed
+   a worker half hidden by the pump boom. At 3x it finds him (§10.7). The container fetches YuNet and checks its sha256 at build time.
    It also sets `KEEPOUT_REQUIRE_FACE_DETECTOR=1`, so the service refuses to start
    without the weights. Anywhere else, missing weights fall back to the head regions
    alone, and every evidence record says `face_detector: unavailable`. A request can

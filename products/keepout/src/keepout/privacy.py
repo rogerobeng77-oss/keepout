@@ -68,11 +68,16 @@ class PrivacyConfig:
     head_widen: float = 1.12
     blur_strength: float = 0.11  # kernel as a fraction of the region's larger side
     min_kernel: int = 9
-    detector_score: float = 0.5
+    detector_score: float = 0.3
     detector_nms: float = 0.3
     # Faces in a wide shot are 10 to 15 px across at the 960 px working size, below
-    # what YuNet finds reliably. Upscale small frames before looking for faces.
-    detector_min_side: int = 1600
+    # what YuNet finds reliably, so it looks at the frame as it is and again at three
+    # times the size. Measured on six frames of the Malta crew at 960 px: 2 to 7 faces
+    # at 1.67x and score 0.5, 12 to 17 at 3x and score 0.3, about 200 ms a frame here.
+    # The 1.67x setting missed a worker half hidden by the pump boom on the live
+    # service; 3x found him. A false face costs a blurred patch, nothing more.
+    detector_upscales: tuple[float, ...] = (1.0, 3.0)
+    detector_max_side: int = 3200
     pixelate: bool = False  # pixelate instead of blur, if a site prefers it
     use_face_detector: bool = True  # False forces the head-region-only path (tests)
 
@@ -192,20 +197,25 @@ class FaceBlurrer:
         if self.model_path is None:
             return []
         h, w = image.shape[:2]
-        scale = max(1.0, self.config.detector_min_side / float(max(h, w)))
-        work = image if scale == 1.0 else cv2.resize(
-            image, (round(w * scale), round(h * scale)), interpolation=cv2.INTER_LINEAR)
-        detector = self._yunet((work.shape[1], work.shape[0]))
-        try:
-            _, faces = detector.detect(work)
-        except cv2.error:
-            return []
-        if faces is None:
-            return []
-        return [
-            (float(f[0]) / scale, float(f[1]) / scale,
-             float(f[0] + f[2]) / scale, float(f[1] + f[3]) / scale) for f in faces
-        ]
+        found: list[Box] = []
+        for upscale in self.config.detector_upscales:
+            scale = min(upscale, self.config.detector_max_side / float(max(h, w)))
+            if scale < 1.0 and upscale > 1.0:
+                continue
+            work = image if scale == 1.0 else cv2.resize(
+                image, (round(w * scale), round(h * scale)), interpolation=cv2.INTER_LINEAR)
+            detector = self._yunet((work.shape[1], work.shape[0]))
+            try:
+                _, faces = detector.detect(work)
+            except cv2.error:
+                continue
+            if faces is None:
+                continue
+            found += [
+                (float(f[0]) / scale, float(f[1]) / scale,
+                 float(f[0] + f[2]) / scale, float(f[1] + f[3]) / scale) for f in faces
+            ]
+        return found
 
     def describe(self) -> dict[str, Any]:
         return {

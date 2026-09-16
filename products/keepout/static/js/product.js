@@ -68,6 +68,11 @@ const state = {
   referenceImage: null,
   upload: null,          // { file, url, name } when the operator brought their own clip
   workSize: null,        // the analysis resolution of the current run, for box scaling
+  // Bumped whenever the operator switches clip or uploads one. A slow load that
+  // finishes after the switch sees a stale token and leaves the page alone: without
+  // it, the baked demo loading at boot painted itself over a clip uploaded in the
+  // first second.
+  loadToken: 0,
 };
 
 const WORK_MAX_SIDE = 960;  // the service's default max_side; zones are drawn at this size
@@ -723,15 +728,20 @@ function polygonArea(points) {
   return Math.abs(total / 2);
 }
 
-async function loadReference() {
+async function loadReference(token = state.loadToken) {
   try {
     const data = await getJson(
       `/api/samples/${encodeURIComponent(state.clip)}/frame?at_ms=0`);
+    if (token !== state.loadToken) return;
     state.referenceSize = [data.width, data.height];
     ui.zoneCanvas.width = data.width;
     ui.zoneCanvas.height = data.height;
     const image = new Image();
-    image.onload = () => { state.referenceImage = image; drawEditor(); };
+    image.onload = () => {
+      if (token !== state.loadToken) return;
+      state.referenceImage = image;
+      drawEditor();
+    };
     image.src = data.image;
     ui.zoneStatus.textContent =
       `Reference frame at 0.0 s, ${data.width} by ${data.height}. `
@@ -766,8 +776,10 @@ function captureUploadFrame(atSeconds) {
 }
 
 async function setUploadReference(atSeconds) {
+  const token = state.loadToken;
   try {
     const frame = await captureUploadFrame(atSeconds);
+    if (token !== state.loadToken) return;
     const [oldW, oldH] = state.referenceSize;
     ui.zoneCanvas.width = frame.width;
     ui.zoneCanvas.height = frame.height;
@@ -792,6 +804,7 @@ async function setUploadReference(atSeconds) {
 }
 
 async function loadUpload(file) {
+  state.loadToken += 1;
   if (state.upload) URL.revokeObjectURL(state.upload.url);
   state.upload = { file, url: URL.createObjectURL(file), name: file.name };
   state.jobId = null;
@@ -981,6 +994,7 @@ function wire() {
 }
 
 async function loadClip() {
+  const token = ++state.loadToken;
   state.workSize = null;
   state.machinePoints = [];
   const sample = state.samples.find((s) => s.name === state.clip);
@@ -991,6 +1005,7 @@ async function loadClip() {
   // instant. "Run this clip live" re-does the same analysis on the instance.
   if (state.bakedClips.includes(state.clip)) {
     const demo = await getJson(`/api/demo?clip=${encodeURIComponent(state.clip)}`);
+    if (token !== state.loadToken) return;
     renderRun(demo, { source: 'pre-computed at image build' });
   } else {
     state.run = { config: state.run?.config ?? {}, incidents: [], live: [] };
@@ -1003,7 +1018,8 @@ async function loadClip() {
     ui.progressMessage.textContent = 'Press "Run this clip live" to analyse this one.';
     ui.progress.hidden = false;
   }
-  await loadReference();
+  await loadReference(token);
+  if (token !== state.loadToken) return;
   state.zonePoints = [];
   drawEditor();
 }
