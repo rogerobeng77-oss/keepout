@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,116 +7,73 @@
 <meta name="description" content="A fixed camera over machinery, watched by something that never blinks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
 <link rel="stylesheet" href="/assets/css/product.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to the camera</a>
 
 <div class="room">
 
-  <!-- ================================================== sidebar ========= -->
-  <aside class="rail">
-    <div class="rail__brand">
-      <span class="rail__mark" aria-hidden="true"></span>
+  <!-- ==================================================== rail ========= -->
+  <aside class="rail" aria-label="Camera and zone controls">
+    <div class="brand">
+      <svg class="brand__mark" viewBox="0 0 34 34" aria-hidden="true">
+        <rect width="34" height="34" rx="5" fill="#141719"/>
+        <path d="M-6 26 L26 -6 M-2 30 L30 -2 M2 34 L34 2 M6 38 L38 6"
+              stroke="#F5C518" stroke-width="5"/>
+      </svg>
       <div>
-        <h1 class="rail__name">Keepout</h1>
-        <p class="rail__sub">Machine guarding watch</p>
+        <h1 class="brand__name">Keepout</h1>
+        <p class="brand__sub">Machine guarding watch</p>
       </div>
     </div>
 
     <button class="action" id="run-live" type="button">Run this clip live</button>
 
-    <nav class="rail__nav" aria-label="Sections">
-      <a class="nav is-active" href="#panel-live" data-nav="live">
-        <span>Live view</span><span class="nav__count" id="count-state">ready</span>
-      </a>
-      <a class="nav" href="#panel-incidents" data-nav="incidents">
-        <span>Incidents</span><span class="nav__count" id="count-incidents">0</span>
-      </a>
-      <a class="nav" href="#panel-evidence" data-nav="evidence">
-        <span>Evidence</span><span class="nav__count" id="count-evidence">0</span>
-      </a>
-      <a class="nav" href="#panel-zones" data-nav="zones">
-        <span>Danger zone</span><span class="nav__count" id="count-zone">set</span>
-      </a>
-    </nav>
-
-    <div class="rail__clips">
-      <label class="field__label" for="clip-select">Camera clip</label>
+    <div class="rail__group">
+      <label class="plate" for="clip-select">Camera clip</label>
       <select id="clip-select" class="select"></select>
-      <p class="rail__hint" id="clip-note"></p>
     </div>
 
-    <div class="rail__clips rail__upload">
-      <span class="field__label">Or a clip of your own</span>
+    <div class="rail__group">
+      <span class="plate">Your own footage</span>
       <input type="file" id="upload-input" class="sr-only"
              accept="video/mp4,video/webm,video/quicktime,.mp4,.m4v,.mov,.webm,.mkv,.avi">
-      <label class="button button--ghost upload-button" for="upload-input">Upload a video</label>
-      <p class="rail__hint" id="upload-note">From a fixed camera. You draw the danger zone
-        and the machine region on its first frame, check them over the picture, then run it.</p>
+      <label class="button button--wide" for="upload-input">Upload a video</label>
+      <p class="hint" id="upload-note">From a fixed camera. Draw the danger zone on its
+        first frame, check it over the picture, then run it.</p>
     </div>
 
-    <div class="rail__status" id="status-block">
-      <h2 class="rail__status-title">This build</h2>
-      <dl class="statlist">
-        <div><dt>OpenCV</dt><dd id="stat-opencv">checking</dd></div>
-        <div><dt>Detector</dt><dd>YOLOX-tiny, cv2.dnn</dd></div>
-        <div><dt>Frames done</dt><dd id="stat-frames">0</dd></div>
-        <div><dt>Per frame</dt><dd id="stat-msframe">0 ms</dd></div>
-        <div><dt>Build</dt><dd id="stat-sha">…</dd></div>
-        <div><dt>Instance</dt><dd id="stat-cost">2 vCPU · 4 GB</dd></div>
-      </dl>
-      <p class="rail__privacy" id="privacy-line"></p>
+    <div class="rail__foot">
+      <span>Detector <b>YOLOX-tiny, cv2.dnn</b></span>
+      <span>OpenCV <b id="opencv-version">checking</b></span>
+      <span id="privacy-line"></span>
     </div>
   </aside>
 
-  <!-- ================================================== main =========== -->
-  <main class="main">
+  <!-- ==================================================== main ========= -->
+  <main class="main" id="main">
 
     <header class="head">
-      <div>
-        <h2 class="head__title" id="head-title">Conveyor cell, camera 1</h2>
-        <p class="head__line" id="head-line">
-          A person entering this zone while the belt is turning raises an alert with the
-          frame that proves it.
-        </p>
-      </div>
-      <div class="head__right">
-        <span class="chip" id="chip-opencv">OpenCV …</span>
-        <span class="chip" id="chip-source">baked run</span>
-      </div>
+      <h2 class="head__title" id="head-title">Conveyor cell, camera 1</h2>
+      <p class="head__line" id="head-line">
+        A person entering this zone while the belt is turning raises an alert, with the
+        frame that proves it.
+      </p>
     </header>
 
-    <!-- the hatch: the one signature element, from the floor paint -->
-    <div class="hatch" id="hatch" data-level="clear" role="status" aria-live="polite">
-      <div class="hatch__bar" aria-hidden="true"></div>
-      <div class="hatch__text">
-        <strong id="hatch-label">Zone clear</strong>
-        <span id="hatch-detail">Nobody in the danger zone.</span>
+    <!-- The signature element: floor paint, carrying the one thing that matters -->
+    <div class="banner" id="banner" data-level="clear" role="status" aria-live="polite">
+      <div class="banner__hatch" aria-hidden="true"></div>
+      <div class="banner__body">
+        <strong class="banner__level" id="banner-level">Zone clear</strong>
+        <span class="banner__detail" id="banner-detail">Nobody in the danger zone.</span>
       </div>
-      <button class="hatch__ack" id="hatch-ack" type="button" hidden>Acknowledge</button>
+      <button class="button banner__ack" id="banner-ack" type="button" hidden>Acknowledge</button>
     </div>
 
-    <!-- KPI band -->
-    <section class="kpis" aria-label="Measured results">
-      <div class="kpi"><dt>Time to alert</dt>
-        <dd><span id="kpi-tta">—</span><span class="kpi__unit">ms</span></dd>
-        <p class="kpi__note" id="kpi-tta-note">from the labelled entry</p></div>
-      <div class="kpi"><dt>Detection rate</dt>
-        <dd><span id="kpi-detect">—</span><span class="kpi__unit">%</span></dd>
-        <p class="kpi__note" id="kpi-detect-note">frames with someone in the zone</p></div>
-      <div class="kpi"><dt>Usable view</dt>
-        <dd><span id="kpi-usable">—</span><span class="kpi__unit">%</span></dd>
-        <p class="kpi__note" id="kpi-usable-note">of frames were worth analysing</p></div>
-      <div class="kpi"><dt>Throughput</dt>
-        <dd><span id="kpi-speed">—</span><span class="kpi__unit">ms/frame</span></dd>
-        <p class="kpi__note" id="kpi-speed-note">on this instance</p></div>
-      <div class="kpi"><dt>Machine</dt>
-        <dd><span id="kpi-machine">—</span></dd>
-        <p class="kpi__note" id="kpi-machine-note">from motion in the machine region</p></div>
-    </section>
-
-    <!-- ---------------------------------------------- live view -------- -->
+    <!-- ------------------------------------------------- live view ----- -->
     <section class="panel" id="panel-live">
       <div class="panel__head">
         <h3 class="panel__title">Live view</h3>
@@ -126,26 +83,25 @@
           <label class="toggle"><input type="checkbox" id="toggle-boxes" checked>
             <span>People</span></label>
           <label class="toggle"><input type="checkbox" id="toggle-blur" checked>
-            <span>Blur faces</span></label>
+            <span>Blur heads</span></label>
         </div>
       </div>
       <div class="panel__body">
-
-        <div class="stage" id="stage">
-          <video id="video" class="stage__video" playsinline muted loop preload="auto"></video>
-          <canvas id="overlay" class="stage__overlay"></canvas>
-          <div class="stage__unusable" id="unusable" hidden>
-            <span class="stage__unusable-tag" id="unusable-tag">View unusable</span>
-            <p id="unusable-text"></p>
-            <p class="stage__unusable-next" id="unusable-next"></p>
+        <div class="well">
+          <div class="stage" id="stage">
+            <video id="video" class="stage__video" playsinline muted loop preload="auto"></video>
+            <canvas id="overlay" class="stage__overlay"></canvas>
+            <div class="stage__paused" id="paused" hidden>
+              <span class="stage__paused-tag" id="paused-tag">View unusable</span>
+              <p id="paused-text"></p>
+            </div>
           </div>
-        </div>
-
-        <div class="transport">
-          <button class="button button--ghost" id="play" type="button">Play</button>
-          <input type="range" id="scrub" class="scrub" min="0" max="1000" value="0"
-                 aria-label="Position in the clip">
-          <span class="transport__time" id="time">0.0 s</span>
+          <div class="transport">
+            <button class="button" id="play" type="button">Play</button>
+            <input type="range" id="scrub" class="scrub" min="0" max="1000" value="0"
+                   aria-label="Position in the clip">
+            <span class="transport__time" id="time">0.0 s</span>
+          </div>
         </div>
 
         <div class="readout" id="readout"></div>
@@ -158,54 +114,52 @@
       </div>
     </section>
 
-    <!-- ---------------------------------------------- incidents -------- -->
+    <!-- ------------------------------------------------- incidents ----- -->
     <section class="panel" id="panel-incidents">
       <div class="panel__head">
         <h3 class="panel__title">Incidents</h3>
         <span class="panel__meta" id="incident-summary"></span>
       </div>
       <div class="panel__body panel__body--flush">
+        <p class="quiet" id="incident-quiet" hidden>Nobody entered the danger zone in this clip.</p>
         <table class="table" id="incident-table">
           <thead>
             <tr><th>Level</th><th>At</th><th>Held</th><th>What happened</th>
                 <th>Machine</th><th>State</th></tr>
           </thead>
-          <tbody id="incident-rows">
-            <tr><td colspan="6" class="empty">No incidents in this clip.</td></tr>
-          </tbody>
+          <tbody id="incident-rows"></tbody>
         </table>
       </div>
     </section>
 
-    <!-- ---------------------------------------------- evidence --------- -->
-    <section class="panel" id="panel-evidence">
+    <!-- ------------------------------------------------- evidence ------ -->
+    <!-- Hidden outright when a run produced no evidence frames. An empty panel
+         explaining its own emptiness is worse than no panel. -->
+    <section class="panel" id="panel-evidence" hidden>
       <div class="panel__head">
         <h3 class="panel__title">Evidence</h3>
-        <span class="panel__meta" id="evidence-note"></span>
+        <span class="panel__meta">Every detected person's head is blurred before the frame is written.</span>
       </div>
       <div class="panel__body">
-        <div class="evidence" id="evidence">
-          <p class="empty">The frame behind each alert appears here, with faces blurred.</p>
-        </div>
+        <div class="evidence" id="evidence"></div>
       </div>
     </section>
 
-    <!-- ---------------------------------------------- zone editor ------ -->
+    <!-- ------------------------------------------------- zone editor --- -->
     <section class="panel" id="panel-zones">
       <div class="panel__head">
-        <h3 class="panel__title">Zones</h3>
+        <h3 class="panel__title">Danger zone</h3>
         <span class="panel__meta" id="zone-meta">Drawn once, against one reference frame.</span>
       </div>
       <div class="panel__body">
         <p class="prose">
-          Click the reference frame to place corners. The zone is only valid against this
-          view: if the camera moves, Keepout stops answering and asks for it to be drawn
-          again rather than guessing where the floor went.
+          Click the frame to place corners. A person counts as inside when their feet are,
+          so draw it on the floor. The zone holds only for this view: if the camera moves,
+          Keepout stops answering and asks for it again rather than guessing where the
+          floor went.
         </p>
         <div class="editor">
-          <div class="editor__canvas-wrap">
-            <canvas id="zone-canvas" class="editor__canvas" width="960" height="540"></canvas>
-          </div>
+          <canvas id="zone-canvas" class="editor__canvas" width="960" height="540"></canvas>
           <div class="editor__side">
             <div class="layer-switch" role="radiogroup" aria-label="Which region to draw">
               <label class="layer"><input type="radio" name="zone-layer" value="danger" checked>
@@ -213,34 +167,25 @@
               <label class="layer"><input type="radio" name="zone-layer" value="machine">
                 <span>Machine region</span></label>
             </div>
-            <label class="field__label" for="ref-time" id="ref-time-label" hidden>Frame to draw on
-              <output id="ref-time-out">0.0 s</output></label>
-            <input type="range" id="ref-time" class="scrub" min="0" max="1000" value="0" hidden
-                   aria-label="Frame to draw the zones on">
+            <div class="field" id="ref-time-field" hidden>
+              <label class="plate" for="ref-time">Frame to draw on
+                <output id="ref-time-out">0.0 s</output></label>
+              <input type="range" id="ref-time" class="scrub" min="0" max="1000" value="0"
+                     aria-label="Frame to draw the zones on">
+            </div>
             <label class="toggle"><input type="checkbox" id="assume-running">
               <span>No machine in view: treat it as running</span></label>
             <label class="toggle"><input type="checkbox" id="tiled-detection">
-              <span>Small people: tiled detection, about 5x slower</span></label>
-            <button class="button" id="zone-propose" type="button">Propose from motion</button>
-            <button class="button button--ghost" id="zone-clear" type="button">Start again</button>
-            <button class="button button--ghost" id="zone-default" type="button">Use the default</button>
+              <span>Small people: tiled detection, five times slower</span></label>
+            <button class="button button--wide" id="zone-propose" type="button">Propose from motion</button>
+            <button class="button button--wide" id="zone-clear" type="button">Start again</button>
+            <button class="button button--wide" id="zone-default" type="button">Use the default</button>
             <button class="action" id="zone-apply" type="button">Save and run</button>
             <p class="editor__status" id="zone-status">No points placed yet.</p>
-            <dl class="statlist statlist--wide">
-              <div><dt>Danger points</dt><dd id="zone-points">0</dd></div>
-              <div><dt>Machine points</dt><dd id="machine-points">0</dd></div>
-              <div><dt>Area</dt><dd id="zone-area">—</dd></div>
-              <div><dt>Contact</dt><dd>feet, on the floor plane</dd></div>
-            </dl>
           </div>
         </div>
       </div>
     </section>
-
-    <footer class="foot">
-      <blockquote class="quote" id="quote"></blockquote>
-      <p class="foot__source" id="quote-source"></p>
-    </footer>
 
   </main>
 </div>

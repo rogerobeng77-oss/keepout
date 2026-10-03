@@ -25,7 +25,6 @@ A camera was already pointed at him. The footage existed. Nobody was watching it
 | [`products/keepout/docs/report.md`](products/keepout/docs/report.md) | The technical report the competition rules require. |
 | [`products/keepout/docs/evaluation.md`](products/keepout/docs/evaluation.md) | Every measured number, and how to reproduce it. |
 | [`products/keepout/docs/architecture.md`](products/keepout/docs/architecture.md) | Pipeline and AWS diagrams. |
-| [`products/keepout/docs/costs.md`](products/keepout/docs/costs.md) | What was created on AWS and what it costs. |
 | `packages/visioncore` | Shared OpenCV 5 primitives: IO, models, records, timing, calibration. |
 | `packages/servicekit` | Shared FastAPI service shell: jobs, SSE progress, evidence routes. |
 | `infra/` | ECR, App Runner and S3 scripts. |
