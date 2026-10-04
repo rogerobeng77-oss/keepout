@@ -19,9 +19,12 @@
   <aside class="rail" aria-label="Camera and zone controls">
     <div class="brand">
       <svg class="brand__mark" viewBox="0 0 34 34" aria-hidden="true">
-        <rect width="34" height="34" rx="5" fill="#141719"/>
-        <path d="M-6 26 L26 -6 M-2 30 L30 -2 M2 34 L34 2 M6 38 L38 6"
-              stroke="#F5C518" stroke-width="5"/>
+        <defs><clipPath id="plate"><rect width="34" height="34" rx="5"/></clipPath></defs>
+        <g clip-path="url(#plate)">
+          <rect width="34" height="34" fill="#141719"/>
+          <path d="M-6 26 L26 -6 M-2 30 L30 -2 M2 34 L34 2 M6 38 L38 6"
+                stroke="#F5C518" stroke-width="5"/>
+        </g>
       </svg>
       <div>
         <h1 class="brand__name">Keepout</h1>
