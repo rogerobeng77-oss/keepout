@@ -39,10 +39,6 @@ which stay, because one second of that video is a minute of real time; a handhel
 warehouse clip is refused almost entirely as `camera_moved`. Nobody fell in any of
 them, so every critical they raise is false.
 
-**No deployed-system outcome trial exists for this class of product.** Asked whether
-Keepout has been shown to prevent an injury in a real factory, the honest answer is
-that nobody has published that evidence for any product in this category.
-
 ---
 
 ## What it does

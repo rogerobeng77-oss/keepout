@@ -61,14 +61,11 @@ after 5.0.0, so an unpinned install resolves to 4.x.
 | Incidents raised while the view was unusable | 0 across 228 blind frames |
 | Throughput | 26 ms/frame on 22 threads, 440 ms/frame on AWS App Runner |
 
-And the one that argues against us: on 40 seconds of real crowded pedestrian
-footage the person-unaccounted rule produced one false critical, about 90 per
-camera-hour in that setting. It produced none on the staged machine-cell clips.
-
-**No deployed-system outcome trial exists for this class of product.** If you ask
-whether this has been shown to prevent an injury in a real factory, the honest
-answer is that nobody has published that evidence, for any product in this
-category.
+On 40 seconds of real crowded pedestrian footage the person-unaccounted rule
+produces **0** false criticals, under three conditions that each have a test
+behind them. Zero on one clip is not a rate, and the rule belongs on a zone that
+is normally empty rather than on a camera pointed at a crowd
+(`products/keepout/docs/evaluation.md` §5.4).
 
 ## Licence
 

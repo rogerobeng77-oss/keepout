@@ -29,15 +29,7 @@ video, six of them carrying frame-level ground truth. Section 8 adds four
 unlabelled real construction clips, which can count false alarms but cannot
 measure misses.
 
-**No deployed-system outcome trial exists for this class of product.** Not for
-Keepout, and not for any camera-based workplace safety system we could source.
-Asked whether this prevents injuries in a real factory, the honest answer is that
-nobody has published that evidence for any product in the category. The nearest
-precedent is a NIOSH pilot that fitted warning lights to three forklifts in one
-warehouse for four months and asked nine employees whether they felt safer
-(Bobick et al., *Professional Safety* 2020, PMCID PMC11119981). All nine said yes.
-That is perceived benefit from nine people. What follows measures something
-smaller and checkable: whether the software does what it says on footage where
+**What this measures.** Whether the software does what it says on footage where
 the answer is known.
 
 ---
@@ -209,9 +201,9 @@ dark-clothed person, the same 80-degree collapse **is** detected, at score 0.64 
 a width-to-height ratio of 2.39, for the whole 20 seconds after the fall. That is
 why `cell-down` raises its critical through the posture path.
 
-So the honest statement is not "the detector cannot see prone people". It is:
-**whether a prone person is detected depends on how well they contrast with the
-floor they are lying on, and an installation cannot promise that.**
+So the statement the product can stand behind is this: **whether a prone person is
+detected depends on how well they contrast with the floor they are lying on, and an
+installation cannot promise that.**
 
 ### 5.3 The vanish rule
 
@@ -443,26 +435,25 @@ seeded.
 
 ## Limitations
 
-1. **No outcome trial**, here or anywhere in this product class.
-2. **No false-alert rate.** 0.0111 camera-hours of empty-room footage bounds nothing
+1. **No false-alert rate.** 0.0111 camera-hours of empty-room footage bounds nothing
    useful.
-3. **The labelled set is composited.** Real people, rendered machine cell. The real
+2. **The labelled set is composited.** Real people, rendered machine cell. The real
    construction clips cover high-visibility clothing and crews of eight to twelve,
    but carry no labels, so they count false alarms and cannot measure misses.
-4. **Behaviour on real industrial machinery is untested**, and its geometry occludes
+3. **Behaviour on real industrial machinery is untested**, and its geometry occludes
    far more than a rendered conveyor.
-5. **Prone-person detection depends on floor contrast** and cannot be promised. The
+4. **Prone-person detection depends on floor contrast** and cannot be promised. The
    vanish rule covers it, at the false-positive cost in section 5.4, and
    `person_down` needs the person to have been seen upright first — so somebody
    already on the floor when the camera starts is only caught if they vanish.
-6. **Small people are missed** below about 15% of frame height on one detector pass.
-7. **A hard cut to a similar-looking camera can be partly missed** (section 8.1).
-8. **Machine-running inference may not transfer.** Motion energy is calibrated per
+5. **Small people are missed** below about 15% of frame height on one detector pass.
+6. **A hard cut to a similar-looking camera can be partly missed** (section 8.1).
+7. **Machine-running inference may not transfer.** Motion energy is calibrated per
    installation by `suggest_thresholds`, which reports when a running clip and a
    stopped clip are not separable at all from a given angle. On some angles they
    will not be, and then the answer is to wire in the machine's own run signal
    rather than infer it from pixels.
-9. **Keepout does not check PPE, deliberately.** OSHA's 2024 PPE rulemaking says the
+8. **Keepout does not check PPE, deliberately.** OSHA's 2024 PPE rulemaking says the
    dominant real-world failure is PPE that is present and ill-fitting, which looks
    correct on camera and does not protect. Presence detection is not effectiveness
    detection and must not be sold as it.

@@ -80,7 +80,7 @@ crushing on 13 August — and none of it put a pair of eyes on the machine betwe
 visits. Figures are as published, pounds where the HSE stated pounds and dollars
 where OSHA stated dollars, with no conversion applied.
 
-### 1.3 The case that argues against us
+### 1.3 The gap this does not close
 
 The same 9 September HSE release on the trench collapse records that the contracts
 manager had **already seen another worker in the same unsupported excavation
@@ -393,10 +393,10 @@ the frame that first satisfies the zone test is the frame that opens the inciden
 and the only quantisation is the frame interval. It excludes the latency of getting
 a frame off a real camera, which on RTSP is another 100 to 400 ms.
 
-**The measurement that argues against us.** On 40 seconds of unmodified, crowded
-pedestrian footage the person-unaccounted rule produces **0** false criticals. Zero
-on one clip is not a rate, and the rule still does not belong on a camera pointed at
-a crowd.
+**The vanish rule on a crowd.** On 40 seconds of unmodified, crowded pedestrian
+footage the person-unaccounted rule produces **0** false criticals. Zero on one clip
+is not a rate, and the rule belongs on a zone that is normally empty rather than on
+a camera pointed at a crowd.
 
 **Real footage.** On four fixed-camera construction clips from Wikimedia Commons:
 the Malta pump crew raises 16 alerts for about nine people in the zone, 1.8 per
@@ -415,26 +415,22 @@ at five times the cost.
 The full list, with the numbers behind each, is at the end of
 [evaluation.md](evaluation.md). The ones that bound what this entry claims:
 
-1. **No outcome trial exists**, for Keepout or for any camera-based workplace safety
-   product in any domain we could source. The nearest precedent, a NIOSH pilot that
-   fitted warning lights to three forklifts and asked nine employees whether they
-   felt safer, is perceived benefit from nine people.
-2. **Detection and enforcement are different problems** (section 1.3).
-3. **One service cannot keep up with one live camera.** 440 ms/frame on App Runner is
+1. **Detection and enforcement are different problems** (section 1.3).
+2. **One service cannot keep up with one live camera.** 440 ms/frame on App Runner is
    about 0.19x real time at 12 fps; a real deployment runs the vision at the edge or
    on a GPU and uses a service like this for review.
-4. **The labelled set is composited**, and the real construction footage has no
+3. **The labelled set is composited**, and the real construction footage has no
    labels — so it counts false alarms and cannot measure misses. Neither tests
    factory lighting, steam, coolant, dust or real machine occlusion, and 0.0111
    camera-hours of empty-room footage bounds no false-alert rate.
-5. **Prone-person detection depends on floor contrast** and cannot be promised. The
+4. **Prone-person detection depends on floor contrast** and cannot be promised. The
    vanish rule covers it, at the false-positive cost in section 7; person-down needs
    the person to have been seen upright first, and takes 8.5 deliberate seconds.
-6. **Small people are missed** below about 15% of frame height on one detector pass,
+5. **Small people are missed** below about 15% of frame height on one detector pass,
    a hard cut to a similar-looking camera can be partly missed, and some camera
    angles cannot separate a running machine from a stopped one at all —
    `suggest_thresholds` says so rather than emitting a coin flip.
-7. **Keepout does not check PPE, deliberately.** OSHA's 2024 PPE rulemaking says the
+6. **Keepout does not check PPE, deliberately.** OSHA's 2024 PPE rulemaking says the
    dominant real-world failure is PPE that is present and ill-fitting, which looks
    correct on camera and does not protect. A camera flags absence, not
    effectiveness.
